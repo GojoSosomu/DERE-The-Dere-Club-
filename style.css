@@ -86,7 +86,7 @@ body {
     bottom: 2%;
     transform: translateX(-50%);
     padding: 1rem 1.5rem;
-    background: rgba(255,179,192,.75);
+    background: rgba(255,179,192);
     color: white;
     border: clamp(2px, 0.4vw, 4px) solid white;
     border-radius: 16px;
@@ -100,7 +100,7 @@ body {
     left: 1.5rem;
     transform: translateY(-100%);
     padding: .3rem 1rem;
-    background: rgba(255,179,192,.75);
+    background: rgba(255,179,192);
     border: inherit;
     border-radius: 16px 16px 0 0;
     font-weight: 600;
