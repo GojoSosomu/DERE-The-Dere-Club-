@@ -1,5 +1,25 @@
 {
-    "dialogue": {
-        "choice1": "Hello world?"
-    }
+  "start": {
+    "text": "I am late for school! What should I do?",
+    "choices": [
+      {
+        "text": "Well, hurry up, Kyle.",
+        "next_scene": "late_scene"
+      },
+      {
+        "text": "Rest instead, there's still tomorrow.",
+        "next_scene": "absent_scene"
+      }
+    ]
+  },
+
+  "late_scene": {
+    "text": "You're late, Kyle. What are you doing in your life?",
+    "choices": [
+      {
+        "text": "\"Sorry sir, I'm late.\"",
+        "next_scene": "class_scene"
+      }
+    ]
+  }
 }
