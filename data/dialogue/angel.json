@@ -1,0 +1,135 @@
+{
+  "id": "year1",
+
+  "scenes": {
+    "school_intro": {
+      "dialogue": [
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "A new school year begins."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Gelin",
+          "position": "left",
+          "text": "Another year..."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Moe",
+          "position": "right",
+          "text": "Good morning!"
+        },
+        {
+          "type": "choice",
+          "choices": [
+            {
+              "text": "Good morning.",
+              "dialogue": [
+                {
+                  "type": "speaker",
+                  "speaker": "Gelin",
+                  "text": "Morning."
+                }
+              ]
+            },
+            {
+              "text": "...",
+              "dialogue": [
+                {
+                  "type": "speaker",
+                  "speaker": "Narrator",
+                  "text": "You stay silent."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "speaker",
+          "speaker": "Moe",
+          "text": "Let's head to class."
+        }
+      ]
+    },
+
+    "day1_after_school": {
+      "dialogue": [
+        {
+          "type": "restrictedExploreChoice",
+          "options": [
+            {
+              "text": "Library",
+              "scene": "library_day1"
+            },
+            {
+              "text": "Club Room",
+              "scene": "clubroom_day1"
+            },
+            {
+              "text": "Rooftop",
+              "scene": "rooftop_day1"
+            },
+            {
+              "text": "Go Home",
+              "scene": "day1_end"
+            }
+          ]
+        }
+      ]
+    },
+
+    "library_day1": {
+      "dialogue": [
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "Oh... I didn't expect anyone else to be here."
+        }
+      ]
+    },
+
+    "clubroom_day1": {
+      "dialogue": [
+        {
+          "type": "speaker",
+          "speaker": "Ali",
+          "text": "Welcome! We were waiting for you."
+        }
+      ]
+    },
+
+    "rooftop_day1": {
+      "dialogue": [
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "The wind is peaceful today."
+        }
+      ]
+    },
+
+    "day1_end": {
+      "dialogue": [
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "The first day comes to an end."
+        }
+      ]
+    }
+  },
+
+  "story": {
+    "start": "school_intro",
+
+    "school_intro": {
+      "next": "day1_after_school"
+    },
+
+    "day1_after_school": {
+      "next": "day1_end"
+    }
+  }
+}
