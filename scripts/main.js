@@ -1,9 +1,9 @@
 let activeStage = [
-    { slotId: "far-left", character: null },
-    { slotId: "left",     character: null },
-    { slotId: "center",   character: null },
-    { slotId: "right",    character: null },
-    { slotId: "far-right",character: null }
+    { slotId: "far-left",  character: null },
+    { slotId: "left",      character: null },
+    { slotId: "center",    character: null },
+    { slotId: "right",     character: null },
+    { slotId: "far-right", character: null }
 ];
 
 const Character = Object.freeze({
@@ -26,34 +26,44 @@ const Emotion = Object.freeze({
 });
 
 function getCharacterImageSrc(character, emotion) {
-    return "images/characters/" + character + "/" + character + "_" + emotion + ".png";
+    return `images/characters/${character}/${character}_${emotion}.png`;
 }
 
 function getProfileImageSrc(character) {
-    return "images/profiles/" + character + "_profile" + ".png";
+    return `images/profiles/${character}_profile.png`;
 }
 
-function spawnCharacter(characterImageSrc, slotId) {
+function spawnCharacter(character, emotion, slotId) {
     let targetSlot = document.getElementById(slotId);
+    if (!targetSlot) return;
+    
     targetSlot.innerHTML = "";
     
     let characterImg = document.createElement("img");
-    characterImg.src = characterImageSrc;
+    characterImg.src = getCharacterImageSrc(character, emotion);
     characterImg.className = "character-sprite";
     
     targetSlot.appendChild(characterImg);
+
+    let stageSlot = activeStage.find(slot => slot.slotId === slotId);
+    if (stageSlot) {
+        stageSlot.character = character;
+    }
 }
 
-function setDialogue(speaker, text, profileImageSrc) {
+function setDialogue(speaker, text) {
     let dialogueBox = document.querySelector(".dialogue-box");
-    let speakerBox = dialogueBox.querySelector(".speaker");
-    speakerBox.textContent = speaker;
-    let speakerProfile = dialogueBox.querySelector(".speaker-profile");
-    speakerProfile.src = profileImageSrc;
-    let dialogueContent = dialogueBox.querySelector(".dialogue-content");
-    dialogueContent.querySelector("p").textContent = text;
+    if (!dialogueBox) return;
 
+    let speakerBox = dialogueBox.querySelector(".speaker");
+    speakerBox.textContent = speaker.charAt(0).toUpperCase() + speaker.slice(1);
+    
+    let speakerProfile = dialogueBox.querySelector(".speaker-profile");
+    speakerProfile.src = getProfileImageSrc(speaker);
+    
+    let dialogueContent = dialogueBox.querySelector(".dialogue-content p");
+    dialogueContent.textContent = text;
 }
 
-spawnCharacter(getCharacterImageSrc(Character.ANGEL, Emotion.NEUTRAL), "center");
-setDialogue(Character.ANGEL, "FACK YOU! WHY NOT KISS ME ALREADT!!", getProfileImageSrc(Character.ANGEL));
+spawnCharacter(Character.ANGEL, Emotion.ANGRY, "center");
+setDialogue(Character.ANGEL, "FACK YOU! WHY NOT KISS ME ALREADY!!");
