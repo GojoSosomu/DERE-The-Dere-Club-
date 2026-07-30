@@ -25,8 +25,12 @@ const Emotion = Object.freeze({
     INFATUATION: "infatuation"
 });
 
-function getcharacterImageSrc(character, emotion) {
+function getCharacterImageSrc(character, emotion) {
     return "images/characters/" + character + "/" + character + "_" + emotion + ".png";
+}
+
+function getProfileImageSrc(character) {
+    return "images/profiles/" + character + "_profile" + ".png";
 }
 
 function spawnCharacter(characterImageSrc, slotId) {
@@ -40,4 +44,16 @@ function spawnCharacter(characterImageSrc, slotId) {
     targetSlot.appendChild(characterImg);
 }
 
-spawnCharacter(getcharacterImageSrc(Character.ANGEL, Emotion.NEUTRAL), "center");
+function setDialogue(speaker, text, profileImageSrc) {
+    let dialogueBox = document.querySelector(".dialogue-box");
+    let speakerBox = dialogueBox.querySelector(".speaker");
+    speakerBox.textContent = speaker;
+    let speakerProfile = dialogueBox.querySelector(".speaker-profile");
+    speakerProfile.src = profileImageSrc;
+    let dialogueContent = dialogueBox.querySelector(".dialogue-content");
+    dialogueContent.querySelector("p").textContent = text;
+
+}
+
+spawnCharacter(getCharacterImageSrc(Character.ANGEL, Emotion.NEUTRAL), "center");
+setDialogue(Character.ANGEL, "FACK YOU! WHY NOT KISS ME ALREADT!!", getProfileImageSrc(Character.ANGEL));
