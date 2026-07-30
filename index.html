@@ -9,7 +9,15 @@
 <body>
     <div class="game-screen">
         <div class="gameplay">
-            <img src="images/classroom.jpg" class="background-game" alt="Background">
+            <img src="images/background/classroom.jpg" class="background-game" alt="Background">
+
+            <div class="player-info">
+                <!-- affection meters, stats, whatever state you're tracking -->
+            </div>
+
+            <div class="menu-button">
+                <button id="open-menu">☰</button>
+            </div>
 
             <div class="stage">
                 <div class="slot" id="far-left"></div>
@@ -21,13 +29,16 @@
 
             <div class="dialogue-box">
                 <div class="speaker"></div>
-
                 <div class="dialogue-content">
-                    <img src="" class="speaker-profile" alt="Angel Naval">
-                    <p>Why am I in the bottom? Fuck you, center me!</p>
+                    <img src="" class="speaker-profile">
+                    <p></p>
                 </div>
+                <div class="next-indicator">▼</div>
             </div>
 
+            <div class="choice-popup" hidden>
+                <div class="choice-options"></div>
+            </div>
         </div>
     </div>
 

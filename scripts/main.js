@@ -39,16 +39,24 @@ function spawnCharacter(character, emotion, slotId) {
     
     targetSlot.innerHTML = "";
     
-    let characterImg = document.createElement("img");
-    characterImg.src = getCharacterImageSrc(character, emotion);
-    characterImg.className = "character-sprite";
-    
-    targetSlot.appendChild(characterImg);
+    enterCharacter(slotId, getCharacterImageSrc(character, emotion))
 
     let stageSlot = activeStage.find(slot => slot.slotId === slotId);
     if (stageSlot) {
         stageSlot.character = character;
     }
+}
+
+function enterCharacter(slotId, imgSrc, from = "bottom") {
+    const slot = document.getElementById(slotId);
+    const img = document.createElement('img');
+    img.src = imgSrc;
+    img.className = `character-sprite enter-from-${from} not-speaking`;
+    slot.appendChild(img);
+    requestAnimationFrame(() => {
+        img.classList.add('on-stage');
+        img.classList.remove('not-speaking');
+    });
 }
 
 function setDialogue(speaker, text) {
@@ -65,5 +73,5 @@ function setDialogue(speaker, text) {
     dialogueContent.textContent = text;
 }
 
-spawnCharacter(Character.ANGEL, Emotion.NEUTRAL, "center");
-setDialogue(Character.ANGEL, "FACK YOU! WHY NOT KISS ME ALREADY!!");
+spawnCharacter(Character.ANGEL, Emotion.NEUTRAL, "left");
+setDialogue(Character.ANGEL, "FACK YOU! WHY NOT KISS ME ALREADY!! PLEASE!!!!");

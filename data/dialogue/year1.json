@@ -1,8 +1,11 @@
 {
   "id": "year1",
+  "start": "school_intro",
 
   "scenes": {
     "school_intro": {
+      "background": "hallway",
+      "next": "day1_after_school",
       "dialogue": [
         {
           "type": "speaker",
@@ -40,7 +43,12 @@
                 {
                   "type": "speaker",
                   "speaker": "Narrator",
-                  "text": "You stay silent."
+                  "text": "You stay silent." 
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "Gelin",
+                  "text": "...Fine. Let's just go."
                 }
               ]
             }
@@ -55,25 +63,42 @@
     },
 
     "day1_after_school": {
+      "background": "hallway",
       "dialogue": [
         {
-          "type": "restrictedExploreChoice",
+          "type": "exploreChoice",
           "options": [
             {
+              "type": "goto",
               "text": "Library",
               "scene": "library_day1"
             },
             {
+              "type":"goto",
               "text": "Club Room",
               "scene": "clubroom_day1"
             },
             {
+              "type":"goto",
               "text": "Rooftop",
               "scene": "rooftop_day1"
             },
             {
+              "type": "stay",
+              "text": "Just look around",
+              "dialogue": [
+                {
+                  "type": "speaker",
+                  "speaker": "Narrator",
+                  "text": "Nothing much has changed since this morning."
+                }
+              ]
+            },
+            {
+              "type":"goto",
               "text": "Go Home",
-              "scene": "day1_end"
+              "scene": "day1_end",
+              "exit": true
             }
           ]
         }
@@ -81,6 +106,7 @@
     },
 
     "library_day1": {
+      "background":"classroom", 
       "dialogue": [
         {
           "type": "speaker",
@@ -91,6 +117,7 @@
     },
 
     "clubroom_day1": {
+      "background": "classroom",
       "dialogue": [
         {
           "type": "speaker",
@@ -101,6 +128,7 @@
     },
 
     "rooftop_day1": {
+      "background": "hallway",
       "dialogue": [
         {
           "type": "speaker",
@@ -111,6 +139,7 @@
     },
 
     "day1_end": {
+      "background": "hallway",
       "dialogue": [
         {
           "type": "speaker",
@@ -118,18 +147,6 @@
           "text": "The first day comes to an end."
         }
       ]
-    }
-  },
-
-  "story": {
-    "start": "school_intro",
-
-    "school_intro": {
-      "next": "day1_after_school"
-    },
-
-    "day1_after_school": {
-      "next": "day1_end"
     }
   }
 }
