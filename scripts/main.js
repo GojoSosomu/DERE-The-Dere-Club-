@@ -74,4 +74,4 @@ function setDialogue(speaker, text) {
 }
 
 spawnCharacter(Character.ANGEL, Emotion.NEUTRAL, "left");
-setDialogue(Character.ANGEL, "FACK YOU! WHY NOT KISS ME ALREADY!! PLEASE!!!!");
+setDialogue(Character.ANGEL, "H-hey, how are you going?");
