@@ -72,8 +72,7 @@ function setDialogue(speaker, text) {
     let dialogueContent = dialogueBox.querySelector(".dialogue-content p");
     dialogueContent.textContent = text;
 }
-
-spawnCharacter(Character.ANGEL, Emotion.NEUTRAL, "left");
+
 setDialogue(Character.ANGEL, "H-hey, how are you going?");
 
 document.getElementById("start").addEventListener("click", () => {
