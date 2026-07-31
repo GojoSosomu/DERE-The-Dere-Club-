@@ -73,7 +73,7 @@ function setDialogue(speaker, text) {
     dialogueContent.textContent = text;
 }
 
-setDialogue(Character.ANGEL, "H-hey, how are you going?");
+setDialogue(Character.ANGEL, "H-hey, how are you doing?");
 
 document.getElementById("start").addEventListener("click", () => {
     document.querySelector(".gameplay").style.display = "block";
