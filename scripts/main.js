@@ -74,4 +74,4 @@ function setDialogue(speaker, text) {
 }
 
 spawnCharacter(Character.ANGEL, Emotion.NEUTRAL, "left");
-setDialogue(Character.ANGEL, "H-hey, how are you going?");
+setDialogue(Character.ANGEL, "FUCk me harder please");
