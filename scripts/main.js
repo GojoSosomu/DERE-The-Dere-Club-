@@ -75,3 +75,8 @@ function setDialogue(speaker, text) {
 
 spawnCharacter(Character.ANGEL, Emotion.NEUTRAL, "left");
 setDialogue(Character.ANGEL, "H-hey, how are you going?");
+
+document.getElementById("start").addEventListener("click", () => {
+    document.querySelector(".gameplay").style.display = "block";
+    document.querySelector(".main-menu").style.display = "none";
+});

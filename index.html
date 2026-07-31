@@ -3,13 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="style.css">
     <title>Visual Novel UI</title>
 </head>
 <body>
     <div class="game-screen">
-        <div class="gameplay">
-            <img src="images/background/classroom.jpg" class="background-game" alt="Background">
+        <div class="main-menu page">
+            <div class="title">
+                <img src="images/background/Title.png" alt="Title">
+            </div>
+
+            <div class="main-menu-button">
+                <button class="main-button" id="setting" type="button">Setting</button>
+                <button class="main-button" id="start" type="button">▶</button>
+                <button class="main-button" id="about" type="button">About</button>
+            </div>
+        </div>
+        <div class="gameplay page" hidden>
+            <img src="images/background/classroom.jpg" class="background" alt="Background">
 
             <div class="player-info">
                 <!-- affection meters, stats, whatever state you're tracking -->
