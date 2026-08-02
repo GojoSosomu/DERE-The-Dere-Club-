@@ -3,32 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="style.css">
     <title>Visual Novel UI</title>
 </head>
 <body>
     <div class="game-screen">
-        <div class="main-menu page">
+        <div class="main-menu page visible">
             <div class="title">
                 <img src="images/background/Title.png" alt="Title">
             </div>
 
-            <div class="main-menu-button">
-                <button class="main-button" id="setting" type="button">Setting</button>
-                <button class="main-button" id="start" type="button">▶</button>
-                <button class="main-button" id="about" type="button">About</button>
+            <div class="main-menu-buttons">
+                <button class="button main-button" id="setting">Setting</button>
+                <button class="button main-button" id="start">▶</button>
+                <button class="button main-button" id="about">About</button>
             </div>
         </div>
-        <div class="gameplay page" hidden>
+
+        <div class="gameplay page hidden">
             <img src="images/background/classroom.jpg" class="background" alt="Background">
 
-            <div class="player-info">
-                <!-- affection meters, stats, whatever state you're tracking -->
+            <div class="panel player-info">
             </div>
 
             <div class="menu-button">
-                <button id="open-menu">☰</button>
+                <button class="button" id="open-menu">☰</button>
             </div>
 
             <div class="stage">
@@ -39,19 +38,44 @@
                 <div class="slot" id="far-right"></div>
             </div>
 
-            <div class="dialogue-box">
-                <div class="speaker"></div>
+            <div class="panel dialogue-box hidden">
+                <div class="panel speaker"></div>
                 <div class="dialogue-content">
-                    <img src="" class="speaker-profile">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="speaker-profile hidden">
                     <p></p>
                 </div>
                 <div class="next-indicator">▼</div>
             </div>
 
-            <div class="choice-popup" hidden>
+            <div class="window choice-popup hidden">
                 <div class="choice-options"></div>
             </div>
         </div>
+
+        <div class="setting page hidden">
+            <header class="setting-header">
+                <h1>SETTING</h1>
+            </header>
+
+            <nav class="setting-navigation">
+                <button class="button active">Volume</button>
+                <button class="button">Text</button>
+                <button class="button">...</button>
+                <button class="button">...</button>
+            </nav>
+
+            <main class="setting-main">
+                <div class="window">
+                    <div class="panel setting-heading">
+                        <h2>Volume</h2>
+                    </div>
+                    <div class="panel setting-content">
+
+                    </div>
+                </div>
+            </main>
+        </div>
+
     </div>
 
     <script src="scripts/main.js"></script>
