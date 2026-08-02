@@ -16,13 +16,13 @@
           "type": "speaker",
           "speaker": "Gelin",
           "position": "left",
-          "text": "Another year..."
+          "text": "Another year... I hope it isn't as strange as last time."
         },
         {
           "type": "speaker",
           "speaker": "Moe",
           "position": "right",
-          "text": "Good morning!"
+          "text": "Good morning! There's a mystery waiting for us today."
         },
         {
           "type": "choice",
@@ -33,7 +33,7 @@
                 {
                   "type": "speaker",
                   "speaker": "Gelin",
-                  "text": "Morning."
+                  "text": "Morning. Let's make this year better than the last."
                 }
               ]
             },
@@ -43,12 +43,12 @@
                 {
                   "type": "speaker",
                   "speaker": "Narrator",
-                  "text": "You stay silent." 
+                  "text": "You stay silent. The hallway hums with early chatter."
                 },
                 {
                   "type": "speaker",
                   "speaker": "Gelin",
-                  "text": "...Fine. Let's just go."
+                  "text": "...Fine. Let's just go. There's no time to waste."
                 }
               ]
             }
@@ -57,7 +57,12 @@
         {
           "type": "speaker",
           "speaker": "Moe",
-          "text": "Let's head to class."
+          "text": "I heard there is a hidden festival plan somewhere in the school. We should look into it after classes."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "The bell rings. Your first day of classes is about to begin."
         }
       ]
     },
@@ -90,7 +95,12 @@
                 {
                   "type": "speaker",
                   "speaker": "Narrator",
-                  "text": "Nothing much has changed since this morning."
+                  "text": "A crisp poster flutters on the bulletin board. It mentions an old festival that vanished years ago."
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "Moe",
+                  "text": "Maybe the rumor is more than just a rumor."
                 }
               ]
             },
@@ -106,34 +116,117 @@
     },
 
     "library_day1": {
-      "background":"classroom", 
+      "background": "library",
+      "next": "day1_end",
       "dialogue": [
         {
           "type": "speaker",
           "speaker": "Penny",
           "text": "Oh... I didn't expect anyone else to be here."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "I was looking for a book about the old school festival. They say the history section hides the best secrets."
+        },
+        {
+          "type": "choice",
+          "choices": [
+            {
+              "text": "Offer to help.",
+              "dialogue": [
+                {
+                  "type": "speaker",
+                  "speaker": "Penny",
+                  "text": "Thank you. I found a folded note between the pages. It mentions a secret meeting place."
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "Narrator",
+                  "text": "You hold the note and feel the excitement of a mystery unfolding."
+                }
+              ]
+            },
+            {
+              "text": "Give her space.",
+              "dialogue": [
+                {
+                  "type": "speaker",
+                  "speaker": "Penny",
+                  "text": "Okay, I'll let you read in peace. If you want to join, I'll be at the study table."
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "Narrator",
+                  "text": "The library's silence feels charged with something waiting to be discovered."
+                }
+              ]
+            }
+          ]
         }
       ]
     },
 
     "clubroom_day1": {
-      "background": "classroom",
+      "background": "clubroom",
+      "next": "day1_end",
       "dialogue": [
         {
           "type": "speaker",
           "speaker": "Ali",
-          "text": "Welcome! We were waiting for you."
+          "text": "Welcome! We were waiting for you. The club is planning a special event this year."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Ali",
+          "text": "If you join us, you can help design the invitation for the school festival."
+        },
+        {
+          "type": "choice",
+          "choices": [
+            {
+              "text": "Ask about the event.",
+              "dialogue": [
+                {
+                  "type": "speaker",
+                  "speaker": "Ali",
+                  "text": "It is a celebration for all the clubs, but some old traditions were lost. We want to bring them back."
+                }
+              ]
+            },
+            {
+              "text": "Say you'll think about it.",
+              "dialogue": [
+                {
+                  "type": "speaker",
+                  "speaker": "Ali",
+                  "text": "No pressure. If you want to help later, the door is always open."
+                }
+              ]
+            }
+          ]
         }
       ]
     },
 
     "rooftop_day1": {
-      "background": "hallway",
+      "background": "rooftop",
+      "next": "day1_end",
       "dialogue": [
         {
           "type": "speaker",
           "speaker": "Narrator",
-          "text": "The wind is peaceful today."
+          "text": "The wind is peaceful today, and the city stretches out beneath the rooftop."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Gelin",
+          "text": "There's a rumor that the school once hid a secret garden up here."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Moe",
+          "text": "If it's true, maybe the note in the library and the festival plans are connected."
         }
       ]
     },
@@ -144,7 +237,12 @@
         {
           "type": "speaker",
           "speaker": "Narrator",
-          "text": "The first day comes to an end."
+          "text": "The first day comes to an end. You have a new clue, a new choice, and a rumor that will not leave your mind."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "Tomorrow, the search for the hidden festival begins in earnest."
         }
       ]
     }
