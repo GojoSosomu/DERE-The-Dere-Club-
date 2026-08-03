@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Visual Novel UI</title>
 </head>
+
 <body>
     <div class="game-screen">
         <div class="main-menu page visible">
@@ -38,10 +40,11 @@
                 <div class="slot" id="far-right"></div>
             </div>
 
-            <div class="panel dialogue-box hidden">
+            <div class="panel dialogue-box visible">
                 <div class="panel speaker"></div>
                 <div class="dialogue-content">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="speaker-profile hidden">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                        class="speaker-profile hidden">
                     <p></p>
                 </div>
                 <div class="next-indicator">▼</div>
@@ -53,7 +56,7 @@
         </div>
 
         <div class="setting page hidden">
-            <header class="setting-header">
+            <header class="panel setting-header">
                 <h1>SETTING</h1>
             </header>
 
@@ -61,16 +64,77 @@
                 <button class="button active">Volume</button>
                 <button class="button">Text</button>
                 <button class="button">...</button>
-                <button class="button">...</button>
+                <button class="button" id="back-button">Back</button>
             </nav>
 
             <main class="setting-main">
-                <div class="window">
+                <div class="resize window">
                     <div class="panel setting-heading">
                         <h2>Volume</h2>
                     </div>
                     <div class="panel setting-content">
+                        <div class="setting-control">
+                            <label for="volume-master">Master Volume</label>
+                            <input type="range" name="Master Volume" id="volume-master">
+                        </div>
+                        <div class="setting-control">
+                            <label for="volume-sfx">SFX Volume</label>
+                            <input type="range" name="SFX Volume" id="volume-sfx">
+                        </div>
+                        <div class="setting-control">
+                            <label for="volume-bg">BG Volume</label>
+                            <input type="range" name="BG Volume" id="volume-bg">
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
 
+        <div class="orientationInfo page hidden">
+            <h2>Please either rotate your device to landscape or change to another device, as this game doesn't support small screens.</h2>
+        </div>
+
+        <div class="about page hidden">
+            <header class="panel about-header">
+                <h1>ABOUT</h1>
+            </header>
+
+            <nav class="setting-navigation">
+                <button class="button" id="back-button-ab">Back</button>
+            </nav>
+
+            <main class="about-main">
+                <div class="resize window">
+                    <div class="panel about-content">
+                        <div class="panel about-content">
+                            <center>
+                                <h2>Credits</h2>
+                            </center>
+
+                            Members:
+                            <ol style="list-style-type: none;">
+                                <li>Kyle Justine Cristobal - Designer</li>
+                                <li>Chemuel Jhon Dela Pena - Programmer</li>
+                                <li>John Bernard Nollas - Assistant/Researcher</li>
+                                <li>Daniel Ethan Perolino - Programmer/Moral Support</li>
+                            </ol>
+                        </div>
+
+                        <div class="panel about-content">
+                            <center>
+                                <h2>References</h2>
+                            </center>
+
+                            Links:
+                            <ol style="list-style-type: none;">
+                                <li>Gameplay: <a href="https://www.youtube.com/watch?v=p9fcxySGDY0">
+                                        Ace Attorney 2018 Special Court Session</a>
+                                </li>
+                                <li>Inspiration (Layout Design): <a href="https://www.youtube.com/watch?v=msc1n57t-L8">
+                                        Doki Doki Literature Club</a>
+                                </li>
+                            </ol>
+                        </div>
                     </div>
                 </div>
             </main>
@@ -80,4 +144,5 @@
 
     <script src="scripts/main.js"></script>
 </body>
+
 </html>
