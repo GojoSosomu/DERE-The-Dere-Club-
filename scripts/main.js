@@ -39,9 +39,9 @@ const EventBus = {
         if (!this.events[event]) this.events[event] = [];
         this.events[event].push(callback);
     },
-    emit(event, data) {
+    emit(event, ...data) {
         if (this.events[event]) {
-            this.events[event].forEach(callback => callback(data));
+            this.events[event].forEach(callback => callback(...data));
         }
     }
 };
@@ -50,6 +50,7 @@ const Engine = {
     initialize() {
         DOM.initialize();
         Screen.initialize();
+        Setting.initialize();
         Dialogue.initialize();
         Character.initialize();
         Choice.initialize();
@@ -69,13 +70,21 @@ const DOM = {
         };
 
         this.currentPage = null;
+        this.previousPage = null;
 
         this.startButton = get("#start");
         this.settingButton = get("#setting");
+        this.volumeButton = get("#volume");
+        this.textButton = get("#text");
         this.aboutButton = get("#about");
         this.backButton = get("#back-button"); // this is the button on settings/about scene
         this.backButtonAbout = get("#back-button-ab");
         this.menuButton = get("#open-menu");
+        this.resumeButton = get("#resume");
+        this.settingsButton = get("#settings");
+        this.saveButton = get("#save");
+        this.loadButton = get("#load");
+        this.quitButton = get("#quit");
 
         this.stage = get(".stage");
         this.dialogueBox = get(".dialogue-box");
@@ -84,16 +93,33 @@ const DOM = {
         this.profile = get(".speaker-profile");
         this.nextIndicator = get(".next-indicator");
 
-        this.choicePopup = get(".choice-popup");
-        this.choiceContainer = get(".choice-options");
+        this.settingCategory = get(".setting-category");
+        this.settingContent = get(".setting-content");
+
+        this.popups = {
+            choice: {
+                popup: get(".choice-popup"),
+                container: get(".choice-options")
+            },
+
+            menu: {
+                popup: get(".menu-popup"),
+                container: get(".menu-options")
+            }
+        };
     }
 };
 
 const Events = {
     initialize() {
-        on(DOM.startButton, "click", () => Screen.openGameplay());
-        on(DOM.menuButton, "click", () => Screen.openMainMenu());
-        
+        on(DOM.startButton, "click", () => Screen.open(DOM.pages.gameplay));
+        on(DOM.menuButton, "click", () => Screen.toggle(DOM.popups.menu.popup));
+        on(DOM.resumeButton, "click", () => Screen.toggle(DOM.popups.menu.popup));
+        on(DOM.settingsButton, "click", () => Screen.open(DOM.pages.setting));
+        on(DOM.saveButton, "click", () => Screen.toggle(DOM.popups.menu.popup));
+        on(DOM.loadButton, "click", () => Screen.toggle(DOM.popups.menu.popup));
+        on(DOM.quitButton, "click", () => Screen.open(DOM.pages.mainMenu));
+
         on(DOM.dialogueBox, "click", () => {
             if (DOM.choicePopup && DOM.choicePopup.classList.contains("hidden")) {
                 EventBus.emit("dialogue:clicked");
@@ -106,10 +132,9 @@ const Events = {
             }
         });
         
-        on(DOM.settingButton, "click", () => Screen.openSetting());
-        on(DOM.aboutButton, "click", () => Screen.openAbout());
-        on(DOM.backButton, "click", () => Screen.openMainMenu());
-        on(DOM.backButtonAbout, "click", () => Screen.openMainMenu());
+        on(DOM.settingButton, "click", () => Screen.open(DOM.pages.setting));
+        on(DOM.aboutButton, "click", () => Screen.open(DOM.pages.about));
+        on(DOM.backButtonAbout, "click", () => Screen.back());
         window.onresize = () => {
             Screen.getOrientation();
         }
@@ -118,21 +143,41 @@ const Events = {
 
 const Screen = {
     initialize() {
-        this.show(DOM.pages.mainMenu);
-        this.hide(DOM.pages.gameplay);
-        this.getOrientation();
-        
-        EventBus.on("screen:change", (target) => {
-            if (target === "gameplay") this.openGameplay();
-            if (target === "menu") this.openMainMenu();
+        DOM.currentPage = DOM.pages.mainMenu;
+
+        this.open(DOM.currentPage);
+
+        EventBus.on("screen:change", (page) => {
+            this.open(page);
         });
+    },
+
+    open(page) {
+        this.hideAllPages();
+
+        DOM.previousPage = DOM.currentPage;
+        DOM.currentPage = page;
+
+        this.show(page);
+    },
+
+    back() {
+        if (!DOM.previousPage) return;
+
+        this.hideAllPages();
+
+        [DOM.currentPage, DOM.previousPage] = [
+            DOM.previousPage,
+            DOM.currentPage
+        ];
+
+        this.show(DOM.currentPage);
     },
 
     show(element) {
         if (element) {
             element.classList.remove("hidden");
             element.classList.add("visible");
-            if(element !== DOM.pages.orientationInfo) DOM.currentPage = element;
         }
     },
 
@@ -143,39 +188,78 @@ const Screen = {
         }
     },
 
+    toggle(element) {
+        element.classList.contains("hidden")
+            ? this.show(element)
+            : this.hide(element);
+    },
+
     hideAllPages() {
         Object.values(DOM.pages).forEach(page => this.hide(page));
+    }
+};
+
+const Setting = {
+    cache: {},
+
+    initialize() {
+        on(DOM.volumeButton, "click", () => this.changeContent(DOM.volumeButton));
+        on(DOM.textButton, "click", () => this.changeContent(DOM.textButton));
+        on(DOM.backButton, "click", () => Screen.back());
+
+        EventBus.on("setting:change", (category, data) => {
+            // Handle setting changes
+        });
     },
 
-    getOrientation() {
-        let orient = window.innerWidth > window.innerHeight ? "Landscape" : "Portrait";
-        if (orient == "Portrait") {
-            this.hideAllPages();
-            this.show(DOM.pages.orientationInfo);
-        } else {
-            this.hideAllPages();
-            this.show(DOM.currentPage);
+    openVolumeSettings() {
+        return `
+            <div class="setting-control">
+                <label for="volume-master">Master Volume</label>
+                <input type="range" id="volume-master" name="Master Volume">
+            </div>
+
+            <div class="setting-control">
+                <label for="volume-sfx">SFX Volume</label>
+                <input type="range" id="volume-sfx" name="SFX Volume">
+            </div>
+
+            <div class="setting-control">
+                <label for="volume-bg">BG Volume</label>
+                <input type="range" id="volume-bg" name="BG Volume">
+            </div>
+        `;
+    },
+
+    openTextSettings() {
+        return `
+            <div class="setting-control">
+                <label for="text-speed">Text Speed</label>
+                <input type="range" id="text-speed" name="Text Speed">
+            </div>
+
+            <div class="setting-control">
+                <label for="text-size">Text Size</label>
+                <input type="range" id="text-size" name="Text Size">
+            </div>
+        `;
+    },
+
+    changeContent(element) {
+        const category = DOM.settingCategory;
+        category.innerHTML = `<h2>${element.textContent}</h2>`;
+
+        const key = element.id;
+
+        if (!this.cache[key]) {
+            if (element === DOM.volumeButton) {
+                this.cache[key] = this.openVolumeSettings();
+            } else if (element === DOM.textButton) {
+                this.cache[key] = this.openTextSettings();
+            }
         }
-    },
 
-    openMainMenu() {
-        this.hideAllPages();
-        this.show(DOM.pages.mainMenu);
-    },
-
-    openGameplay() {
-        this.hideAllPages();
-        this.show(DOM.pages.gameplay);
-    },
-    
-    openSetting() {
-        this.hideAllPages();
-        this.show(DOM.pages.setting);
-    },
-
-    openAbout() {
-        this.hideAllPages();
-        this.show(DOM.pages.about);
+        DOM.settingContent.innerHTML = this.cache[key];
     }
 };
 
