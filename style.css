@@ -367,7 +367,6 @@ button {
 }
 
 .speaker{
-
     position:absolute;
 
     top:0;
@@ -388,7 +387,6 @@ button {
 }
 
 .dialogue-content{
-
     display:flex;
 
     gap:20px;
@@ -402,7 +400,6 @@ button {
 }
 
 .dialogue-content p{
-
     line-height:1.5;
 
     overflow:hidden;
@@ -410,7 +407,6 @@ button {
 }
 
 .speaker-profile{
-
     max-height:90%;
 
     object-fit:contain;
@@ -418,7 +414,6 @@ button {
 }
 
 .next-indicator{
-
     position:absolute;
 
     right:1rem;
@@ -430,7 +425,6 @@ button {
 }
 
 .player-info{
-
     position:absolute;
 
     top:2%;
@@ -447,7 +441,6 @@ button {
 }
 
 .menu-button{
-
     position:absolute;
 
     top:2%;
@@ -458,7 +451,6 @@ button {
 }
 
 .choice-popup{
-
     position:absolute;
 
     top:15%;
@@ -477,7 +469,6 @@ button {
 }
 
 .choice-options{
-
     display:flex;
 
     flex-direction:column;
@@ -487,7 +478,6 @@ button {
 }
 
 .choice-options button{
-
     text-align:left;
 
     padding:.6rem 1rem;
@@ -511,7 +501,6 @@ button {
 }
 
 @keyframes bounce{
-
     0%,100%{
         transform:translateY(0);
     }
