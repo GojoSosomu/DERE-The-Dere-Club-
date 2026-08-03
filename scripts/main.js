@@ -63,12 +63,18 @@ const DOM = {
         this.pages = {
             mainMenu: get(".main-menu"),
             gameplay: get(".gameplay"),
-            setting: get(".setting")
+            setting: get(".setting"),
+            about: get(".about"),
+            orientationInfo: get(".orientationInfo"), // this catches the device when on portrait device
         };
+
+        this.currentPage = null;
 
         this.startButton = get("#start");
         this.settingButton = get("#setting");
         this.aboutButton = get("#about");
+        this.backButton = get("#back-button"); // this is the button on settings/about scene
+        this.backButtonAbout = get("#back-button-ab");
         this.menuButton = get("#open-menu");
 
         this.stage = get(".stage");
@@ -101,7 +107,12 @@ const Events = {
         });
         
         on(DOM.settingButton, "click", () => Screen.openSetting());
-        on(DOM.aboutButton, "click", () => console.log("About"));
+        on(DOM.aboutButton, "click", () => Screen.openAbout());
+        on(DOM.backButton, "click", () => Screen.openMainMenu());
+        on(DOM.backButtonAbout, "click", () => Screen.openMainMenu());
+        window.onresize = () => {
+            Screen.getOrientation();
+        }
     }
 };
 
@@ -109,6 +120,7 @@ const Screen = {
     initialize() {
         this.show(DOM.pages.mainMenu);
         this.hide(DOM.pages.gameplay);
+        this.getOrientation();
         
         EventBus.on("screen:change", (target) => {
             if (target === "gameplay") this.openGameplay();
@@ -120,6 +132,7 @@ const Screen = {
         if (element) {
             element.classList.remove("hidden");
             element.classList.add("visible");
+            if(element !== DOM.pages.orientationInfo) DOM.currentPage = element;
         }
     },
 
@@ -132,6 +145,17 @@ const Screen = {
 
     hideAllPages() {
         Object.values(DOM.pages).forEach(page => this.hide(page));
+    },
+
+    getOrientation() {
+        let orient = window.innerWidth > window.innerHeight ? "Landscape" : "Portrait";
+        if (orient == "Portrait") {
+            this.hideAllPages();
+            this.show(DOM.pages.orientationInfo);
+        } else {
+            this.hideAllPages();
+            this.show(DOM.currentPage);
+        }
     },
 
     openMainMenu() {
@@ -147,6 +171,11 @@ const Screen = {
     openSetting() {
         this.hideAllPages();
         this.show(DOM.pages.setting);
+    },
+
+    openAbout() {
+        this.hideAllPages();
+        this.show(DOM.pages.about);
     }
 };
 
