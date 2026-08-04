@@ -50,7 +50,7 @@ const Engine = {
     initialize() {
         DOM.initialize();
         Screen.initialize();
-        Setting.initialize();
+        Settings.initialize();
         Dialogue.initialize();
         Character.initialize();
         Choice.initialize();
@@ -199,7 +199,7 @@ const Screen = {
     }
 };
 
-const Setting = {
+const Settings = {
     cache: {},
 
     initialize() {
@@ -378,11 +378,11 @@ const Choice = {
             button.dataset.target = option.target;
             DOM.choiceContainer.appendChild(button);
         });
-        Screen.show(DOM.choicePopup);
+        Screen.show(DOM.popups.choice.popup);
     },
 
     select(targetNodeKey) {
-        Screen.hide(DOM.choicePopup);
+        Screen.hide(DOM.popups.choice.popup);
     }
 };
 
