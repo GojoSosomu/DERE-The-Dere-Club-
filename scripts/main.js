@@ -200,33 +200,52 @@ const Screen = {
 };
 
 const Settings = {
-    cache: {},
+    data: {
+        masterVolume: 100,
+        sfxVolume: 100,
+        bgVolume: 100,
+        textSpeed: 50
+    },
 
     initialize() {
         on(DOM.volumeButton, "click", () => this.changeContent(DOM.volumeButton));
         on(DOM.textButton, "click", () => this.changeContent(DOM.textButton));
         on(DOM.backButton, "click", () => Screen.back());
 
-        EventBus.on("setting:change", (category, data) => {
-            // Handle setting changes
-        });
+        EventBus.on("setting:change", data => Object.assign(this.data, data));
+    },
+
+    openCurrentData() {
+        if (this.currentContent === "volume") {
+            return {
+                masterVolume: get("#volume-master").value,
+                sfxVolume: get("#volume-sfx").value,
+                bgVolume: get("#volume-bg").value
+            };
+        }
+
+        if (this.currentContent === "text") {
+            return {
+                textSpeed: get("#text-speed").value
+            };
+        }
     },
 
     openVolumeSettings() {
         return `
             <div class="setting-control">
                 <label for="volume-master">Master Volume</label>
-                <input type="range" id="volume-master" name="Master Volume">
+                <input type="range" id="volume-master" name="Master Volume" value="${this.data.masterVolume}">
             </div>
 
             <div class="setting-control">
                 <label for="volume-sfx">SFX Volume</label>
-                <input type="range" id="volume-sfx" name="SFX Volume">
+                <input type="range" id="volume-sfx" name="SFX Volume" value="${this.data.sfxVolume}">
             </div>
 
             <div class="setting-control">
                 <label for="volume-bg">BG Volume</label>
-                <input type="range" id="volume-bg" name="BG Volume">
+                <input type="range" id="volume-bg" name="BG Volume" value="${this.data.bgVolume}">
             </div>
         `;
     },
@@ -235,31 +254,27 @@ const Settings = {
         return `
             <div class="setting-control">
                 <label for="text-speed">Text Speed</label>
-                <input type="range" id="text-speed" name="Text Speed">
-            </div>
-
-            <div class="setting-control">
-                <label for="text-size">Text Size</label>
-                <input type="range" id="text-size" name="Text Size">
+                <input type="range" id="text-speed" name="Text Speed" value="${this.data.textSpeed}">
             </div>
         `;
     },
 
     changeContent(element) {
-        const category = DOM.settingCategory;
-        category.innerHTML = `<h2>${element.textContent}</h2>`;
-
-        const key = element.id;
-
-        if (!this.cache[key]) {
-            if (element === DOM.volumeButton) {
-                this.cache[key] = this.openVolumeSettings();
-            } else if (element === DOM.textButton) {
-                this.cache[key] = this.openTextSettings();
-            }
+        if (this.currentContent) {
+            EventBus.emit("setting:change", this.openCurrentData());
         }
 
-        DOM.settingContent.innerHTML = this.cache[key];
+        DOM.settingCategory.innerHTML = `<h2>${element.textContent}</h2>`;
+
+        this.currentContent = element.id;
+
+        if (this.currentContent === "volume") {
+            DOM.settingContent.innerHTML = this.openVolumeSettings();
+        }
+
+        if (this.currentContent === "text") {
+            DOM.settingContent.innerHTML = this.openTextSettings();
+        }
     }
 };
 
@@ -370,13 +385,13 @@ const Choice = {
     },
 
     show(options) {
-        DOM.choiceContainer.innerHTML = ""; 
+        DOM.popups.choice.container.innerHTML = ""; 
         options.forEach(option => {
             const button = document.createElement("button");
             button.className = "choice-button";
             button.textContent = option.text;
             button.dataset.target = option.target;
-            DOM.choiceContainer.appendChild(button);
+            DOM.popups.choice.container.appendChild(button);
         });
         Screen.show(DOM.popups.choice.popup);
     },
