@@ -27,6 +27,14 @@
     --font-title: "Jersey 10", sans-serif;
     --font-body: "Trebuchet MS", Tahoma, sans-serif;
 
+    /* Font Sizes */
+
+    --font-xs: clamp(.85rem, .7vw, 1rem);
+    --font-sm: clamp(1rem, .9vw, 1.15rem);
+    --font-md: clamp(1.2rem, 1.2vw, 1.4rem);
+    --font-lg: clamp(1.6rem, 2vw, 2.2rem);
+    --font-xl: clamp(2rem, 3vw, 3rem);
+
     /* Border */
 
     --border-size: clamp(2px, .4vw, 3.5px);
@@ -222,10 +230,10 @@ button {
     width: 100%;
 }
 
-.main-button {
-    padding: .5rem 0;
+.main-button{
+    padding:.5rem 0;
 
-    font-size: clamp(20px,2vw,40px);
+    font-size:var(--font-xl);
 }
 
 .about,
@@ -244,6 +252,8 @@ button {
     display:flex;
     justify-content:center;
     align-items:center;
+
+    font-size:var(--font-lg);
 }
 
 .about-navigation,
@@ -301,7 +311,7 @@ button {
     -ms-overflow-style:none;
 }
 
-.setting-content::-webkit-scrollbar
+.setting-content::-webkit-scrollbar,
 .about-window::-webkit-scrollbar {
     display:none;
 }
@@ -334,9 +344,11 @@ button {
     margin-bottom: 1rem;
 }
 
-.setting-control label {
-    justify-self: start;
-    font-weight: 600;
+.setting-control label{
+    justify-self:start;
+
+    font-size:var(--font-sm);
+    font-weight:600;
 }
 
 .setting-control input[type="range"]{
@@ -426,7 +438,6 @@ button {
 }
 
 .stage{
-
     position:absolute;
 
     display:flex;
@@ -493,7 +504,6 @@ button {
 }
 
 .speaker{
-
     position:absolute;
 
     top:0;
@@ -509,8 +519,8 @@ button {
         0
         0;
 
+    font-size:var(--font-md);
     font-weight:600;
-
 }
 
 .dialogue-body{
@@ -528,11 +538,10 @@ button {
 }
 
 .dialogue-content p{
-
+    font-size:var(--font-md);
     line-height:1.5;
 
     overflow:hidden;
-
 }
 
 .speaker-profile{
@@ -585,6 +594,9 @@ button {
 
 .menu-popup,
 .choice-popup{
+    display:grid;
+    place-items:center;
+
     position:absolute;
 
     transform:translateX(-50%);
@@ -596,6 +608,19 @@ button {
     z-index: 1000;
 }
 
+.menu-popup,
+.choice-popup {
+    overflow-y:auto;
+
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+}
+
+.menu-popup::-webkit-scrollbar,
+.choice-popup::-webkit-scrollbar {
+    display:none;
+}
+
 .choice-popup {
     top:15%;
     left:50%;
@@ -604,7 +629,7 @@ button {
     max-height:55%;
 }
 
-.menu-popup {
+.menu-popup { 
     top:10%;
     left:50%;
 
@@ -620,31 +645,34 @@ button {
 .menu-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content:center;
     align-items: center;
 
     gap: 1rem;
 }
 
 .menu-button {
-    width: 50%;
-    padding: .6rem 1rem;
+    width: clamp(220px,50%,500px);
+    padding: clamp(0.25rem,1.5vw,1rem);
+
+    font-size:var(--font-lg);
 }
 
 .choice-container{
     display:flex;
 
     flex-direction:column;
+    flex-wrap:wrap;
 
     gap:.75rem;
 }
 
-.choice-container button{
+.choice-button {
+    text-align:justify;
 
-    text-align:left;
+    padding: clamp(0.25rem,1.5vw,0.5rem) clamp(0.25rem,1.5vw,0.5rem) clamp(0.25rem,1.5vw,0.5rem) clamp(0.1rem,1.5vw,0.4rem);
 
-    padding:.6rem 1rem;
-
+    font-size:var(--font-md);
 }
 
 .enter-from-left{

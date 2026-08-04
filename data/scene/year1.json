@@ -1,10 +1,8 @@
 {
   "id": "year1",
-
   "scenes": {
     "school_intro": {
       "background": "hallway",
-      "next": "day1_after_school",
       "dialogue": [
         {
           "type": "speaker",
@@ -62,6 +60,10 @@
           "type": "speaker",
           "speaker": "Narrator",
           "text": "The bell rings. Your first day of classes is about to begin."
+        },
+        {
+          "type": "goto",
+          "scene": "day1_after_school"
         }
       ]
     },
@@ -70,25 +72,36 @@
       "background": "hallway",
       "dialogue": [
         {
-          "type": "exploreChoice",
-          "options": [
+          "type": "choice",
+          "choices": [
             {
-              "type": "goto",
               "text": "Library",
-              "scene": "library_day1"
+              "dialogue": [
+                {
+                  "type": "goto",
+                  "scene": "library_day1"
+                }
+              ]
             },
             {
-              "type": "goto",
               "text": "Club Room",
-              "scene": "clubroom_day1"
+              "dialogue": [
+                {
+                  "type": "goto",
+                  "scene": "clubroom_day1"
+                }
+              ]
             },
             {
-              "type": "goto",
               "text": "Rooftop",
-              "scene": "rooftop_day1"
+              "dialogue": [
+                {
+                  "type": "goto",
+                  "scene": "rooftop_day1"
+                }
+              ]
             },
             {
-              "type": "stay",
               "text": "Just look around",
               "dialogue": [
                 {
@@ -104,10 +117,13 @@
               ]
             },
             {
-              "type": "goto",
               "text": "Go Home",
-              "scene": "day1_end",
-              "exit": true
+              "dialogue": [
+                {
+                  "type": "goto",
+                  "scene": "day1_end"
+                }
+              ]
             }
           ]
         }
@@ -116,7 +132,6 @@
 
     "library_day1": {
       "background": "library",
-      "next": "day1_end",
       "dialogue": [
         {
           "type": "speaker",
@@ -162,13 +177,16 @@
               ]
             }
           ]
+        },
+        {
+          "type": "goto",
+          "scene": "day1_after_school"
         }
       ]
     },
 
     "clubroom_day1": {
       "background": "clubroom",
-      "next": "day1_end",
       "dialogue": [
         {
           "type": "speaker",
@@ -204,13 +222,16 @@
               ]
             }
           ]
+        },
+        {
+          "type": "goto",
+          "scene": "day1_end"
         }
       ]
     },
 
     "rooftop_day1": {
       "background": "rooftop",
-      "next": "day1_end",
       "dialogue": [
         {
           "type": "speaker",
@@ -226,6 +247,10 @@
           "type": "speaker",
           "speaker": "Moe",
           "text": "If it's true, maybe the note in the library and the festival plans are connected."
+        },
+        {
+          "type": "goto",
+          "scene": "day1_end"
         }
       ]
     },
