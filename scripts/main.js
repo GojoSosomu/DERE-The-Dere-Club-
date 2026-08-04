@@ -152,6 +152,17 @@ const Screen = {
         });
     },
 
+    getOrientation() {
+        let orient = window.innerWidth > window.innerHeight ? "Landscape" : "Portrait";
+        if (orient == "Portrait") {
+            this.hideAllPages();
+            this.show(DOM.pages.orientationInfo);
+        } else {
+            this.hideAllPages();
+            this.show(DOM.currentPage);
+        }
+    },
+
     open(page) {
         this.hideAllPages();
 
