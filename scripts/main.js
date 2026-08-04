@@ -165,6 +165,7 @@ const Screen = {
 
     open(page) {
         this.hideAllPages();
+        this.hide(DOM.popups.menu.popup);
 
         DOM.previousPage = DOM.currentPage;
         DOM.currentPage = page;
