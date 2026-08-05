@@ -31,6 +31,31 @@
                   "type": "speaker",
                   "speaker": "Kisetsu",
                   "text": "Morning. Let's make this year better than the last."
+                },
+                {
+                  "type": "choice",
+                  "choices": [
+                    {
+                      "text": "And I am a Good Ni-.",
+                      "dialogue": [
+                        {
+                          "type": "speaker",
+                          "speaker": "Penny",
+                          "text": "Yeah-What did you say?"
+                        }
+                      ]
+                    },
+                    {
+                      "text": "I am once a Event Manager you know~.",
+                      "dialogue": [
+                        {
+                          "type": "speaker",
+                          "speaker": "Penny",
+                          "text": "Oh please! Don't get it in your head."
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             },

@@ -260,10 +260,23 @@ const StoryParser = {
             case "speaker":
                 return new SpeakerNode(data);
             case "choice":
-                return new ChoiceNode(data);
+                return this.parseChoice(data);
             case "goto":
                 return new GotoNode(data.scene);
         }
+    },
+
+    parseChoice(data) {
+        const node = new ChoiceNode();
+
+        for(const choice of data.choices) {
+            node.choices.push({
+                text: choice.text,
+                dialogue: choice.dialogue
+            });
+        }
+
+        return node;
     }
 }
 
@@ -274,7 +287,6 @@ const GraphBuilder = {
         this.pendingGoto = [];
 
         this.currentScene = null;
-
         this.previousNode = null;
     },
     
@@ -286,19 +298,28 @@ const GraphBuilder = {
         this.previousNode = null;
     },
 
-    connectNodes(node) {
+    connectLinear(node) {
         if(this.previousNode == null)
             this.currentScene.firstNode = node;
-        else 
+        else
             this.previousNode.next = node;
-
-        if(node.type == "choice")
-            return;
 
         this.previousNode = node;
 
         if(node instanceof GotoNode)
             this.pendingGoto.push(node);
+
+    },
+
+    connectBranch(previousNode, node) {
+        if(previousNode != null)
+            previousNode.next = node;
+
+        if(node instanceof GotoNode)
+            this.pendingGoto.push(node);
+
+        return node;
+
     },
 
     finalize() {
@@ -392,34 +413,62 @@ const StoryBuilder = {
         GraphBuilder.finalize();
     },
 
-    buildDialogue(sceneId, dialogue) {
+    buildDialogue(sceneId, dialogue, isBranch = false, onContinue = null) {
         let firstNode = null;
+        let previousNode = null;
+        let deadEndNodes = [];
 
-        for(const data of dialogue) {
-            const previous = GraphBuilder.previousNode;
-
-            GraphBuilder.previousNode = null;
+        for(let i = 0; i < dialogue.length; i++) {
+            const data = dialogue[i];
             const node = StoryParser.parse(data);
 
             if(firstNode == null)
                 firstNode = node;
 
-            
+            if(onContinue != null) {
+                onContinue(node);
+                onContinue = null;
+            }
 
-            if(data.type === "choice") {
-                GraphBuilder.connectNodes(node);
-                for(const choice of data.choices)
-                    GraphBuilder.previousNode = this.buildDialogue(sceneId, choice.dialogue);
-                    node.choices.push(
-                        GraphBuilder.previousNode
+            for(const end of deadEndNodes)
+                end.next = node;
+
+            deadEndNodes = [];
+
+            if(isBranch)
+                previousNode = GraphBuilder.connectBranch(previousNode, node);
+            else
+                GraphBuilder.connectLinear(node);
+
+            if(node instanceof ChoiceNode) {
+                const branchDeadEnds = [];
+                const newChoices = [];
+
+                for(const optionData of node.choices) {
+                    const branch = this.buildDialogue(
+                        sceneId,
+                        optionData.dialogue,
+                        true
                     );
 
-                    GraphBuilder.previousNode = previous;
-            } else
-                GraphBuilder.connectNodes(node);
+                    const option = new ChoiceOption(optionData.text);
+                    option.next = branch.firstNode;
+
+                    newChoices.push(option);
+                    branchDeadEnds.push(...branch.deadEndNodes);
+                }
+
+                node.choices = newChoices;
+                deadEndNodes = branchDeadEnds;
+                continue;
+            }
+            deadEndNodes = [node];
         }
 
-        return firstNode;
+        return {
+            firstNode,
+            deadEndNodes
+        };
     }
 }
 
