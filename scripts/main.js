@@ -11,8 +11,8 @@ const CharacterEnum = Object.freeze({
     YURI: "yuri",
     JOHN: "john",
     ALI: "ali",
-    ERI: "eri",
-    ANGEL: "angel"
+    ERIKA: "erika",
+    NARRATOR: "narrator"
 });
 
 const EmotionEnum = Object.freeze({
@@ -51,12 +51,14 @@ const Engine = {
         DOM.initialize();
         Screen.initialize();
         Settings.initialize();
+        Background.initialize();
         Dialogue.initialize();
         Character.initialize();
         Choice.initialize();
         Events.initialize();
         Audio.initialize();
-        await StoryLoader.initialize("../data/scene/year1.json");
+        Debug.initialize();
+        await StoryLoader.initialize("year1");
     }
 };
 
@@ -68,6 +70,7 @@ const DOM = {
             setting: get(".setting"),
             about: get(".about"),
             orientationInfo: get(".orientationInfo"), // this catches the device when on portrait device
+            demo: get(".demo"),
         };
 
         this.currentPage = null;
@@ -85,10 +88,11 @@ const DOM = {
         this.loadButton = get("#load");
         this.quitButton = get("#quit");
 
+        this.background = get(".background");
         this.stage = get(".stage");
         this.dialogueBox = get(".dialogue-box");
         this.speaker = get(".speaker");
-        this.dialogueText = get(".dialogue-content p") || get("#dialogue");
+        this.dialogueText = get(".dialogue-body p") || get("#dialogue");
         this.profile = get(".speaker-profile");
         this.nextIndicator = get(".next-indicator");
 
@@ -102,12 +106,12 @@ const DOM = {
         this.popups = {
             choice: {
                 popup: get(".choice-popup"),
-                container: get(".choice-options")
+                container: get(".choice-container")
             },
 
             menu: {
                 popup: get(".menu-popup"),
-                container: get(".menu-options")
+                container: get(".menu-container")
             }
         };
     }
@@ -115,7 +119,11 @@ const DOM = {
 
 const Events = {
     initialize() {
-        on(DOM.startButton, "click", () => Screen.open(DOM.pages.gameplay));
+        on(DOM.startButton, "click", () => {
+            StoryRunner.initialize("year1");
+            StoryRunner.start();
+            Screen.open(DOM.pages.gameplay)
+        });
         on(DOM.menuButton, "click", () => Screen.toggle(DOM.popups.menu.popup));
         on(DOM.resumeButton, "click", () => Screen.toggle(DOM.popups.menu.popup));
         on(DOM.settingsButton, "click", () => Screen.open(DOM.pages.setting));
@@ -124,14 +132,14 @@ const Events = {
         on(DOM.quitButton, "click", () => Screen.open(DOM.pages.mainMenu));
 
         on(DOM.dialogueBox, "click", () => {
-            if (DOM.choicePopup && DOM.choicePopup.classList.contains("hidden")) {
+            if (DOM.popups.choice.popup && DOM.popups.choice.popup.classList.contains("hidden")) {
                 EventBus.emit("dialogue:clicked");
             }
         });
 
-        on(DOM.choiceContainer, "click", (e) => {
+        on(DOM.popups.choice.container, "click", (e) => {
             if (e.target.classList.contains("choice-button")) {
-                EventBus.emit("choice:selected", e.target.dataset.target);
+                EventBus.emit("choice:selected", e.target.choice);
             }
         });
         
@@ -233,13 +241,109 @@ const Screen = {
     }
 };
 
+const Debug = {
+    initialize() {
+        this.nodeIds = new Map();
+        this.nextId = 0;
+    },
+
+    getId(node) {
+        if(!this.nodeIds.has(node))
+            this.nodeIds.set(node, `N${this.nextId++}`);
+
+        return this.nodeIds.get(node);
+    },
+
+    toMermaid(sceneMap) {
+        this.initialize();
+
+        let output = [
+            "flowchart TD"
+        ];
+
+        for(const [sceneId, scene] of sceneMap) {
+            output.push(`subgraph ${sceneId}`);
+            this.walk(scene.firstNode, output, new Set());
+            output.push("end");
+            output.push("");
+        }
+
+        return output.join("\n");
+    },
+
+    walk(node, output, visited) {
+        if(node == null || visited.has(node))
+            return;
+
+        visited.add(node);
+
+        const id = this.getId(node);
+
+        if(node instanceof SpeakerNode) {
+            output.push(`${id}{"${id} ${node.speaker}"}`);
+
+            if(node.next) {
+                const nextId = this.getId(node.next);
+                output.push(`${id} --> ${nextId}`);
+                this.walk(node.next, output, visited);
+            }
+        }
+
+        else if(node instanceof ChoiceNode) {
+            output.push(`${id}{"Choice"}`);
+
+            for(const option of node.choices) {
+                if(option.next) {
+                    const optionId = this.getId(option.next);
+
+                    output.push(`${id} -->|"${option.text}"| ${optionId}`);
+
+                    this.walk(option.next, output, new Set(visited));
+                }
+            }
+
+            if(node.next) {
+                const nextId = this.getId(node.next);
+
+                output.push(`${id} -.-> ${nextId}`);
+
+                this.walk(node.next, output, visited);
+            }
+        }
+
+        else if(node instanceof GotoNode) {
+            output.push(`${id}(["Goto: ${node.sceneId}"])`);
+
+            if(node.next) {
+                const nextId = this.getId(node.next);
+
+                output.push(`${id} --> ${nextId}`);
+
+                this.walk(node.next, output, visited);
+            }
+        }
+    }
+};
+
 const StoryLoader = {
-    async initialize(storySrc) {
-        const storyData = await JsonLoader.load(storySrc);
+    async initialize(yearSelection) {
+        const storyData = await JsonLoader.load(`../data/scene/${yearSelection}.json`);
 
         StoryBuilder.initialize(storyData);
 
         console.log(GraphBuilder.sceneMap);
+
+        const storyMap = new Map();
+        storyMap.set(storyData.id,
+            new Story(
+                storyData.id,
+                storyData.start,
+                GraphBuilder.sceneMap
+            )
+        );
+
+        StoryGraph.initialize(storyMap);
+        console.log(StoryGraph.storyMap.get("year1"));
     }
 };
 
@@ -258,12 +362,54 @@ const StoryParser = {
     parse(data) {
         switch(data.type) {
             case "speaker":
-                return new SpeakerNode(data);
+                return this.parseSpeaker(data);
             case "choice":
                 return this.parseChoice(data);
             case "goto":
                 return new GotoNode(data.scene);
         }
+    },
+
+    parseSpeaker(data) {
+        const node = new SpeakerNode(data);
+
+        node.stage = this.parseStage(data.stage);
+
+        return node;
+    },
+
+    parseStage(stage) {
+        if(stage == null)
+            return null;
+
+        const operations = [];
+
+        if(Object.keys(stage).length === 0) {
+            operations.push({
+                type: "clear"
+            });
+
+            return operations;
+        }
+        
+        operations.push({
+            type: "clear"
+        });
+
+        for(const [slot, value] of Object.entries(stage)) {
+            if(value == null)
+                continue;
+            else {
+                operations.push({
+                    type: "set",
+                    slot,
+                    character: value.character,
+                    emotion: value.emotion
+                });
+            }
+        }
+
+        return operations;
     },
 
     parseChoice(data) {
@@ -337,6 +483,23 @@ class Node {
     }
 }
 
+class Story {
+    constructor(id, start, scenes) {
+        this.id = id;
+        this.start = start;
+
+        this.scenes = scenes
+    }
+
+    getScene(sceneId) {
+        return this.scenes.get(sceneId);
+    }
+
+    getStartScene() {
+        return this.getScene(this.start);
+    }
+}
+
 class Scene {
     constructor(id, background) {
         this.id = id;
@@ -361,7 +524,7 @@ class SpeakerNode extends LinearNode {
 
         this.speaker = data.speaker;
         this.text = data.text;
-        this.position = data.position ?? null;
+        this.stage = {};
     }
 }
 
@@ -472,9 +635,75 @@ const StoryBuilder = {
     }
 }
 
-const StoryRunner = {
-    initialize(storyGraph) {
+const StoryGraph = {
+    initialize(storyMap) {
+        this.storyMap = storyMap;
+    },
 
+    getStory(yearSelection) {
+        return this.storyMap.get(yearSelection);
+    },
+}
+
+const StoryRunner = {
+    initialize(storyId) {
+        this.currentStory = StoryGraph.getStory(storyId);
+
+        this.currentScene = this.currentStory.getStartScene();
+        this.currentNode = this.currentScene.firstNode;
+
+        EventBus.on("dialogue:clicked", () => this.next());
+        EventBus.on("choice:selected", option => this.choose(option));
+        EventBus.on("story:finished", () => {
+            EventBus.emit("screen:change", DOM.pages.demo);
+        });
+    },
+
+    start() {
+        EventBus.emit("background:show", this.currentScene.background);
+        this.render();
+    },
+
+    render() {
+        if(this.currentNode == null) {
+            EventBus.emit("story:finished");
+            return;
+        }
+
+        const node = this.currentNode;
+
+        EventBus.emit("node:enter", this.currentNode);
+
+        if(node instanceof GotoNode)
+            this.goto(node.sceneId);
+    },
+
+    goto(sceneId) {
+        const scene = this.currentScene = this.currentStory.getScene(sceneId);
+        this.currentNode = this.currentScene.firstNode;
+
+        EventBus.emit("scene:enter", this.currentScene);
+
+        this.render();
+    },
+
+    next() {
+        if(!(this.currentNode instanceof SpeakerNode))
+            return;
+
+        this.currentNode = this.currentNode.next;
+        if(this.currentNode == null) {
+            EventBus.emit("story:finished");
+            return;
+        }
+
+        this.render();
+    },
+
+    choose(option) {
+        console.log(option);
+        this.currentNode = option.next;
+        this.render();
     }
 }
 
@@ -564,10 +793,27 @@ const Settings = {
     }
 };
 
+const Background = {
+    initialize() {
+        EventBus.on("scene:enter", scene => {
+            Background.show(scene.background);
+        });
+    },
+
+    show(background) {
+        DOM.background.src = this.getBackgroundImageSrc(background);
+    },
+
+    getBackgroundImageSrc(background) {
+        return `images/background/${background}.jpg`;
+    }
+}
+
 const Dialogue = {
     initialize() {
-        EventBus.on("step:rendered", (step) => {
-            this.render(step.text, step.speaker);
+        EventBus.on("node:enter", node => {
+            if(node instanceof SpeakerNode)
+                Dialogue.render(node.text, node.speaker);
         });
     },
 
@@ -580,33 +826,31 @@ const Dialogue = {
 
         if (speakerKey) {
             DOM.speaker.textContent = speakerKey.charAt(0).toUpperCase() + speakerKey.slice(1);
-            if (DOM.profile) {
-                DOM.profile.src = this.getProfileImageSrc(speakerKey);
+            console.log(speakerKey);
+            if (CharacterEnum[speakerKey.toUpperCase()]) {
+                DOM.profile.src = this.getProfileImageSrc(speakerKey.toLowerCase());
                 DOM.profile.classList.remove("hidden");
                 DOM.profile.classList.add("visible");
-            }
-        } else {
-            DOM.speaker.textContent = "";
-            if (DOM.profile) {
+            } else {
                 DOM.profile.classList.remove("visible");
                 DOM.profile.classList.add("hidden");
             }
+        } else {
+            DOM.speaker.textContent = "";
+            DOM.profile.classList.remove("visible");
+            DOM.profile.classList.add("hidden");
         }
 
-        if (DOM.dialogueText) {
-            DOM.dialogueText.textContent = text;
-        }
+        console.log(text);
+        DOM.dialogueText.textContent = text;
     }
 };
 
 const Character = {
     initialize() {
-        EventBus.on("step:rendered", (step) => {
-            if (step.clearStage) this.clearStage();
-            if (step.spawn) {
-                step.spawn.forEach(s => this.spawnCharacter(s.character, s.emotion, s.slotId, s.from));
-            }
-            this.highlightSpeaker(step.speaker);
+        EventBus.on("node:enter", node => {
+            if(node.stage)
+                Character.applyStage(node.stage);
         });
     },
 
@@ -640,12 +884,46 @@ const Character = {
         });
     },
 
+    leaveCharacter(slot) {
+        const character = slot.querySelector("img");
+        if (!character) return;
+
+        character.classList.remove("on-stage");
+        character.classList.add("not-speaking");
+
+        character.addEventListener("transitionend", () => {
+            slot.innerHTML = "";
+        }, { once: true });
+    },
+
     clearStage() {
         activeStage.forEach(slot => {
-            const slotEl = document.getElementById(slot.slotId);
-            if (slotEl) slotEl.innerHTML = "";
-            slot.character = null;
+            this.removeCharacter(slot);
         });
+    },
+
+    removeCharacter(slot) {
+        const slotEl = document.getElementById(slot.slotId);
+        if (slotEl) this.leaveCharacter(slotEl);
+        console.log(slot);
+        slot.character = null;
+    },
+
+    applyStage(operations) {
+        for(const operation of operations) {
+            switch(operation.type) {
+                case "clear":
+                    this.clearStage();
+                    break;
+                case "set":
+                    this.spawnCharacter(
+                        operation.character,
+                        operation.emotion,
+                        operation.slot
+                    );
+                    break;
+            }
+        }
     },
 
     highlightSpeaker(activeSpeakerKey) {
@@ -667,22 +945,27 @@ const Character = {
 const Choice = {
     initialize() {
         EventBus.on("choices:triggered", (options) => this.show(options));
-        EventBus.on("choice:selected", (targetNodeKey) => this.select(targetNodeKey));
+        EventBus.on("choice:selected", () => this.hideThePopUp());
+        EventBus.on("node:enter", node => {
+            if(node instanceof ChoiceNode)
+                Choice.show(node.choices);
+        });
     },
 
     show(options) {
         DOM.popups.choice.container.innerHTML = ""; 
         options.forEach(option => {
             const button = document.createElement("button");
-            button.className = "choice-button";
+            button.className = "button choice-button";
             button.textContent = option.text;
-            button.dataset.target = option.target;
+            button.choice = option;
+
             DOM.popups.choice.container.appendChild(button);
         });
         Screen.show(DOM.popups.choice.popup);
     },
 
-    select(targetNodeKey) {
+    hideThePopUp() {
         Screen.hide(DOM.popups.choice.popup);
     }
 };

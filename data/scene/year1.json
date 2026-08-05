@@ -1,5 +1,7 @@
 {
   "id": "year1",
+  "start": "school_intro",
+
   "scenes": {
     "school_intro": {
       "background": "hallway",
@@ -7,70 +9,49 @@
         {
           "type": "speaker",
           "speaker": "Narrator",
-          "text": "A new school year begins."
+          "text": "The first day of school always feels the same... until it doesn't."
         },
         {
           "type": "speaker",
           "speaker": "Kisetsu",
-          "position": "left",
-          "text": "Another year... I hope it isn't as strange as last time."
+          "text": "New classroom. New classmates. Hopefully a quiet year."
         },
         {
           "type": "speaker",
           "speaker": "Penny",
-          "position": "right",
-          "text": "Good morning! There's a mystery waiting for us today."
+          "stage": {
+            "right": {
+              "character": "penny",
+              "emotion": "neutral"
+            }
+          },
+          "text": "Hey! You're the transfer student, right?"
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "Perfect! I need someone who isn't afraid of getting into trouble."
         },
         {
           "type": "choice",
           "choices": [
             {
-              "text": "Good morning.",
+              "text": "That doesn't sound reassuring.",
               "dialogue": [
                 {
                   "type": "speaker",
-                  "speaker": "Kisetsu",
-                  "text": "Morning. Let's make this year better than the last."
-                },
-                {
-                  "type": "choice",
-                  "choices": [
-                    {
-                      "text": "And I am a Good Ni-.",
-                      "dialogue": [
-                        {
-                          "type": "speaker",
-                          "speaker": "Penny",
-                          "text": "Yeah-What did you say?"
-                        }
-                      ]
-                    },
-                    {
-                      "text": "I am once a Event Manager you know~.",
-                      "dialogue": [
-                        {
-                          "type": "speaker",
-                          "speaker": "Penny",
-                          "text": "Oh please! Don't get it in your head."
-                        }
-                      ]
-                    }
-                  ]
+                  "speaker": "Penny",
+                  "text": "Good! That means you'll fit right in."
                 }
               ]
             },
             {
-              "text": "...",
+              "text": "I'm just trying to survive today.",
               "dialogue": [
                 {
                   "type": "speaker",
-                  "speaker": "Narrator",
-                  "text": "You stay silent. The hallway hums with early chatter."
-                },
-                {
-                  "type": "speaker",
-                  "speaker": "Kisetsu",
-                  "text": "...Fine. Let's just go. There's no time to waste."
+                  "speaker": "Penny",
+                  "text": "Then surviving with company is better than surviving alone."
                 }
               ]
             }
@@ -78,66 +59,52 @@
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
-          "text": "I heard there is a hidden festival plan somewhere in the school. We should look into it after classes."
-        },
-        {
-          "type": "speaker",
           "speaker": "Narrator",
-          "text": "The bell rings. Your first day of classes is about to begin."
+          "stage": {},
+          "text": "The final bell rings. Classes are over."
         },
         {
           "type": "goto",
-          "scene": "day1_after_school"
+          "scene": "after_school"
         }
       ]
     },
 
-    "day1_after_school": {
+    "after_school": {
       "background": "hallway",
       "dialogue": [
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "Where will you go?"
+        },
         {
           "type": "choice",
           "choices": [
             {
-              "text": "Library",
+              "text": "Visit the Library",
               "dialogue": [
                 {
                   "type": "goto",
-                  "scene": "library_day1"
+                  "scene": "library"
                 }
               ]
             },
             {
-              "text": "Club Room",
+              "text": "Visit the Club Room",
               "dialogue": [
                 {
                   "type": "goto",
-                  "scene": "clubroom_day1"
+                  "scene": "clubroom"
                 }
               ]
             },
             {
-              "text": "Rooftop",
+              "text": "Walk the Hallway",
               "dialogue": [
                 {
                   "type": "goto",
-                  "scene": "rooftop_day1"
-                }
-              ]
-            },
-            {
-              "text": "Just look around",
-              "dialogue": [
-                {
-                  "type": "speaker",
-                  "speaker": "Narrator",
-                  "text": "A crisp poster flutters on the bulletin board. It mentions an old festival that vanished years ago."
-                },
-                {
-                  "type": "speaker",
-                  "speaker": "Penny",
-                  "text": "Maybe the rumor is more than just a rumor."
+                  "scene": "hallway_event"
                 }
               ]
             },
@@ -146,7 +113,7 @@
               "dialogue": [
                 {
                   "type": "goto",
-                  "scene": "day1_end"
+                  "scene": "ending"
                 }
               ]
             }
@@ -155,143 +122,159 @@
       ]
     },
 
-    "library_day1": {
-      "background": "library",
+    "library": {
+      "background": "classroom",
       "dialogue": [
         {
           "type": "speaker",
           "speaker": "Penny",
-          "text": "Oh... I didn't expect anyone else to be here."
+          "stage": {
+            "center": {
+              "character": "penny",
+              "emotion": "neutral"
+            }
+          },
+          "text": "Found you!"
         },
         {
           "type": "speaker",
           "speaker": "Penny",
-          "text": "I was looking for a book about the old school festival. They say the history section hides the best secrets."
-        },
-        {
-          "type": "choice",
-          "choices": [
-            {
-              "text": "Offer to help.",
-              "dialogue": [
-                {
-                  "type": "speaker",
-                  "speaker": "Penny",
-                  "text": "Thank you. I found a folded note between the pages. It mentions a secret meeting place."
-                },
-                {
-                  "type": "speaker",
-                  "speaker": "Narrator",
-                  "text": "You hold the note and feel the excitement of a mystery unfolding."
-                }
-              ]
-            },
-            {
-              "text": "Give her space.",
-              "dialogue": [
-                {
-                  "type": "speaker",
-                  "speaker": "Penny",
-                  "text": "Okay, I'll let you read in peace. If you want to join, I'll be at the study table."
-                },
-                {
-                  "type": "speaker",
-                  "speaker": "Narrator",
-                  "text": "The library's silence feels charged with something waiting to be discovered."
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "goto",
-          "scene": "day1_after_school"
-        }
-      ]
-    },
-
-    "clubroom_day1": {
-      "background": "clubroom",
-      "dialogue": [
-        {
-          "type": "speaker",
-          "speaker": "Ali",
-          "text": "Welcome! We were waiting for you. The club is planning a special event this year."
-        },
-        {
-          "type": "speaker",
-          "speaker": "Ali",
-          "text": "If you join us, you can help design the invitation for the school festival."
-        },
-        {
-          "type": "choice",
-          "choices": [
-            {
-              "text": "Ask about the event.",
-              "dialogue": [
-                {
-                  "type": "speaker",
-                  "speaker": "Ali",
-                  "text": "It is a celebration for all the clubs, but some old traditions were lost. We want to bring them back."
-                }
-              ]
-            },
-            {
-              "text": "Say you'll think about it.",
-              "dialogue": [
-                {
-                  "type": "speaker",
-                  "speaker": "Ali",
-                  "text": "No pressure. If you want to help later, the door is always open."
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "goto",
-          "scene": "day1_end"
-        }
-      ]
-    },
-
-    "rooftop_day1": {
-      "background": "rooftop",
-      "dialogue": [
-        {
-          "type": "speaker",
-          "speaker": "Narrator",
-          "text": "The wind is peaceful today, and the city stretches out beneath the rooftop."
+          "text": "The school records skip an entire year."
         },
         {
           "type": "speaker",
           "speaker": "Kisetsu",
-          "text": "There's a rumor that the school once hid a secret garden up here."
+          "text": "Maybe they were lost."
         },
         {
           "type": "speaker",
-          "speaker": "Moe",
-          "text": "If it's true, maybe the note in the library and the festival plans are connected."
+          "speaker": "Penny",
+          "text": "Or maybe somebody wanted them gone."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "stage": {},
+          "text": "The silence of the library suddenly feels heavier."
         },
         {
           "type": "goto",
-          "scene": "day1_end"
+          "scene": "after_school"
         }
       ]
     },
 
-    "day1_end": {
+    "clubroom": {
+      "background": "classroom",
+      "dialogue": [
+        {
+          "type": "speaker",
+          "speaker": "Erika",
+          "stage": {
+            "center": {
+              "character": "erika",
+              "emotion": "neutral"
+            }
+          },
+          "text": "Welcome."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Erika",
+          "text": "Student Council is preparing for this year's festival."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Kisetsu",
+          "text": "Everyone keeps talking about that festival."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Erika",
+          "text": "...Because the last one ended before anyone could celebrate."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "stage": {},
+          "text": "Before you can ask what she means, another student calls her away."
+        },
+        {
+          "type": "goto",
+          "scene": "after_school"
+        }
+      ]
+    },
+
+    "hallway_event": {
       "background": "hallway",
       "dialogue": [
         {
           "type": "speaker",
           "speaker": "Narrator",
-          "text": "The first day comes to an end. You have a new clue, a new choice, and a rumor that will not leave your mind."
+          "text": "The hallway is unusually quiet."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Yuri",
+          "stage": {
+            "left": {
+              "character": "yuri",
+              "emotion": "neutral"
+            }
+          },
+          "text": "..."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Kisetsu",
+          "text": "Can I help you?"
+        },
+        {
+          "type": "speaker",
+          "speaker": "Yuri",
+          "text": "Don't trust rumors."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Yuri",
+          "text": "Especially the ones Penny tells."
         },
         {
           "type": "speaker",
           "speaker": "Narrator",
-          "text": "Tomorrow, the search for the hidden festival begins in earnest."
+          "stage": {},
+          "text": "Before you can answer, she's already gone."
+        },
+        {
+          "type": "goto",
+          "scene": "after_school"
+        }
+      ]
+    },
+
+    "ending": {
+      "background": "hallway",
+      "dialogue": [
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "You leave school with more questions than answers."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "A missing year. A cancelled festival. Three students who all seem to know something."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Kisetsu",
+          "text": "...Maybe this year won't be so quiet after all."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "End of Day 1."
         }
       ]
     }
