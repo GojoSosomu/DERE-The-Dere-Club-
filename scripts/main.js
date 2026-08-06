@@ -617,7 +617,7 @@ class Scene {
 
         if (node instanceof ChoiceNode) {
             for (const choice of node.choices) {
-                const found = this.#findNode(choice.next, nodeIndex);
+                const found = this.#dfs(choice.next, nodeIndex);
 
                 if (found != null)
                     return found;
@@ -626,7 +626,7 @@ class Scene {
             return null;
         }
 
-        return this.#findNode(node.next, nodeIndex);
+        return this.#dfs(node.next, nodeIndex);
     }
 }
 
