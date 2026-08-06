@@ -35,10 +35,12 @@ let activeStage = [
 
 const EventBus = {
     events: {},
+
     on(event, callback) {
         if (!this.events[event]) this.events[event] = [];
         this.events[event].push(callback);
     },
+
     emit(event, ...data) {
         if (this.events[event]) {
             this.events[event].forEach(callback => callback(...data));
@@ -69,7 +71,7 @@ const DOM = {
             gameplay: get(".gameplay"),
             setting: get(".setting"),
             about: get(".about"),
-            orientationInfo: get(".orientationInfo"), // this catches the device when on portrait device
+            orientationInfo: get(".orientationInfo"),
             demo: get(".demo"),
         };
 
@@ -79,7 +81,7 @@ const DOM = {
         this.startButton = get("#start");
         this.settingButton = get("#setting");
         this.aboutButton = get("#about");
-        this.backButton = get("#back-button"); // this is the button on settings/about scene
+        this.backButton = get("#back-button");
         this.backButtonAbout = get("#back-button-ab");
         this.menuButton = get("#open-menu");
         this.resumeButton = get("#resume");
@@ -122,8 +124,9 @@ const Events = {
         on(DOM.startButton, "click", () => {
             StoryRunner.initialize("year1");
             StoryRunner.start();
-            Screen.open(DOM.pages.gameplay)
+            Screen.open(DOM.pages.gameplay);
         });
+
         on(DOM.menuButton, "click", () => Screen.toggle(DOM.popups.menu.popup));
         on(DOM.resumeButton, "click", () => Screen.toggle(DOM.popups.menu.popup));
         on(DOM.settingsButton, "click", () => Screen.open(DOM.pages.setting));
@@ -132,7 +135,10 @@ const Events = {
         on(DOM.quitButton, "click", () => Screen.open(DOM.pages.mainMenu));
 
         on(DOM.dialogueBox, "click", () => {
-            if (DOM.popups.choice.popup && DOM.popups.choice.popup.classList.contains("hidden")) {
+            if (
+                DOM.popups.choice.popup &&
+                DOM.popups.choice.popup.classList.contains("hidden")
+            ) {
                 EventBus.emit("dialogue:clicked");
             }
         });
@@ -142,13 +148,14 @@ const Events = {
                 EventBus.emit("choice:selected", e.target.choice);
             }
         });
-        
+
         on(DOM.settingButton, "click", () => Screen.open(DOM.pages.setting));
         on(DOM.aboutButton, "click", () => Screen.open(DOM.pages.about));
         on(DOM.backButtonAbout, "click", () => Screen.back());
+
         window.onresize = () => {
             Screen.updateOrientation();
-        }
+        };
     }
 };
 
@@ -240,6 +247,85 @@ const Screen = {
         Object.values(DOM.pages).forEach(page => this.hide(page));
     }
 };
+
+const Storage = {
+    initialize() {
+        this.#gameSlot = {
+            slot1: null,
+            slot2: null,
+            slot3: null,
+            slot4: null,
+        };
+
+        EventBus.on("data:save", data => this.save(data));
+        EventBus.on("data:load", () => this.load());
+    },
+
+    save(data) {
+        localStorage.setItem(
+            "save",
+            JSON.stringify(data)
+        );
+    },
+
+    load() {
+        const data = JSON.parse(localStorage.getItem("save"));
+
+        return PersistentData.fromJSON(data);
+    }
+};
+
+class PersistentData {
+    constructor(settingConfiguration, thumbnailData) {
+        this.settingConfiguration = settingConfiguration;
+        this.thumbnailData = thumbnailData;
+    }
+
+    static fromJSON(data) {
+        let persistent = Object.assign(
+            new PersistentData(),
+            data
+        );
+
+        persistent.thumbnailData = SceneData.fromJSON(persistent.thumbnailData);
+
+        return persistent;
+    }
+}
+
+class ThumbnailData {
+    constructor(title, playTime, sceneData) {
+        this.title = title;
+        this.timestamp = Date.now();
+        this.playTime = playTime;
+        this.sceneData = sceneData;
+    }
+
+    static fromJSON(data) {
+        let thumbnail = Object.assign(
+            new ThumbnailData(),
+            data
+        );
+
+        thumbnail.sceneData = SceneData.fromJSON(thumbnail.sceneData);
+
+        return thumbnail;
+    }
+}
+
+class SceneData {
+    constructor(sceneId, nodeIndex) {
+        this.sceneId = sceneId;
+        this.nodeIndex = nodeIndex;
+    }
+
+    static fromJSON(data) {
+        return Object.assign(
+            new SceneData(),
+            data
+        );
+    }
+}
 
 const Debug = {
     initialize() {
@@ -359,21 +445,28 @@ const JsonLoader = {
 };
 
 const StoryParser = {
-    parse(data) {
+    parse(data, index) {
         switch(data.type) {
             case "speaker":
-                return this.parseSpeaker(data);
+                return this.parseSpeaker(data, index);
             case "choice":
-                return this.parseChoice(data);
+                return this.parseChoice(data, index);
             case "goto":
-                return new GotoNode(data.scene);
+                return this.parseGoto(data, index);
         }
     },
 
-    parseSpeaker(data) {
-        const node = new SpeakerNode(data);
+    parseGoto(data, index) {
+        const node = new GotoNode(data.scene);
+        node.index = index++;
 
+        return node;
+    },
+
+    parseSpeaker(data, index) {
+        const node = new SpeakerNode(data);
         node.stage = this.parseStage(data.stage);
+        node.index = index++;
 
         return node;
     },
@@ -391,7 +484,7 @@ const StoryParser = {
 
             return operations;
         }
-        
+
         operations.push({
             type: "clear"
         });
@@ -412,8 +505,9 @@ const StoryParser = {
         return operations;
     },
 
-    parseChoice(data) {
+    parseChoice(data, index) {
         const node = new ChoiceNode();
+        node.index = index++;
 
         for(const choice of data.choices) {
             node.choices.push({
@@ -480,6 +574,7 @@ const GraphBuilder = {
 class Node {
     constructor(type) {
         this.type = type;
+        this.index = -1;
     }
 }
 
@@ -507,6 +602,31 @@ class Scene {
 
         this.firstNode = null;
         this.lastNode = null;
+    }
+
+    findNode(index) {
+        return this.#dfs(this.firstNode, index);
+    }
+
+    #dfs(node, nodeIndex) {
+        if (node == null)
+            return null;
+
+        if (node.index === nodeIndex)
+            return node;
+
+        if (node instanceof ChoiceNode) {
+            for (const choice of node.choices) {
+                const found = this.#findNode(choice.next, nodeIndex);
+
+                if (found != null)
+                    return found;
+            }
+
+            return null;
+        }
+
+        return this.#findNode(node.next, nodeIndex);
     }
 }
 
@@ -576,14 +696,14 @@ const StoryBuilder = {
         GraphBuilder.finalize();
     },
 
-    buildDialogue(sceneId, dialogue, isBranch = false, onContinue = null) {
+    buildDialogue(sceneId, dialogue, isBranch = false, onContinue = null, index = -1) {
         let firstNode = null;
         let previousNode = null;
         let deadEndNodes = [];
 
         for(let i = 0; i < dialogue.length; i++) {
             const data = dialogue[i];
-            const node = StoryParser.parse(data);
+            const node = StoryParser.parse(data, index);
 
             if(firstNode == null)
                 firstNode = node;
@@ -625,6 +745,7 @@ const StoryBuilder = {
                 deadEndNodes = branchDeadEnds;
                 continue;
             }
+
             deadEndNodes = [node];
         }
 
@@ -664,6 +785,14 @@ const StoryRunner = {
         this.render();
     },
 
+    advance()
+    {
+        if(!(this.currentNode instanceof SpeakerNode))
+            return;
+
+        this.currentNode = this.currentNode.next;
+    },
+
     render() {
         if(this.currentNode == null) {
             EventBus.emit("story:finished");
@@ -688,10 +817,8 @@ const StoryRunner = {
     },
 
     next() {
-        if(!(this.currentNode instanceof SpeakerNode))
-            return;
+        this.advance();
 
-        this.currentNode = this.currentNode.next;
         if(this.currentNode == null) {
             EventBus.emit("story:finished");
             return;
@@ -827,6 +954,7 @@ const Dialogue = {
         if (speakerKey) {
             DOM.speaker.textContent = speakerKey.charAt(0).toUpperCase() + speakerKey.slice(1);
             console.log(speakerKey);
+
             if (CharacterEnum[speakerKey.toUpperCase()]) {
                 DOM.profile.src = this.getProfileImageSrc(speakerKey.toLowerCase());
                 DOM.profile.classList.remove("hidden");
@@ -861,7 +989,7 @@ const Character = {
     spawnCharacter(character, emotion, slotId, from = "bottom") {
         let targetSlot = document.getElementById(slotId);
         if (!targetSlot) return;
-        
+
         targetSlot.innerHTML = "";
         this.enterCharacter(slotId, this.getCharacterImageSrc(character, emotion), from);
 
@@ -873,14 +1001,14 @@ const Character = {
 
     enterCharacter(slotId, imgSrc, from = "bottom") {
         const slot = document.getElementById(slotId);
-        const img = document.createElement('img');
+        const img = document.createElement("img");
         img.src = imgSrc;
         img.className = `character enter-from-${from} not-speaking`;
         slot.appendChild(img);
-        
+
         requestAnimationFrame(() => {
-            img.classList.add('on-stage');
-            img.classList.remove('not-speaking');
+            img.classList.add("on-stage");
+            img.classList.remove("not-speaking");
         });
     },
 
@@ -904,7 +1032,10 @@ const Character = {
 
     removeCharacter(slot) {
         const slotEl = document.getElementById(slot.slotId);
-        if (slotEl) this.leaveCharacter(slotEl);
+
+        if (slotEl)
+            this.leaveCharacter(slotEl);
+
         console.log(slot);
         slot.character = null;
     },
@@ -915,6 +1046,7 @@ const Character = {
                 case "clear":
                     this.clearStage();
                     break;
+
                 case "set":
                     this.spawnCharacter(
                         operation.character,
@@ -930,6 +1062,7 @@ const Character = {
         activeStage.forEach(slot => {
             const slotEl = document.getElementById(slot.slotId);
             if (!slotEl) return;
+
             const img = slotEl.querySelector("img");
             if (!img) return;
 
@@ -946,6 +1079,7 @@ const Choice = {
     initialize() {
         EventBus.on("choices:triggered", (options) => this.show(options));
         EventBus.on("choice:selected", () => this.hideThePopUp());
+
         EventBus.on("node:enter", node => {
             if(node instanceof ChoiceNode)
                 Choice.show(node.choices);
@@ -953,7 +1087,8 @@ const Choice = {
     },
 
     show(options) {
-        DOM.popups.choice.container.innerHTML = ""; 
+        DOM.popups.choice.container.innerHTML = "";
+
         options.forEach(option => {
             const button = document.createElement("button");
             button.className = "button choice-button";
@@ -962,6 +1097,7 @@ const Choice = {
 
             DOM.popups.choice.container.appendChild(button);
         });
+
         Screen.show(DOM.popups.choice.popup);
     },
 
