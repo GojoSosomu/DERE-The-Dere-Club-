@@ -9,12 +9,38 @@
         {
           "type": "speaker",
           "speaker": "Narrator",
-          "text": "The first day of school always feels the same... until it doesn't."
+          "stage": {},
+          "text": "The first day of school always feels longer than it should."
         },
         {
           "type": "speaker",
-          "speaker": "Kisetsu",
-          "text": "New classroom. New classmates. Hopefully a quiet year."
+          "speaker": "Narrator",
+          "text": "New classrooms. New faces. New routines."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "Everything feels unfamiliar."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "The hallway is crowded with students trying to find their classrooms before the bell rings."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "You check the schedule again."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "Room 204."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "At least, that's what it says."
         },
         {
           "type": "speaker",
@@ -25,194 +51,317 @@
               "emotion": "neutral"
             }
           },
-          "text": "Hey! You're the transfer student, right?"
+          "text": "You're lost, aren't you?"
         },
         {
           "type": "speaker",
           "speaker": "Penny",
-          "text": "Perfect! I need someone who isn't afraid of getting into trouble."
+          "text": "Don't answer that."
         },
         {
-          "type": "choice",
-          "choices": [
-            {
-              "text": "That doesn't sound reassuring.",
-              "dialogue": [
-                {
-                  "type": "speaker",
-                  "speaker": "Penny",
-                  "text": "Good! That means you'll fit right in."
-                }
-              ]
-            },
-            {
-              "text": "I'm just trying to survive today.",
-              "dialogue": [
-                {
-                  "type": "speaker",
-                  "speaker": "Penny",
-                  "text": "Then surviving with company is better than surviving alone."
-                }
-              ]
-            }
-          ]
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "I can already tell."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "You're looking at that schedule like it's written in another language."
         },
         {
           "type": "speaker",
           "speaker": "Narrator",
-          "stage": {},
-          "text": "The final bell rings. Classes are over."
+          "text": "Penny folds her arms."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "Room 204 is upstairs."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "Stairs are over there."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "Try not to get lost again."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "Penny starts walking toward the stairs."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "...You're coming, right?"
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "Penny doesn't wait for an answer."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "Come on."
         },
         {
           "type": "goto",
-          "scene": "after_school"
+          "scene": "first_class"
         }
       ]
     },
 
-    "after_school": {
+    "first_class": {
+      "background": "classroom",
+      "dialogue": [
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "stage": {},
+          "text": "The classroom is already filling up."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "Penny takes a seat near the window."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "stage": {
+            "left": {
+              "character": "penny",
+              "emotion": "neutral"
+            }
+          },
+          "text": "You can sit there."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "Unless you have somewhere else to be."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "The teacher enters the classroom."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Teacher",
+          "text": "Good morning, everyone."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Teacher",
+          "text": "Before we begin, I'd like to welcome our new student."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Teacher",
+          "text": "Please make them feel welcome."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "Already did."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Teacher",
+          "text": "Penny."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "What?"
+        },
+        {
+          "type": "speaker",
+          "speaker": "Teacher",
+          "text": "Let me finish."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "...Fine."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "The lesson begins."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "For the next several hours, the day passes normally."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "Classes."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "Notes."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "Introductions."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "And eventually, lunch."
+        },
+        {
+          "type": "goto",
+          "scene": "lunch"
+        }
+      ]
+    },
+
+    "lunch": {
       "background": "hallway",
       "dialogue": [
         {
           "type": "speaker",
           "speaker": "Narrator",
-          "text": "Where will you go?"
-        },
-        {
-          "type": "choice",
-          "choices": [
-            {
-              "text": "Visit the Library",
-              "dialogue": [
-                {
-                  "type": "goto",
-                  "scene": "library"
-                }
-              ]
-            },
-            {
-              "text": "Visit the Club Room",
-              "dialogue": [
-                {
-                  "type": "goto",
-                  "scene": "clubroom"
-                }
-              ]
-            },
-            {
-              "text": "Walk the Hallway",
-              "dialogue": [
-                {
-                  "type": "goto",
-                  "scene": "hallway_event"
-                }
-              ]
-            },
-            {
-              "text": "Go Home",
-              "dialogue": [
-                {
-                  "type": "goto",
-                  "scene": "ending"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-
-    "library": {
-      "background": "classroom",
-      "dialogue": [
-        {
-          "type": "speaker",
-          "speaker": "Penny",
-          "stage": {
-            "center": {
-              "character": "penny",
-              "emotion": "neutral"
-            }
-          },
-          "text": "Found you!"
-        },
-        {
-          "type": "speaker",
-          "speaker": "Penny",
-          "text": "The school records skip an entire year."
-        },
-        {
-          "type": "speaker",
-          "speaker": "Kisetsu",
-          "text": "Maybe they were lost."
-        },
-        {
-          "type": "speaker",
-          "speaker": "Penny",
-          "text": "Or maybe somebody wanted them gone."
+          "stage": {},
+          "text": "The hallway becomes quieter during lunch."
         },
         {
           "type": "speaker",
           "speaker": "Narrator",
-          "stage": {},
-          "text": "The silence of the library suddenly feels heavier."
+          "text": "Students gather in groups, talking about classes, teachers, and clubs."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "stage": {
+            "right": {
+              "character": "penny",
+              "emotion": "neutral"
+            }
+          },
+          "text": "Hey."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "You survived the morning."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "Congratulations."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "So..."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "Have you decided what club you're joining?"
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "Penny waits."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "You don't have one."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "Of course you don't."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "Come on."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "I'll show you."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "Penny starts walking down the hallway."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "There are a lot of clubs here."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "Sports, academic stuff, music..."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "And the Creative Arts Club."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "That's the one I'm in."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "Don't get the wrong idea."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "I just like fashion and styling."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "That's all."
         },
         {
           "type": "goto",
-          "scene": "after_school"
+          "scene": "clubroom"
         }
       ]
     },
 
     "clubroom": {
-      "background": "classroom",
+      "background": "clubroom",
       "dialogue": [
-        {
-          "type": "speaker",
-          "speaker": "Erika",
-          "stage": {
-            "center": {
-              "character": "erika",
-              "emotion": "neutral"
-            }
-          },
-          "text": "Welcome."
-        },
-        {
-          "type": "speaker",
-          "speaker": "Erika",
-          "text": "Student Council is preparing for this year's festival."
-        },
-        {
-          "type": "speaker",
-          "speaker": "Kisetsu",
-          "text": "Everyone keeps talking about that festival."
-        },
-        {
-          "type": "speaker",
-          "speaker": "Erika",
-          "text": "...Because the last one ended before anyone could celebrate."
-        },
         {
           "type": "speaker",
           "speaker": "Narrator",
           "stage": {},
-          "text": "Before you can ask what she means, another student calls her away."
+          "text": "Penny opens the clubroom door."
         },
-        {
-          "type": "goto",
-          "scene": "after_school"
-        }
-      ]
-    },
-
-    "hallway_event": {
-      "background": "hallway",
-      "dialogue": [
         {
           "type": "speaker",
           "speaker": "Narrator",
-          "text": "The hallway is unusually quiet."
+          "text": "The Creative Arts Club room is quieter than expected."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "Books, papers, sketches, and unfinished projects cover several tables."
         },
         {
           "type": "speaker",
@@ -221,55 +370,552 @@
             "left": {
               "character": "yuri",
               "emotion": "neutral"
+            },
+            "right": {
+              "character": "penny",
+              "emotion": "neutral"
             }
           },
           "text": "..."
         },
         {
           "type": "speaker",
-          "speaker": "Kisetsu",
-          "text": "Can I help you?"
+          "speaker": "Yuri",
+          "text": "You're early."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "They're new."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "I brought them here."
         },
         {
           "type": "speaker",
           "speaker": "Yuri",
-          "text": "Don't trust rumors."
-        },
-        {
-          "type": "speaker",
-          "speaker": "Yuri",
-          "text": "Especially the ones Penny tells."
+          "text": "I see."
         },
         {
           "type": "speaker",
           "speaker": "Narrator",
-          "stage": {},
-          "text": "Before you can answer, she's already gone."
+          "text": "Yuri lowers her gaze back to the book in her hands."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "Don't mind her."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "She's always reading something."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Yuri",
+          "text": "It's a book."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "I know what a book is."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Yuri",
+          "text": "You seemed unsure."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "I wasn't."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "Another student sits quietly at a table across the room."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Eri",
+          "stage": {
+            "left": {
+              "character": "yuri",
+              "emotion": "neutral"
+            },
+            "center": {
+              "character": "erika",
+              "emotion": "neutral"
+            },
+            "right": {
+              "character": "penny",
+              "emotion": "neutral"
+            }
+          },
+          "text": "Penny."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "What?"
+        },
+        {
+          "type": "speaker",
+          "speaker": "Eri",
+          "text": "You forgot to introduce them."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "I was getting to that."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Eri",
+          "text": "You weren't."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "...Whatever."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Eri",
+          "text": "Welcome to the Creative Arts Club."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "Eri looks toward the protagonist."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Eri",
+          "text": "You don't have to decide immediately."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Eri",
+          "text": "You can look around first."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "See?"
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "It's not that serious."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Yuri",
+          "text": "It can be."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "Yuri."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Yuri",
+          "text": "What?"
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "You're making it sound scary."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Yuri",
+          "text": "I didn't mean to."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Eri",
+          "text": "You aren't helping."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Yuri",
+          "text": "Sorry."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "Yuri returns her attention to her book."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "Anyway."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "If you're looking for something to do, you could join us."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "We're not exactly strict."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Eri",
+          "text": "There aren't many requirements."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Yuri",
+          "text": "You can read."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Yuri",
+          "text": "Write."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Yuri",
+          "text": "Draw."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Yuri",
+          "text": "Create something."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Yuri",
+          "text": "Or simply stay."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "That's basically the whole club."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Eri",
+          "text": "We're here to create."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "The three students remain in the room."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "Penny stands beside the door."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "Yuri sits with her book."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "Eri quietly observes."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "For the first time today, you aren't being told where to go."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "The choice is yours."
+        },
+        {
+          "type": "choice",
+          "choices": [
+            {
+              "text": "Join the Creative Arts Club.",
+              "dialogue": [
+                {
+                  "type": "speaker",
+                  "speaker": "Penny",
+                  "text": "Really?"
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "Penny",
+                  "text": "I mean..."
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "Penny",
+                  "text": "Sure."
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "Penny",
+                  "text": "Welcome, I guess."
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "Yuri",
+                  "text": "I'm glad."
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "Eri",
+                  "text": "Then it's decided."
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "Narrator",
+                  "text": "Penny moves away from the door and takes a seat."
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "Penny",
+                  "stage": {
+                    "left": {
+                      "character": "penny",
+                      "emotion": "neutral"
+                    },
+                    "center": {
+                      "character": "erika",
+                      "emotion": "neutral"
+                    },
+                    "right": {
+                      "character": "yuri",
+                      "emotion": "neutral"
+                    }
+                  },
+                  "text": "Guess you're one of us now."
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "Narrator",
+                  "text": "The room feels a little different."
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "Narrator",
+                  "text": "Not because anything changed."
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "Narrator",
+                  "text": "But because you finally have somewhere to belong."
+                }
+              ]
+            },
+            {
+              "text": "Look around first.",
+              "dialogue": [
+                {
+                  "type": "speaker",
+                  "speaker": "Eri",
+                  "text": "That's fine."
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "Eri",
+                  "text": "Take your time."
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "Penny",
+                  "text": "Just don't take forever."
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "Yuri",
+                  "text": "You can stay as long as you'd like."
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "Narrator",
+                  "text": "Penny sits down near the table."
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "Penny",
+                  "stage": {
+                    "left": {
+                      "character": "penny",
+                      "emotion": "neutral"
+                    },
+                    "center": {
+                      "character": "erika",
+                      "emotion": "neutral"
+                    },
+                    "right": {
+                      "character": "yuri",
+                      "emotion": "neutral"
+                    }
+                  },
+                  "text": "We're not going anywhere."
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "Narrator",
+                  "text": "The clubroom settles back into its quiet rhythm."
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "Narrator",
+                  "text": "Perhaps this place is worth coming back to."
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "goto",
-          "scene": "after_school"
+          "scene": "after_club"
         }
       ]
     },
 
-    "ending": {
+    "after_club": {
       "background": "hallway",
       "dialogue": [
         {
           "type": "speaker",
           "speaker": "Narrator",
-          "text": "You leave school with more questions than answers."
+          "stage": {},
+          "text": "The final bell rings."
         },
         {
           "type": "speaker",
           "speaker": "Narrator",
-          "text": "A missing year. A cancelled festival. Three students who all seem to know something."
+          "text": "Students begin leaving the school."
         },
         {
           "type": "speaker",
-          "speaker": "Kisetsu",
-          "text": "...Maybe this year won't be so quiet after all."
+          "speaker": "Penny",
+          "stage": {
+            "right": {
+              "character": "penny",
+              "emotion": "neutral"
+            }
+          },
+          "text": "Hey."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "Same time tomorrow."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "Don't make me come looking for you."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Yuri",
+          "stage": {
+            "left": {
+              "character": "yuri",
+              "emotion": "neutral"
+            },
+            "right": {
+              "character": "penny",
+              "emotion": "neutral"
+            }
+          },
+          "text": "She probably would."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "I would not."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Eri",
+          "stage": {
+            "left": {
+              "character": "yuri",
+              "emotion": "neutral"
+            },
+            "center": {
+              "character": "erika",
+              "emotion": "neutral"
+            },
+            "right": {
+              "character": "penny",
+              "emotion": "neutral"
+            }
+          },
+          "text": "You would."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "...Maybe."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "The three of them stand together in the hallway."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "Penny is the first to turn toward the exit."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Penny",
+          "text": "See you tomorrow."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Yuri",
+          "text": "Goodbye."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Eri",
+          "text": "See you."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "The three walk away together."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "stage": {},
+          "text": "Your first day at NU Academy is almost over."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "You arrived knowing nobody."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "Now, you have a club."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "And three people waiting for you tomorrow."
+        },
+        {
+          "type": "speaker",
+          "speaker": "Narrator",
+          "text": "Maybe joining wasn't such a bad idea."
         },
         {
           "type": "speaker",

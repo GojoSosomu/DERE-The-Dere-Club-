@@ -26,12 +26,14 @@ const EmotionEnum = Object.freeze({
 });
 
 let activeStage = [
-    { slotId: "far-left",  character: null },
-    { slotId: "left",      character: null },
-    { slotId: "center",    character: null },
-    { slotId: "right",     character: null },
-    { slotId: "far-right", character: null }
+    { slotId: "far-left",  character: null, emotion: null },
+    { slotId: "left",      character: null, emotion: null },
+    { slotId: "center",    character: null, emotion: null },
+    { slotId: "right",     character: null, emotion: null },
+    { slotId: "far-right", character: null, emotion: null }
 ];
+
+const Sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const EventBus = {
     events: {},
@@ -45,6 +47,15 @@ const EventBus = {
         if (this.events[event]) {
             this.events[event].forEach(callback => callback(...data));
         }
+    },
+
+    async emitAsync(event, ...data) {
+        if (!this.events[event])
+            return;
+
+        await Promise.all(
+            this.events[event].map(callback => callback(...data))
+        );
     }
 };
 
@@ -60,6 +71,8 @@ const Engine = {
         Events.initialize();
         Audio.initialize();
         Debug.initialize();
+        Storage.initialize();
+        SaveLoad.initialize();
         await StoryLoader.initialize("year1");
     }
 };
@@ -72,6 +85,7 @@ const DOM = {
             setting: get(".setting"),
             about: get(".about"),
             orientationInfo: get(".orientationInfo"),
+            persistent: get(".save-load"), 
             demo: get(".demo"),
         };
 
@@ -105,6 +119,19 @@ const DOM = {
             textButton: get("#text")
         };
 
+        this.backButtonSaveLoad = get("#save-load-back");
+        this.saveLoadTitle = get(".save-load-header h1");
+        this.dataSlots = getAll(".data-slot");
+        this.preview = {
+            speaker: get("#preview-speaker"),
+            dialogue: get("#preview-dialogue"),
+            title: get("#preview-title"),
+            date: get("#preview-date"),
+            profile: get(".preview-speaker .speaker-profile")
+        };
+
+        this.backButtonDemo = get("#demo-back-button");
+
         this.popups = {
             choice: {
                 popup: get(".choice-popup"),
@@ -130,8 +157,14 @@ const Events = {
         on(DOM.menuButton, "click", () => Screen.toggle(DOM.popups.menu.popup));
         on(DOM.resumeButton, "click", () => Screen.toggle(DOM.popups.menu.popup));
         on(DOM.settingsButton, "click", () => Screen.open(DOM.pages.setting));
-        on(DOM.saveButton, "click", () => Screen.toggle(DOM.popups.menu.popup));
-        on(DOM.loadButton, "click", () => Screen.toggle(DOM.popups.menu.popup));
+        on(DOM.saveButton, "click", () => {
+            EventBus.emit("saveLoad:changeMode", "save");
+            Screen.open(DOM.pages.persistent);
+        });
+        on(DOM.loadButton, "click", () => {
+            EventBus.emit("saveLoad:changeMode", "load");
+            Screen.open(DOM.pages.persistent);
+        });
         on(DOM.quitButton, "click", () => Screen.open(DOM.pages.mainMenu));
 
         on(DOM.dialogueBox, "click", () => {
@@ -139,7 +172,21 @@ const Events = {
                 DOM.popups.choice.popup &&
                 DOM.popups.choice.popup.classList.contains("hidden")
             ) {
-                EventBus.emit("dialogue:clicked");
+                EventBus.emit("dialogue:advance");
+            }
+        });
+
+        on(document, "keydown", (e) => {
+            if (e.code !== "Space")
+                return;
+
+            e.preventDefault();
+
+            if (
+                DOM.popups.choice.popup &&
+                DOM.popups.choice.popup.classList.contains("hidden")
+            ) {
+                EventBus.emit("dialogue:advance");
             }
         });
 
@@ -153,9 +200,33 @@ const Events = {
         on(DOM.aboutButton, "click", () => Screen.open(DOM.pages.about));
         on(DOM.backButtonAbout, "click", () => Screen.back());
 
-        window.onresize = () => {
-            Screen.updateOrientation();
-        };
+        on(DOM.backButtonSaveLoad, "click", () => Screen.back());
+        DOM.dataSlots.forEach(slot => {
+            on(slot, "click", e => {
+                const slot = e.target.closest(".data-slot");
+                if(!slot)
+                    return;
+
+                SaveLoad.displayPreview(slot.dataset.slot);
+            });
+
+            on(slot, "dblclick", e => {
+                const slot = e.target.closest(".data-slot");
+                if(!slot)
+                    return;
+
+                EventBus.emit(
+                    slot.classList.contains("save-slot")
+                        ? "gameSlot:save"
+                        : "gameSlot:load",
+                    slot
+                );
+            });
+        });
+
+        on(DOM.backButtonDemo, "click", () => Screen.open(DOM.pages.mainMenu));
+
+        on(window, "resize", () => Screen.updateOrientation());
     }
 };
 
@@ -250,73 +321,106 @@ const Screen = {
 
 const Storage = {
     initialize() {
-        this.#gameSlot = {
-            slot1: null,
-            slot2: null,
-            slot3: null,
-            slot4: null,
-        };
+        this.persistentData = new PersistentData(
+            Settings.data, 
+            {
+                slot1: null,
+                slot2: null,
+                slot3: null,
+                slot4: null,
+            }
+        );
 
-        EventBus.on("data:save", data => this.save(data));
+        this.load();
+
+        EventBus.on("data:save", () => this.save());
         EventBus.on("data:load", () => this.load());
     },
 
-    save(data) {
+    save() {
+        this.persistentData.settingConfiguration =
+            structuredClone(Settings.data);
+
         localStorage.setItem(
             "save",
-            JSON.stringify(data)
+            JSON.stringify(this.persistentData)
         );
+
+        console.log(JSON.stringify(this.persistentData));
     },
 
     load() {
-        const data = JSON.parse(localStorage.getItem("save"));
+        const data = JSON.parse(
+            localStorage.getItem("save")
+        );
+        
+        if(data == null)
+            return;
 
-        return PersistentData.fromJSON(data);
+        this.persistentData = PersistentData.fromJSON(data);
+        EventBus.emit("setting:change", this.persistentData.settingConfiguration);
+    },
+
+    updateGameSlot(slotId, gameSlotData) {
+        this.persistentData.gameSlot[slotId] = gameSlotData;
+    },
+
+    getGameSlot(slotId) {
+        return this.persistentData.gameSlot[slotId];
+    },
+
+    clearGameSlot(slotId) {
+        this.persistentData.gameSlot[slotId] = null;
     }
 };
 
 class PersistentData {
-    constructor(settingConfiguration, thumbnailData) {
+    constructor(settingConfiguration, gameSlot) {
         this.settingConfiguration = settingConfiguration;
-        this.thumbnailData = thumbnailData;
+        this.gameSlot = gameSlot;
     }
 
     static fromJSON(data) {
-        let persistent = Object.assign(
+        const persistent = Object.assign(
             new PersistentData(),
             data
         );
 
-        persistent.thumbnailData = SceneData.fromJSON(persistent.thumbnailData);
+        for(const slotId in persistent.gameSlot) {
+            if(persistent.gameSlot[slotId]) {
+                persistent.gameSlot[slotId] =GameSlotData.fromJSON(persistent.gameSlot[slotId]);
+            }
+        }
 
         return persistent;
     }
 }
 
-class ThumbnailData {
-    constructor(title, playTime, sceneData) {
+class GameSlotData {
+    constructor(title, sceneData) {
         this.title = title;
         this.timestamp = Date.now();
-        this.playTime = playTime;
         this.sceneData = sceneData;
     }
 
     static fromJSON(data) {
-        let thumbnail = Object.assign(
-            new ThumbnailData(),
+        const gameSlot = Object.assign(
+            new GameSlotData(),
             data
         );
 
-        thumbnail.sceneData = SceneData.fromJSON(thumbnail.sceneData);
+        gameSlot.sceneData = SceneData.fromJSON(gameSlot.sceneData);
 
-        return thumbnail;
+        return gameSlot;
     }
 }
 
 class SceneData {
-    constructor(sceneId, nodeIndex) {
+    constructor(sceneId, nodeIndex, stage) {
         this.sceneId = sceneId;
-        this.nodeIndex = nodeIndex;
+        this.currentIndex = nodeIndex;
+        this.previousIndex = Math.max(0, this.currentIndex - 1);
+        this.stage = stage;
     }
 
     static fromJSON(data) {
@@ -366,7 +470,7 @@ const Debug = {
         const id = this.getId(node);
 
         if(node instanceof SpeakerNode) {
-            output.push(`${id}{"${id} ${node.speaker}"}`);
+            output.push(`${id}{"${id}-${node.index} ${node.speaker}"}`);
 
             if(node.next) {
                 const nextId = this.getId(node.next);
@@ -417,8 +521,6 @@ const StoryLoader = {
 
         StoryBuilder.initialize(storyData);
 
-        console.log(GraphBuilder.sceneMap);
-
         const storyMap = new Map();
         storyMap.set(storyData.id,
             new Story(
@@ -445,28 +547,26 @@ const JsonLoader = {
 };
 
 const StoryParser = {
-    parse(data, index) {
+    parse(data) {
         switch(data.type) {
             case "speaker":
-                return this.parseSpeaker(data, index);
+                return this.parseSpeaker(data);
             case "choice":
-                return this.parseChoice(data, index);
+                return this.parseChoice(data);
             case "goto":
-                return this.parseGoto(data, index);
+                return this.parseGoto(data);
         }
     },
 
-    parseGoto(data, index) {
+    parseGoto(data) {
         const node = new GotoNode(data.scene);
-        node.index = index++;
 
         return node;
     },
 
-    parseSpeaker(data, index) {
+    parseSpeaker(data) {
         const node = new SpeakerNode(data);
         node.stage = this.parseStage(data.stage);
-        node.index = index++;
 
         return node;
     },
@@ -505,9 +605,8 @@ const StoryParser = {
         return operations;
     },
 
-    parseChoice(data, index) {
+    parseChoice(data) {
         const node = new ChoiceNode();
-        node.index = index++;
 
         for(const choice of data.choices) {
             node.choices.push({
@@ -574,7 +673,7 @@ const GraphBuilder = {
 class Node {
     constructor(type) {
         this.type = type;
-        this.index = -1;
+        this.index = 0;
     }
 }
 
@@ -605,28 +704,38 @@ class Scene {
     }
 
     findNode(index) {
-        return this.#dfs(this.firstNode, index);
+        return this.#dfs(this.firstNode, index, new Set());
     }
 
-    #dfs(node, nodeIndex) {
-        if (node == null)
+    #dfs(node, nodeIndex, visited) {
+        if(node == null || visited.has(node))
             return null;
 
-        if (node.index === nodeIndex)
+        if(node.index === nodeIndex)
             return node;
 
-        if (node instanceof ChoiceNode) {
-            for (const choice of node.choices) {
-                const found = this.#dfs(choice.next, nodeIndex);
+        visited.add(node);
 
-                if (found != null)
+        if(node instanceof ChoiceNode) {
+            for(const choice of node.choices) {
+                const found = this.#dfs(
+                    choice.next,
+                    nodeIndex,
+                    visited
+                );
+
+                if(found != null)
                     return found;
             }
 
             return null;
         }
 
-        return this.#dfs(node.next, nodeIndex);
+        return this.#dfs(
+            node.next,
+            nodeIndex,
+            visited
+        );
     }
 }
 
@@ -696,14 +805,15 @@ const StoryBuilder = {
         GraphBuilder.finalize();
     },
 
-    buildDialogue(sceneId, dialogue, isBranch = false, onContinue = null, index = -1) {
+    buildDialogue(sceneId, dialogue, isBranch = false, onContinue = null, counter = { value: 0 }) {
         let firstNode = null;
         let previousNode = null;
         let deadEndNodes = [];
 
         for(let i = 0; i < dialogue.length; i++) {
             const data = dialogue[i];
-            const node = StoryParser.parse(data, index);
+            const node = StoryParser.parse(data);
+            node.index = counter.value++;
 
             if(firstNode == null)
                 firstNode = node;
@@ -731,7 +841,9 @@ const StoryBuilder = {
                     const branch = this.buildDialogue(
                         sceneId,
                         optionData.dialogue,
-                        true
+                        true,
+                        null,
+                        counter
                     );
 
                     const option = new ChoiceOption(optionData.text);
@@ -773,7 +885,7 @@ const StoryRunner = {
         this.currentScene = this.currentStory.getStartScene();
         this.currentNode = this.currentScene.firstNode;
 
-        EventBus.on("dialogue:clicked", () => this.next());
+        EventBus.on("dialogue:advance", () => this.next());
         EventBus.on("choice:selected", option => this.choose(option));
         EventBus.on("story:finished", () => {
             EventBus.emit("screen:change", DOM.pages.demo);
@@ -781,7 +893,8 @@ const StoryRunner = {
     },
 
     start() {
-        EventBus.emit("background:show", this.currentScene.background);
+        console.log(this.currentScene);
+        EventBus.emit("scene:enter", this.currentScene);
         this.render();
     },
 
@@ -801,7 +914,7 @@ const StoryRunner = {
 
         const node = this.currentNode;
 
-        EventBus.emit("node:enter", this.currentNode);
+        EventBus.emitAsync("node:enter", this.currentNode);
 
         if(node instanceof GotoNode)
             this.goto(node.sceneId);
@@ -817,6 +930,11 @@ const StoryRunner = {
     },
 
     next() {
+        if (Dialogue.isTyping) {
+            Dialogue.finishTyping();
+            return;
+        }
+
         this.advance();
 
         if(this.currentNode == null) {
@@ -848,7 +966,10 @@ const Settings = {
 
         on(DOM.settingOptionButtons.volumeButton, "click", () => this.changeContent(DOM.settingOptionButtons.volumeButton));
         on(DOM.settingOptionButtons.textButton, "click", () => this.changeContent(DOM.settingOptionButtons.textButton));
-        on(DOM.backButton, "click", () => Screen.back());
+        on(DOM.backButton, "click", () => {
+            this.save();
+            Screen.back()
+        });
 
         EventBus.on("setting:change", data => Object.assign(this.data, data));
     },
@@ -856,15 +977,17 @@ const Settings = {
     openCurrentData() {
         if (this.currentContent === "volume") {
             return {
-                masterVolume: get("#volume-master").value,
-                sfxVolume: get("#volume-sfx").value,
-                bgVolume: get("#volume-bg").value
+                masterVolume: Number(get("#volume-master").value),
+                sfxVolume: Number(get("#volume-sfx").value),
+                bgVolume: Number(get("#volume-bg").value),
+                tab: "volume"
             };
         }
 
         if (this.currentContent === "text") {
             return {
-                textSpeed: get("#text-speed").value
+                textSpeed: Number(get("#text-speed").value),
+                tab: "text"
             };
         }
     },
@@ -915,6 +1038,11 @@ const Settings = {
         }
     },
 
+    save() {
+        EventBus.emit("setting:change", this.openCurrentData());
+        EventBus.emit("data:save");
+    },
+
     refresh() {
         this.changeContent(DOM.settingOptionButtons[this.data.tab + "Button"]);
     }
@@ -937,10 +1065,15 @@ const Background = {
 }
 
 const Dialogue = {
+    isTyping: false,
+    skipRequested: false,
+
     initialize() {
-        EventBus.on("node:enter", node => {
+        this.currentText = "";
+
+        EventBus.on("node:enter", async node => {
             if(node instanceof SpeakerNode)
-                Dialogue.render(node.text, node.speaker);
+                await Dialogue.render(node.text, node.speaker);
         });
     },
 
@@ -948,7 +1081,7 @@ const Dialogue = {
         return `images/profiles/${character}_profile.png`;
     },
 
-    render(text, speakerKey) {
+    async render(text, speakerKey) {
         if (!DOM.dialogueBox) return;
 
         if (speakerKey) {
@@ -969,8 +1102,38 @@ const Dialogue = {
             DOM.profile.classList.add("hidden");
         }
 
-        console.log(text);
+        this.currentText = text;
+        console.log(this.currentText);
+        await this.type(this.currentText, speakerKey);
+    },
+
+    write(text) {
         DOM.dialogueText.textContent = text;
+    },
+
+    async type(text, speaker) {
+        this.isTyping = true;
+        this.skipRequested = false;
+
+        for (let i = 0; i <= text.length && this.isTyping; i++) {
+            this.write(text.slice(0, i));
+
+            if (text[i] && text[i] !== " " && i % 2 === 0) {
+                Audio.playVoiceBlip(speaker);
+            }
+
+            const delay = 110 - Settings.data.textSpeed;
+
+            await Sleep(delay);
+        }
+
+        this.isTyping = false;
+    },
+
+    finishTyping() {
+        this.skipRequested = true;
+        this.write(this.currentText);
+        this.isTyping = false;
     }
 };
 
@@ -978,7 +1141,7 @@ const Character = {
     initialize() {
         EventBus.on("node:enter", node => {
             if(node.stage)
-                Character.applyStage(node.stage);
+                this.applyStage(node.stage);
         });
     },
 
@@ -996,6 +1159,7 @@ const Character = {
         let stageSlot = activeStage.find(slot => slot.slotId === slotId);
         if (stageSlot) {
             stageSlot.character = character;
+            stageSlot.emotion = emotion;
         }
     },
 
@@ -1032,11 +1196,9 @@ const Character = {
 
     removeCharacter(slot) {
         const slotEl = document.getElementById(slot.slotId);
-
         if (slotEl)
             this.leaveCharacter(slotEl);
 
-        console.log(slot);
         slot.character = null;
     },
 
@@ -1056,6 +1218,15 @@ const Character = {
                     break;
             }
         }
+    },
+
+    restoreStage() {
+        for(const slot in activeStage)
+            this.spawnCharacter(
+                slot.character,
+                slot.emotion,
+                slot.slotId
+            );
     },
 
     highlightSpeaker(activeSpeakerKey) {
@@ -1106,23 +1277,163 @@ const Choice = {
     }
 };
 
-const Audio = {
+const SaveLoad = {
     initialize() {
-        EventBus.on("step:rendered", (step) => {
+        EventBus.on("saveLoad:changeMode", mode => this.changeMode(mode));
+        EventBus.on("gameSlot:save", slot => this.saveSlot(slot.dataset.slot));
+        EventBus.on("gameSlot:load", slot => this.loadSlot(slot.dataset.slot));
+
+        this.displaySlots();
+    },
+
+    changeMode(mode) {
+        for(const slot of DOM.dataSlots) {
+            slot.classList.toggle("save-slot", mode === "save");
+            slot.classList.toggle("load-slot", mode === "load");
+        }
+    },
+
+    displaySlots() {
+        for(const slot of DOM.dataSlots) {
+            const slotId = slot.dataset.slot;
+            const gameSlot = Storage.getGameSlot(slotId);
+
+            const title = slot.querySelector(".slot-title");
+            const info = slot.querySelector(".slot-info");
+
+            if(!gameSlot) {
+                title.textContent = slotId.toUpperCase();
+                info.textContent = "Empty";
+                info.classList.add("empty");
+                continue;
+            }
+
+            title.textContent = gameSlot.title;
+            info.textContent = new Date(gameSlot.timestamp).toLocaleString();
+            info.classList.remove("empty");
+        }
+    },
+
+    displayPreview(slotId) {
+        const gameSlotData = Storage.getGameSlot(slotId);
+
+        if(!gameSlotData)
+            return;
+
+        const sceneData = gameSlotData.sceneData;
+        const scene = GraphBuilder.sceneMap.get(sceneData.sceneId);
+
+        const currentNode = scene.findNode(sceneData.currentIndex);
+        const previousNode = scene.findNode(sceneData.previousIndex);
+
+        let chosenNode = currentNode;
+
+        if(!(currentNode instanceof SpeakerNode))
+            chosenNode = previousNode;
+
+        DOM.preview.title.textContent = gameSlotData.title;
+        DOM.preview.date.textContent = gameSlotData.timestamp;
+        DOM.preview.speaker.textContent = chosenNode?.speaker ?? "";
+        DOM.preview.dialogue.textContent = chosenNode?.text ?? "";
+
+        if(chosenNode?.speaker) {
+            DOM.preview.profile.src =
+                Dialogue.getProfileImageSrc(
+                    chosenNode.speaker
+                );
+
+            DOM.preview.profile.classList.remove("hidden");
+        }
+    },
+
+    saveSlot(slotId) {
+        const scene = StoryRunner.currentScene;
+        const currentNode = StoryRunner.currentNode;
+
+        const sceneData = new SceneData(
+            scene.id,
+            currentNode.index,
+            structuredClone(activeStage)
+        );
+
+        Storage.updateGameSlot(
+            slotId,
+            new GameSlotData(
+                scene.id,
+                sceneData
+            )
+        );
+
+        EventBus.emit("data:save");
+
+        this.displaySlots();
+        this.displayPreview(slotId);
+    },
+
+    loadSlot(slotId) {
+        const gameSlot = Storage.getGameSlot(slotId);
+
+        if(!gameSlot)
+            return;
+
+        const sceneData = gameSlot.sceneData;
+        const scene = GraphBuilder.sceneMap.get(sceneData.sceneId);
+
+        StoryRunner.currentScene = scene;
+        StoryRunner.currentNode = scene.findNode(
+            sceneData.currentIndex
+        );
+
+        activeStage = structuredClone(sceneData.stage);
+
+        Character.restoreStage();
+        Screen.open(DOM.pages.gameplay);
+
+        StoryRunner.start();
+    }
+};
+
+const Audio = {
+    VoiceConfig: {
+        penny: 1.0,
+        yuri: 0.85,
+        john: 1.15,
+        ali: 1.05,
+        erika: 0.95,
+        narrator: 0.7
+    },
+
+    initialize() {
+        EventBus.on("step:rendered", step => {
             if (step.bgm) this.playBGM(step.bgm);
             if (step.sfx) this.playSFX(step.sfx);
         });
     },
-    
+
+    playVoiceBlip(speaker) {
+        if (!this.voice[speaker]) {
+            this.voice[speaker] = new window.Audio(
+                `audio/voice/${speaker}.wav`
+            );
+        }
+
+        const audio = this.voice[speaker];
+
+        audio.currentTime = 0;
+        audio.playbackRate = VoiceConfig[speaker] ?? 1;
+        audio.volume = Settings.data.masterVolume / 100;
+        audio.play();
+    },
+
     playBGM(src) {
         console.log(`Playing background music: ${src}`);
     },
-    
+
     playSFX(src) {
         console.log(`Playing sound effect: ${src}`);
     }
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-    Engine.initialize();
+document.addEventListener("DOMContentLoaded", async () => {
+    await Engine.initialize();
 });

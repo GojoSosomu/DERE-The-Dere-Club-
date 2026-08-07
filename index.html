@@ -91,6 +91,7 @@
 
         <div class="demo page hidden">
             <h2>It is just a demo.</h2>
+            <button class="button" id="demo-back-button">Back</button>
         </div>
 
         <div class="about page hidden">
@@ -139,6 +140,69 @@
                         </ol>
                     </div>
                 </div>
+            </main>
+        </div>
+
+        <div class="save-load page hidden">
+            <header class="save-load-header">
+                <h1>LOAD / SAVE</h1>
+
+                <nav class="save-load-navigation">
+                    <button class="panel button" id="save-load-back">
+                        Back
+                    </button>
+                </nav>
+            </header>
+
+            <main class="save-load-main">
+                <section class="data-slot-container">
+                    <button class="window data-slot" data-slot="slot1">
+                        <span class="slot-title">SLOT 1</span>
+                        <span class="slot-info empty">Empty</span>
+                    </button>
+
+                    <button class="window data-slot" data-slot="slot2">
+                        <span class="slot-title">SLOT 2</span>
+                        <span class="slot-info empty">Empty</span>
+                    </button>
+
+                    <button class="window data-slot" data-slot="slot3">
+                        <span class="slot-title">SLOT 3</span>
+                        <span class="slot-info empty">Empty</span>
+                    </button>
+
+                    <button class="window data-slot" data-slot="slot4">
+                        <span class="slot-title">SLOT 4</span>
+                        <span class="slot-info empty">Empty</span>
+                    </button>
+                </section>
+
+                <aside class="window preview">
+                    <div class="panel preview-speaker">
+                        <img class="speaker-profile hidden">
+                        <h2 id="preview-speaker">
+                            No Data
+                        </h2>
+                    </div>
+
+                    <div class="panel preview-dialogue">
+                        <p id="preview-dialogue">
+                            Select a save slot.
+                        </p>
+                    </div>
+
+                    <div class="panel preview-information">
+                        <p>
+                            <strong>Title:</strong>
+                            <span id="preview-title">-</span>
+                        </p>
+
+                        <p>
+                            <strong>Date:</strong>
+                            <span id="preview-date">-</span>
+                        </p>
+                    </div>
+                </aside>
             </main>
         </div>
     </div>
