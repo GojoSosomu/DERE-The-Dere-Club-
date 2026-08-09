@@ -6,12 +6,33 @@ const on = (element, event, callback) => {
     if (element) element.addEventListener(event, callback);
 };
 
+const CharacterPosition = Object.freeze({
+    FAR_LEFT: "far-left",
+    LEFT: "left",
+    CENTER: "center",
+    RIGHT: "right",
+    FAR_RIGHT: "far-right"
+});
+
+const CharacterPositionValue = Object.freeze({
+    "far-left": 0,
+    "left": 20,
+    "center": 40,
+    "right": 60,
+    "far-right": 80
+});
+
 const CharacterEnum = Object.freeze({
     PENNY: "penny",
     YURI: "yuri",
     JOHN: "john",
     ALI: "ali",
-    ERIKA: "erika",
+    ERIKA: "erika"
+});
+
+const SpeakerEnum = Object.freeze({
+    ...CharacterEnum,
+    DEFAULT: "default",
     NARRATOR: "narrator"
 });
 
@@ -25,13 +46,7 @@ const EmotionEnum = Object.freeze({
     INFATUATION: "infatuation"
 });
 
-let activeStage = [
-    { slotId: "far-left",  character: null, emotion: null },
-    { slotId: "left",      character: null, emotion: null },
-    { slotId: "center",    character: null, emotion: null },
-    { slotId: "right",     character: null, emotion: null },
-    { slotId: "far-right", character: null, emotion: null }
-];
+let activeStage = [];
 
 const Sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -338,8 +353,7 @@ const Storage = {
     },
 
     save() {
-        this.persistentData.settingConfiguration =
-            structuredClone(Settings.data);
+        this.persistentData.settingConfiguration = structuredClone(Settings.data);
 
         localStorage.setItem(
             "save",
@@ -577,29 +591,29 @@ const StoryParser = {
 
         const operations = [];
 
-        if(Object.keys(stage).length === 0) {
+        if(Object.entries(stage).length === 0) {
             operations.push({
                 type: "clear"
             });
-
             return operations;
         }
 
-        operations.push({
-            type: "clear"
-        });
-
-        for(const [slot, value] of Object.entries(stage)) {
-            if(value == null)
-                continue;
-            else {
+        for(const [position, value] of Object.entries(stage)) {
+            if(value == null) {
                 operations.push({
-                    type: "set",
-                    slot,
-                    character: value.character,
-                    emotion: value.emotion
+                    type: "remove",
+                    position
                 });
+
+                continue;
             }
+
+            operations.push({
+                type: "set",
+                position,
+                character: value.character,
+                emotion: value.emotion
+            });
         }
 
         return operations;
@@ -695,9 +709,10 @@ class Story {
 }
 
 class Scene {
-    constructor(id, background) {
+    constructor(id, background, bgm) {
         this.id = id;
         this.background = background;
+        this.bgm = bgm;
 
         this.firstNode = null;
         this.lastNode = null;
@@ -794,7 +809,8 @@ const StoryBuilder = {
         for(const [sceneId, sceneData] of Object.entries(storyData.scenes)) {
             const scene = new Scene(
                 sceneId,
-                sceneData.background
+                sceneData.background,
+                sceneData.bgm
             );
 
             GraphBuilder.beginScene(scene);
@@ -1118,7 +1134,7 @@ const Dialogue = {
         for (let i = 0; i <= text.length && this.isTyping; i++) {
             this.write(text.slice(0, i));
 
-            if (text[i] && text[i] !== " " && i % 2 === 0) {
+            if (text[i] && text[i] !== " " && i % 4 === 0) {
                 Audio.playVoiceBlip(speaker);
             }
 
@@ -1140,8 +1156,11 @@ const Dialogue = {
 const Character = {
     initialize() {
         EventBus.on("node:enter", node => {
-            if(node.stage)
+            if (node.stage)
                 this.applyStage(node.stage);
+
+            if (node instanceof SpeakerNode)
+                this.highlightSpeaker(node.speaker);
         });
     },
 
@@ -1149,99 +1168,161 @@ const Character = {
         return `images/characters/${character}/${character}_${emotion}.png`;
     },
 
-    spawnCharacter(character, emotion, slotId, from = "bottom") {
-        let targetSlot = document.getElementById(slotId);
-        if (!targetSlot) return;
-
-        targetSlot.innerHTML = "";
-        this.enterCharacter(slotId, this.getCharacterImageSrc(character, emotion), from);
-
-        let stageSlot = activeStage.find(slot => slot.slotId === slotId);
-        if (stageSlot) {
-            stageSlot.character = character;
-            stageSlot.emotion = emotion;
-        }
-    },
-
-    enterCharacter(slotId, imgSrc, from = "bottom") {
-        const slot = document.getElementById(slotId);
-        const img = document.createElement("img");
-        img.src = imgSrc;
-        img.className = `character enter-from-${from} not-speaking`;
-        slot.appendChild(img);
-
-        requestAnimationFrame(() => {
-            img.classList.add("on-stage");
-            img.classList.remove("not-speaking");
-        });
-    },
-
-    leaveCharacter(slot) {
-        const character = slot.querySelector("img");
-        if (!character) return;
-
-        character.classList.remove("on-stage");
-        character.classList.add("not-speaking");
-
-        character.addEventListener("transitionend", () => {
-            slot.innerHTML = "";
-        }, { once: true });
-    },
-
-    clearStage() {
-        activeStage.forEach(slot => {
-            this.removeCharacter(slot);
-        });
-    },
-
-    removeCharacter(slot) {
-        const slotEl = document.getElementById(slot.slotId);
-        if (slotEl)
-            this.leaveCharacter(slotEl);
-
-        slot.character = null;
-    },
-
     applyStage(operations) {
-        for(const operation of operations) {
-            switch(operation.type) {
+        for (const operation of operations) {
+            switch (operation.type) {
+                case "set":
+                    this.setCharacter(
+                        operation.character,
+                        operation.emotion,
+                        operation.position
+                    );
+                    break;
+                case "remove":
+                    this.removeCharacter(operation.position);
+                    break;
                 case "clear":
                     this.clearStage();
                     break;
-
-                case "set":
-                    this.spawnCharacter(
-                        operation.character,
-                        operation.emotion,
-                        operation.slot
-                    );
-                    break;
             }
         }
     },
 
-    restoreStage() {
-        for(const slot in activeStage)
+    setCharacter(character, emotion, position) {
+        const existing = activeStage.find(
+            entry => entry.character === character
+        );
+
+        if (!existing) {
             this.spawnCharacter(
-                slot.character,
-                slot.emotion,
-                slot.slotId
+                character,
+                emotion,
+                position
             );
+
+            return;
+        }
+
+        const img = document.querySelector(`.character[data-character="${character}"]`);
+
+        if (!img)
+            return;
+
+        if (existing.emotion !== emotion) {
+            img.src = this.getCharacterImageSrc(
+                character,
+                emotion
+            );
+
+            existing.emotion = emotion;
+        }
+
+        if (existing.position !== position) {
+            this.moveCharacter(
+                img,
+                existing,
+                position
+            );
+        }
+    },
+
+    spawnCharacter(character, emotion, position) {
+        const img = document.createElement("img");
+
+        img.src = this.getCharacterImageSrc(
+            character,
+            emotion
+        );
+
+        img.className = "character";
+
+        img.dataset.character = character;
+        img.dataset.position = position;
+
+        img.style.left = `${CharacterPositionValue[position]}%`;
+
+        DOM.stage.appendChild(img);
+
+        requestAnimationFrame(() => {
+            img.classList.add("on-stage");
+        });
+
+        activeStage.push({
+            character,
+            emotion,
+            position,
+            element: img
+        });
+    },
+
+    removeCharacter(position) {
+        const index = activeStage.findIndex(
+            entry => entry.position === position
+        );
+
+        if (index === -1)
+            return;
+
+        const data = activeStage[index];
+
+        const img = document.querySelector(
+            `.character[data-character="${data.character}"]`
+        );
+
+        if (img) {
+            img.classList.remove("on-stage");
+            img.classList.add("leaving");
+
+            img.addEventListener(
+                "transitionend",
+                () => img.remove(),
+                { once: true }
+            );
+        }
+
+        activeStage.splice(index, 1);
+    },
+
+    moveCharacter(stageData, position) {
+        stageData.element.style.left = `${CharacterPositionValue[position]}%`;
+
+        stageData.element.dataset.position = position;
+
+        stageData.position = position;
+    },
+
+    clearStage() {
+        activeStage.forEach(actor => {
+            if (actor.character != null)
+                this.removeCharacter(actor.position);
+        });
+    },
+
+    restoreStage() {
+        DOM.stage.innerHTML = ``;
+        activeStage.forEach(actor => {
+            if (!actor.character)
+                return;
+
+            this.spawnCharacter(
+                actor.character,
+                actor.emotion,
+                actor.position
+            );
+        });
     },
 
     highlightSpeaker(activeSpeakerKey) {
-        activeStage.forEach(slot => {
-            const slotEl = document.getElementById(slot.slotId);
-            if (!slotEl) return;
+        activeStage.forEach(actor => {
+            const img = actor.element;
 
-            const img = slotEl.querySelector("img");
-            if (!img) return;
+            if (!img)
+                return;
 
-            if (slot.character === activeSpeakerKey) {
-                img.classList.remove("not-speaking");
-            } else {
-                img.classList.add("not-speaking");
-            }
+            img.classList.toggle(
+                "not-speaking",
+                actor.character !== activeSpeakerKey
+            );
         });
     }
 };
@@ -1350,10 +1431,16 @@ const SaveLoad = {
         const scene = StoryRunner.currentScene;
         const currentNode = StoryRunner.currentNode;
 
+        const stageData = activeStage.map(actor => ({
+            character: actor.character,
+            emotion: actor.emotion,
+            position: actor.position
+        }));
+
         const sceneData = new SceneData(
             scene.id,
             currentNode.index,
-            structuredClone(activeStage)
+            stageData
         );
 
         Storage.updateGameSlot(
@@ -1385,7 +1472,6 @@ const SaveLoad = {
         );
 
         activeStage = structuredClone(sceneData.stage);
-
         Character.restoreStage();
         Screen.open(DOM.pages.gameplay);
 
@@ -1395,6 +1481,7 @@ const SaveLoad = {
 
 const Audio = {
     VoiceConfig: {
+        default: 1.0,
         penny: 1.0,
         yuri: 0.85,
         john: 1.15,
@@ -1404,34 +1491,58 @@ const Audio = {
     },
 
     initialize() {
-        EventBus.on("step:rendered", step => {
-            if (step.bgm) this.playBGM(step.bgm);
-            if (step.sfx) this.playSFX(step.sfx);
+        this.voice = {};
+
+        this.bgm = new window.Audio("audios/backgroundMusic/Main_Lobby.mp3");
+        this.bgm.loop = true;
+        this.bgm.play();
+
+        EventBus.on("scene:enter", scene => {
+            if (scene.bgm) this.playBGM(scene.bgm);
         });
     },
 
-    playVoiceBlip(speaker) {
-        if (!this.voice[speaker]) {
-            this.voice[speaker] = new window.Audio(
-                `audio/voice/${speaker}.wav`
-            );
-        }
+    playBGM(src) {
+        const path = `audios/backgroundMusic/${src}.mp3`;
 
-        const audio = this.voice[speaker];
+        if (this.bgm.src.endsWith(path))
+            return;
 
-        audio.currentTime = 0;
-        audio.playbackRate = VoiceConfig[speaker] ?? 1;
-        audio.volume = Settings.data.masterVolume / 100;
-        audio.play();
+        this.bgm.src = path;
+        this.bgm.currentTime = 0;
+
+        this.bgm.volume =
+            Settings.data.bgVolume / 100;
+
+        this.bgm.play();
     },
 
-    playBGM(src) {
-        console.log(`Playing background music: ${src}`);
+    stopBGM() {
+        this.bgm.pause();
+        this.bgm.currentTime = 0;
     },
 
     playSFX(src) {
         console.log(`Playing sound effect: ${src}`);
-    }
+    },
+
+    playVoiceBlip(speaker) {
+        const trueSpeaker = speaker && SpeakerEnum[speaker.toUpperCase()] ? speaker : SpeakerEnum.DEFAULT;
+
+        if (!(trueSpeaker in this.voice)) {
+            this.voice[trueSpeaker] = new window.Audio(
+                `audios/voice/${trueSpeaker}.wav`
+            );
+        }
+
+        const audio = this.voice[trueSpeaker];
+        const baseRate = this.VoiceConfig[trueSpeaker] ?? 1;
+
+        audio.currentTime = 0;
+        audio.playbackRate = 0.2 + Math.random() * baseRate;
+        audio.volume = Settings.data.masterVolume / 100;
+        audio.play();
+    },
 };
 
 document.addEventListener("DOMContentLoaded", async () => {

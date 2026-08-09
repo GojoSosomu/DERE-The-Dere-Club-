@@ -1,50 +1,49 @@
 {
   "id": "year1",
   "start": "school_intro",
-
   "scenes": {
     "school_intro": {
       "background": "hallway",
       "dialogue": [
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "stage": {},
           "text": "The first day of school always feels longer than it should."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "New classrooms. New faces. New routines."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "Everything feels unfamiliar."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "The hallway is crowded with students trying to find their classrooms before the bell rings."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "You check the schedule again."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "Room 204."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "At least, that's what it says."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "stage": {
             "right": {
               "character": "penny",
@@ -55,57 +54,57 @@
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "Don't answer that."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "I can already tell."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "You're looking at that schedule like it's written in another language."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "Penny folds her arms."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "Room 204 is upstairs."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "Stairs are over there."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "Try not to get lost again."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "Penny starts walking toward the stairs."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "...You're coming, right?"
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "Penny doesn't wait for an answer."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "Come on."
         },
         {
@@ -114,24 +113,23 @@
         }
       ]
     },
-
     "first_class": {
       "background": "classroom",
       "dialogue": [
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "stage": {},
           "text": "The classroom is already filling up."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "Penny takes a seat near the window."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "stage": {
             "left": {
               "character": "penny",
@@ -142,82 +140,82 @@
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "Unless you have somewhere else to be."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "The teacher enters the classroom."
         },
         {
           "type": "speaker",
-          "speaker": "Teacher",
+          "speaker": "teacher",
           "text": "Good morning, everyone."
         },
         {
           "type": "speaker",
-          "speaker": "Teacher",
+          "speaker": "teacher",
           "text": "Before we begin, I'd like to welcome our new student."
         },
         {
           "type": "speaker",
-          "speaker": "Teacher",
+          "speaker": "teacher",
           "text": "Please make them feel welcome."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "Already did."
         },
         {
           "type": "speaker",
-          "speaker": "Teacher",
+          "speaker": "teacher",
           "text": "Penny."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "What?"
         },
         {
           "type": "speaker",
-          "speaker": "Teacher",
+          "speaker": "teacher",
           "text": "Let me finish."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "...Fine."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "The lesson begins."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "For the next several hours, the day passes normally."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "Classes."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "Notes."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "Introductions."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "And eventually, lunch."
         },
         {
@@ -226,24 +224,23 @@
         }
       ]
     },
-
     "lunch": {
       "background": "hallway",
       "dialogue": [
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "stage": {},
           "text": "The hallway becomes quieter during lunch."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "Students gather in groups, talking about classes, teachers, and clubs."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "stage": {
             "right": {
               "character": "penny",
@@ -254,87 +251,87 @@
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "You survived the morning."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "Congratulations."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "So..."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "Have you decided what club you're joining?"
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "Penny waits."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "You don't have one."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "Of course you don't."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "Come on."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "I'll show you."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "Penny starts walking down the hallway."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "There are a lot of clubs here."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "Sports, academic stuff, music..."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "And the Creative Arts Club."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "That's the one I'm in."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "Don't get the wrong idea."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "I just like fashion and styling."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "That's all."
         },
         {
@@ -343,29 +340,28 @@
         }
       ]
     },
-
     "clubroom": {
       "background": "clubroom",
       "dialogue": [
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "stage": {},
           "text": "Penny opens the clubroom door."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "The Creative Arts Club room is quieter than expected."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "Books, papers, sketches, and unfinished projects cover several tables."
         },
         {
           "type": "speaker",
-          "speaker": "Yuri",
+          "speaker": "yuri",
           "stage": {
             "left": {
               "character": "yuri",
@@ -380,67 +376,67 @@
         },
         {
           "type": "speaker",
-          "speaker": "Yuri",
+          "speaker": "yuri",
           "text": "You're early."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "They're new."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "I brought them here."
         },
         {
           "type": "speaker",
-          "speaker": "Yuri",
+          "speaker": "yuri",
           "text": "I see."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "Yuri lowers her gaze back to the book in her hands."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "Don't mind her."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "She's always reading something."
         },
         {
           "type": "speaker",
-          "speaker": "Yuri",
+          "speaker": "yuri",
           "text": "It's a book."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "I know what a book is."
         },
         {
           "type": "speaker",
-          "speaker": "Yuri",
+          "speaker": "yuri",
           "text": "You seemed unsure."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "I wasn't."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "Another student sits quietly at a table across the room."
         },
         {
           "type": "speaker",
-          "speaker": "Eri",
+          "speaker": "erika",
           "stage": {
             "left": {
               "character": "yuri",
@@ -459,182 +455,182 @@
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "What?"
         },
         {
           "type": "speaker",
-          "speaker": "Eri",
+          "speaker": "erika",
           "text": "You forgot to introduce them."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "I was getting to that."
         },
         {
           "type": "speaker",
-          "speaker": "Eri",
+          "speaker": "erika",
           "text": "You weren't."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "...Whatever."
         },
         {
           "type": "speaker",
-          "speaker": "Eri",
+          "speaker": "erika",
           "text": "Welcome to the Creative Arts Club."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
-          "text": "Eri looks toward the protagonist."
+          "speaker": "narrator",
+          "text": "Erika looks toward the protagonist."
         },
         {
           "type": "speaker",
-          "speaker": "Eri",
+          "speaker": "erika",
           "text": "You don't have to decide immediately."
         },
         {
           "type": "speaker",
-          "speaker": "Eri",
+          "speaker": "erika",
           "text": "You can look around first."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "See?"
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "It's not that serious."
         },
         {
           "type": "speaker",
-          "speaker": "Yuri",
+          "speaker": "yuri",
           "text": "It can be."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "Yuri."
         },
         {
           "type": "speaker",
-          "speaker": "Yuri",
+          "speaker": "yuri",
           "text": "What?"
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "You're making it sound scary."
         },
         {
           "type": "speaker",
-          "speaker": "Yuri",
+          "speaker": "yuri",
           "text": "I didn't mean to."
         },
         {
           "type": "speaker",
-          "speaker": "Eri",
+          "speaker": "erika",
           "text": "You aren't helping."
         },
         {
           "type": "speaker",
-          "speaker": "Yuri",
+          "speaker": "yuri",
           "text": "Sorry."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "Yuri returns her attention to her book."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "Anyway."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "If you're looking for something to do, you could join us."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "We're not exactly strict."
         },
         {
           "type": "speaker",
-          "speaker": "Eri",
+          "speaker": "erika",
           "text": "There aren't many requirements."
         },
         {
           "type": "speaker",
-          "speaker": "Yuri",
+          "speaker": "yuri",
           "text": "You can read."
         },
         {
           "type": "speaker",
-          "speaker": "Yuri",
+          "speaker": "yuri",
           "text": "Write."
         },
         {
           "type": "speaker",
-          "speaker": "Yuri",
+          "speaker": "yuri",
           "text": "Draw."
         },
         {
           "type": "speaker",
-          "speaker": "Yuri",
+          "speaker": "yuri",
           "text": "Create something."
         },
         {
           "type": "speaker",
-          "speaker": "Yuri",
+          "speaker": "yuri",
           "text": "Or simply stay."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "That's basically the whole club."
         },
         {
           "type": "speaker",
-          "speaker": "Eri",
+          "speaker": "erika",
           "text": "We're here to create."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "The three students remain in the room."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "Penny stands beside the door."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "Yuri sits with her book."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "Eri quietly observes."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "For the first time today, you aren't being told where to go."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "The choice is yours."
         },
         {
@@ -645,42 +641,42 @@
               "dialogue": [
                 {
                   "type": "speaker",
-                  "speaker": "Penny",
+                  "speaker": "penny",
                   "text": "Really?"
                 },
                 {
                   "type": "speaker",
-                  "speaker": "Penny",
+                  "speaker": "penny",
                   "text": "I mean..."
                 },
                 {
                   "type": "speaker",
-                  "speaker": "Penny",
+                  "speaker": "penny",
                   "text": "Sure."
                 },
                 {
                   "type": "speaker",
-                  "speaker": "Penny",
+                  "speaker": "penny",
                   "text": "Welcome, I guess."
                 },
                 {
                   "type": "speaker",
-                  "speaker": "Yuri",
+                  "speaker": "yuri",
                   "text": "I'm glad."
                 },
                 {
                   "type": "speaker",
-                  "speaker": "Eri",
+                  "speaker": "erika",
                   "text": "Then it's decided."
                 },
                 {
                   "type": "speaker",
-                  "speaker": "Narrator",
+                  "speaker": "narrator",
                   "text": "Penny moves away from the door and takes a seat."
                 },
                 {
                   "type": "speaker",
-                  "speaker": "Penny",
+                  "speaker": "penny",
                   "stage": {
                     "left": {
                       "character": "penny",
@@ -699,17 +695,17 @@
                 },
                 {
                   "type": "speaker",
-                  "speaker": "Narrator",
+                  "speaker": "narrator",
                   "text": "The room feels a little different."
                 },
                 {
                   "type": "speaker",
-                  "speaker": "Narrator",
+                  "speaker": "narrator",
                   "text": "Not because anything changed."
                 },
                 {
                   "type": "speaker",
-                  "speaker": "Narrator",
+                  "speaker": "narrator",
                   "text": "But because you finally have somewhere to belong."
                 }
               ]
@@ -719,32 +715,32 @@
               "dialogue": [
                 {
                   "type": "speaker",
-                  "speaker": "Eri",
+                  "speaker": "erika",
                   "text": "That's fine."
                 },
                 {
                   "type": "speaker",
-                  "speaker": "Eri",
+                  "speaker": "erika",
                   "text": "Take your time."
                 },
                 {
                   "type": "speaker",
-                  "speaker": "Penny",
+                  "speaker": "penny",
                   "text": "Just don't take forever."
                 },
                 {
                   "type": "speaker",
-                  "speaker": "Yuri",
+                  "speaker": "yuri",
                   "text": "You can stay as long as you'd like."
                 },
                 {
                   "type": "speaker",
-                  "speaker": "Narrator",
+                  "speaker": "narrator",
                   "text": "Penny sits down near the table."
                 },
                 {
                   "type": "speaker",
-                  "speaker": "Penny",
+                  "speaker": "penny",
                   "stage": {
                     "left": {
                       "character": "penny",
@@ -763,12 +759,12 @@
                 },
                 {
                   "type": "speaker",
-                  "speaker": "Narrator",
+                  "speaker": "narrator",
                   "text": "The clubroom settles back into its quiet rhythm."
                 },
                 {
                   "type": "speaker",
-                  "speaker": "Narrator",
+                  "speaker": "narrator",
                   "text": "Perhaps this place is worth coming back to."
                 }
               ]
@@ -781,24 +777,23 @@
         }
       ]
     },
-
     "after_club": {
       "background": "hallway",
       "dialogue": [
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "stage": {},
           "text": "The final bell rings."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "Students begin leaving the school."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "stage": {
             "right": {
               "character": "penny",
@@ -809,17 +804,17 @@
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "Same time tomorrow."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "Don't make me come looking for you."
         },
         {
           "type": "speaker",
-          "speaker": "Yuri",
+          "speaker": "yuri",
           "stage": {
             "left": {
               "character": "yuri",
@@ -834,12 +829,12 @@
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "I would not."
         },
         {
           "type": "speaker",
-          "speaker": "Eri",
+          "speaker": "erika",
           "stage": {
             "left": {
               "character": "yuri",
@@ -858,68 +853,68 @@
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "...Maybe."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "The three of them stand together in the hallway."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "Penny is the first to turn toward the exit."
         },
         {
           "type": "speaker",
-          "speaker": "Penny",
+          "speaker": "penny",
           "text": "See you tomorrow."
         },
         {
           "type": "speaker",
-          "speaker": "Yuri",
+          "speaker": "yuri",
           "text": "Goodbye."
         },
         {
           "type": "speaker",
-          "speaker": "Eri",
+          "speaker": "erika",
           "text": "See you."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "The three walk away together."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "stage": {},
           "text": "Your first day at NU Academy is almost over."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "You arrived knowing nobody."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "Now, you have a club."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "And three people waiting for you tomorrow."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "Maybe joining wasn't such a bad idea."
         },
         {
           "type": "speaker",
-          "speaker": "Narrator",
+          "speaker": "narrator",
           "text": "End of Day 1."
         }
       ]

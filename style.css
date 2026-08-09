@@ -132,25 +132,35 @@ button {
 }
 
 .character {
+    position: absolute;
 
-    display: block;
+    left: 50%;
+    bottom: 0;
+    opacity: 0;
 
-    width: 100%;
-    height: 100%;
+    width: clamp(120px, 30vw, 350px);
+    height: auto;
 
-    object-fit: contain;
+    transform:
+        translateX(-50%)
+        translateY(0);
 
     transition:
-        transform 1s ease,
-        filter var(--transition);
+        left 0.5s ease,
+        transform 0.5s ease,
+        opacity 0.5s ease;
+}
+
+.character.on-stage {
+    opacity: 1;
+}
+
+.character.leaving {
+    opacity: 0;
 }
 
 .character.not-speaking {
     filter: brightness(.5);
-}
-
-.character.speaking {
-    filter: brightness(1);
 }
 
 .hidden {
@@ -435,54 +445,13 @@ button {
     position:relative;
 }
 
-.stage{
-    position:absolute;
+.stage {
+    position: relative;
 
-    display:flex;
+    width: 100%;
+    height: 100%;
 
-    justify-content:space-evenly;
-
-    align-items:flex-end;
-
-    width:100%;
-    height:100%;
-
-    z-index: 1;
-}
-
-.slot{
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:flex-end;
-
-    width:20%;
-    height:100%;
-
-    overflow:visible;
-
-}
-
-#far-left{
-    z-index:1;
-}
-
-#left{
-    z-index:2;
-}
-
-#center{
-    z-index:3;
-}
-
-#right{
-    z-index:2;
-}
-
-#far-right{
-    z-index:1;
+    z-index: 2;
 }
 
 .dialogue-box{
@@ -498,7 +467,7 @@ button {
 
     padding:1rem 1.5rem;
 
-    z-index: 2;
+    z-index: 3;
 }
 
 .speaker{
