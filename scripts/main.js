@@ -531,7 +531,7 @@ const Debug = {
 
 const StoryLoader = {
     async initialize(yearSelection) {
-        const storyData = await JsonLoader.load(`../data/scene/${yearSelection}.json`);
+        const storyData = await JsonLoader.load(`data/scene/${yearSelection}.json`);
 
         StoryBuilder.initialize(storyData);
 
