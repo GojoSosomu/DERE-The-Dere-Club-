@@ -102,6 +102,7 @@ const DOM = {
             orientationInfo: get(".orientationInfo"),
             persistent: get(".save-load"), 
             demo: get(".demo"),
+            loading: get(".loading"),
         };
 
         this.currentPage = null;
@@ -163,7 +164,12 @@ const DOM = {
 
 const Events = {
     initialize() {
-        on(DOM.startButton, "click", () => {
+        on(DOM.startButton, "click", async () => {
+            Screen.open(DOM.pages.loading);
+
+            if (await SaveLoad.continueGame())
+                return;
+
             StoryRunner.initialize("year1");
             StoryRunner.start();
             Screen.open(DOM.pages.gameplay);
@@ -335,6 +341,8 @@ const Screen = {
 };
 
 const Storage = {
+    currentSlot: null,
+
     initialize() {
         this.persistentData = new PersistentData(
             Settings.data, 
@@ -360,13 +368,16 @@ const Storage = {
             JSON.stringify(this.persistentData)
         );
 
-        console.log(JSON.stringify(this.persistentData));
+        localStorage.setItem(
+            "currentSlot",
+            this.currentSlot
+        );
     },
 
     load() {
-        const data = JSON.parse(
-            localStorage.getItem("save")
-        );
+        const data = JSON.parse(localStorage.getItem("save"));
+
+        this.currentSlot = localStorage.getItem("currentSlot");
         
         if(data == null)
             return;
@@ -411,7 +422,8 @@ class PersistentData {
 }
 
 class GameSlotData {
-    constructor(title, sceneData) {
+    constructor(yearSelection, title, sceneData) {
+        this.yearSelection = yearSelection;
         this.title = title;
         this.timestamp = Date.now();
         this.sceneData = sceneData;
@@ -531,21 +543,21 @@ const Debug = {
 
 const StoryLoader = {
     async initialize(yearSelection) {
+        if (StoryGraph.storyMap.has(yearSelection))
+            return;
+
         const storyData = await JsonLoader.load(`data/scene/${yearSelection}.json`);
 
         StoryBuilder.initialize(storyData);
 
-        const storyMap = new Map();
-        storyMap.set(storyData.id,
+        StoryGraph.initialize(
             new Story(
                 storyData.id,
                 storyData.start,
                 GraphBuilder.sceneMap
             )
         );
-
-        StoryGraph.initialize(storyMap);
-        console.log(StoryGraph.storyMap.get("year1"));
+        console.log(StoryGraph.storyMap.get(yearSelection));
     }
 };
 
@@ -885,8 +897,10 @@ const StoryBuilder = {
 }
 
 const StoryGraph = {
-    initialize(storyMap) {
-        this.storyMap = storyMap;
+    storyMap: new Map(),
+
+    initialize(story) {
+        this.storyMap.set(story.id, story);
     },
 
     getStory(yearSelection) {
@@ -971,9 +985,9 @@ const StoryRunner = {
 const Settings = {
     data: {
         masterVolume: 100,
-        sfxVolume: 100,
+        vaVolume: 100,
         bgVolume: 100,
-        textSpeed: 50,
+        textSpeed: 75,
         tab: "volume"
     },
 
@@ -994,7 +1008,7 @@ const Settings = {
         if (this.currentContent === "volume") {
             return {
                 masterVolume: Number(get("#volume-master").value),
-                sfxVolume: Number(get("#volume-sfx").value),
+                vaVolume: Number(get("#volume-va").value),
                 bgVolume: Number(get("#volume-bg").value),
                 tab: "volume"
             };
@@ -1016,8 +1030,8 @@ const Settings = {
             </div>
 
             <div class="setting-control">
-                <label for="volume-sfx">SFX Volume</label>
-                <input type="range" id="volume-sfx" name="SFX Volume" value="${this.data.sfxVolume}">
+                <label for="volume-va">VA Volume</label>
+                <input type="range" id="volume-va" name="VA Volume" value="${this.data.vaVolume}">
             </div>
 
             <div class="setting-control">
@@ -1047,6 +1061,13 @@ const Settings = {
 
         if (this.currentContent === "volume") {
             DOM.settingContent.innerHTML = this.openVolumeSettings();
+            on(DOM.settingContent, "input", e => {
+                if (e.target.id === "volume-bg" || e.target.id === "volume-master") {
+                    Settings.data.bgVolume = Number(e.target.value);
+
+                    Audio.bgm.volume = Settings.data.masterVolume / 100 * Settings.data.bgVolume / 100;
+                }
+            });
         }
 
         if (this.currentContent === "text") {
@@ -1446,10 +1467,13 @@ const SaveLoad = {
         Storage.updateGameSlot(
             slotId,
             new GameSlotData(
+                StoryRunner.currentStory.id,
                 scene.id,
                 sceneData
             )
         );
+
+        Storage.currentSlot = slotId;
 
         EventBus.emit("data:save");
 
@@ -1462,6 +1486,8 @@ const SaveLoad = {
 
         if(!gameSlot)
             return;
+
+        Storage.currentSlot = slotId;
 
         const sceneData = gameSlot.sceneData;
         const scene = GraphBuilder.sceneMap.get(sceneData.sceneId);
@@ -1476,6 +1502,22 @@ const SaveLoad = {
         Screen.open(DOM.pages.gameplay);
 
         StoryRunner.start();
+    },
+
+    async continueGame() {
+        const slotId = Storage.currentSlot;
+        if (!slotId)
+            return false;
+
+        const gameSlot = Storage.getGameSlot(slotId);
+        if (!gameSlot)
+            return false;
+
+        await StoryLoader.initialize(gameSlot.yearSelection);
+        StoryRunner.initialize(gameSlot.yearSelection);
+        this.loadSlot(slotId);
+
+        return true;
     }
 };
 
@@ -1511,8 +1553,7 @@ const Audio = {
         this.bgm.src = path;
         this.bgm.currentTime = 0;
 
-        this.bgm.volume =
-            Settings.data.bgVolume / 100;
+        this.bgm.volume = Settings.data.masterVolume / 100 * Settings.data.bgVolume / 100;
 
         this.bgm.play();
     },
@@ -1540,7 +1581,7 @@ const Audio = {
 
         audio.currentTime = 0;
         audio.playbackRate = 0.2 + Math.random() * baseRate;
-        audio.volume = Settings.data.masterVolume / 100;
+        audio.volume = Settings.data.masterVolume / 100 * Settings.data.vaVolume / 100;
         audio.play();
     },
 };
