@@ -103,11 +103,13 @@ const DOM = {
             persistent: get(".save-load"), 
             demo: get(".demo"),
             loading: get(".loading"),
+            start: get(".start"),
         };
 
         this.currentPage = null;
         this.previousPage = null;
 
+        this.initialButton = get("#initial");
         this.startButton = get("#start");
         this.settingButton = get("#setting");
         this.aboutButton = get("#about");
@@ -165,6 +167,8 @@ const DOM = {
 const Events = {
     initialize() {
         on(DOM.startButton, "click", async () => {
+            await Audio.bgm.play();
+
             Screen.open(DOM.pages.loading);
 
             if (await SaveLoad.continueGame())
@@ -172,6 +176,7 @@ const Events = {
 
             StoryRunner.initialize("year1");
             StoryRunner.start();
+
             Screen.open(DOM.pages.gameplay);
         });
 
@@ -247,6 +252,11 @@ const Events = {
 
         on(DOM.backButtonDemo, "click", () => Screen.open(DOM.pages.mainMenu));
 
+        on(DOM.initialButton, "click", () => {
+            Audio.bgm.play();
+            Screen.open(DOM.pages.mainMenu);
+        });
+
         on(window, "resize", () => Screen.updateOrientation());
     }
 };
@@ -255,7 +265,7 @@ const Screen = {
     orientation: null,
 
     initialize() {
-        DOM.currentPage = DOM.pages.mainMenu;
+        DOM.currentPage = DOM.pages.start;
 
         this.open(DOM.currentPage);
 
@@ -1537,10 +1547,10 @@ const Audio = {
 
         this.bgm = new window.Audio("audios/backgroundMusic/Main_Lobby.mp3");
         this.bgm.loop = true;
-        this.bgm.play();
 
         EventBus.on("scene:enter", scene => {
-            if (scene.bgm) this.playBGM(scene.bgm);
+            if (scene.bgm)
+                this.playBGM(scene.bgm);
         });
     },
 
@@ -1552,10 +1562,11 @@ const Audio = {
 
         this.bgm.src = path;
         this.bgm.currentTime = 0;
+        this.bgm.volume = (Settings.data.masterVolume / 100) * (Settings.data.bgVolume / 100);
 
-        this.bgm.volume = Settings.data.masterVolume / 100 * Settings.data.bgVolume / 100;
-
-        this.bgm.play();
+        if (this.isAudioAllowed) {
+            this.bgm.play().catch(e => console.error("BGM Play failed:", e));
+        }
     },
 
     stopBGM() {
@@ -1574,15 +1585,16 @@ const Audio = {
             this.voice[trueSpeaker] = new window.Audio(
                 `audios/voice/${trueSpeaker}.wav`
             );
-        }
+        }        
 
         const audio = this.voice[trueSpeaker];
         const baseRate = this.VoiceConfig[trueSpeaker] ?? 1;
 
         audio.currentTime = 0;
         audio.playbackRate = 0.2 + Math.random() * baseRate;
-        audio.volume = Settings.data.masterVolume / 100 * Settings.data.vaVolume / 100;
-        audio.play();
+        audio.volume = (Settings.data.masterVolume / 100) * (Settings.data.vaVolume / 100);
+        
+        audio.play().catch(e => console.error("Voice play failed:", e));
     },
 };
 

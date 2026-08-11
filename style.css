@@ -720,6 +720,8 @@ button {
 
 }
 
+.loading,
+.start,
 .demo {
     display: grid;
     place-items: center;
