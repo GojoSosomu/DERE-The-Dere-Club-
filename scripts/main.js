@@ -166,6 +166,7 @@ const DOM = {
 
 const Events = {
     initialize() {
+        this.lastTouch = 0;
         on(DOM.startButton, "click", async () => {
             await Audio.bgm.play();
 
@@ -247,6 +248,25 @@ const Events = {
                         : "gameSlot:load",
                     slot
                 );
+            });
+
+            on(slot, "touchend", e => {
+                const now = Date.now();
+
+                if (now - this.lastTouch < 300) {
+                    const slot = e.target.closest(".data-slot");
+                    if(!slot)
+                        return;
+
+                    EventBus.emit(
+                        slot.classList.contains("save-slot")
+                            ? "gameSlot:save"
+                            : "gameSlot:load",
+                        slot
+                    );
+                }
+
+                this.lastTouch = now;
             });
         });
 

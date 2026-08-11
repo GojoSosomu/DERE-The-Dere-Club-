@@ -727,6 +727,11 @@ button {
     place-items: center;
 }
 
+#initial {
+    font-size: var(--font-xl);
+    padding: 0.5rem 3rem;
+}
+
 #demo-back-button {
     font-size: var(--font-xl);
     padding: 0.5rem 3rem;
