@@ -172,6 +172,8 @@ const Events = {
 
             Screen.open(DOM.pages.loading);
 
+            await Sleep(5000);
+
             if (await SaveLoad.continueGame())
                 return;
 
@@ -576,7 +578,7 @@ const StoryLoader = {
         if (StoryGraph.storyMap.has(yearSelection))
             return;
 
-        const storyData = await JsonLoader.load(`data/scene/${yearSelection}.json`);
+        const storyData = await JsonLoader.load(`data/year/${yearSelection}.json`);
 
         StoryBuilder.initialize(storyData);
 
