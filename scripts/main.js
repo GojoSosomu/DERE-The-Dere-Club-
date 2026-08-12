@@ -99,6 +99,7 @@ const DOM = {
             gameplay: get(".gameplay"),
             setting: get(".setting"),
             about: get(".about"),
+            characterProfile: get(".character-profile"),
             orientationInfo: get(".orientationInfo"),
             persistent: get(".save-load"), 
             demo: get(".demo"),
@@ -113,8 +114,10 @@ const DOM = {
         this.startButton = get("#start");
         this.settingButton = get("#setting");
         this.aboutButton = get("#about");
+        this.characterProfileButton = get("#character-profile");
         this.backButton = get("#back-button");
         this.backButtonAbout = get("#back-button-ab");
+        this.characterProfileBackButton = get(".character-profile-back");
         this.menuButton = get("#open-menu");
         this.resumeButton = get("#resume");
         this.settingsButton = get("#settings");
@@ -226,6 +229,8 @@ const Events = {
         on(DOM.settingButton, "click", () => Screen.open(DOM.pages.setting));
         on(DOM.aboutButton, "click", () => Screen.open(DOM.pages.about));
         on(DOM.backButtonAbout, "click", () => Screen.back());
+        on(DOM.characterProfileButton, "click", () => Screen.open(DOM.pages.characterProfile));
+        on(DOM.characterProfileBackButton, "click", () => Screen.back());
 
         on(DOM.backButtonSaveLoad, "click", () => Screen.back());
         DOM.dataSlots.forEach(slot => {
@@ -1092,11 +1097,15 @@ const Settings = {
         if (this.currentContent === "volume") {
             DOM.settingContent.innerHTML = this.openVolumeSettings();
             on(DOM.settingContent, "input", e => {
-                if (e.target.id === "volume-bg" || e.target.id === "volume-master") {
+                if (e.target.id === "volume-bg") {
                     Settings.data.bgVolume = Number(e.target.value);
-
-                    Audio.bgm.volume = Settings.data.masterVolume / 100 * Settings.data.bgVolume / 100;
                 }
+
+                if (e.target.id === "volume-master") {
+                    Settings.data.masterVolume = Number(e.target.value);
+                }
+               
+                Audio.bgm.volume = Settings.data.masterVolume / 100 * Settings.data.bgVolume / 100;
             });
         }
 
@@ -1189,12 +1198,18 @@ const Dialogue = {
                 Audio.playVoiceBlip(speaker);
             }
 
-            const delay = 110 - Settings.data.textSpeed;
+            const normalized = this.inverseLerp(Number(Settings.data.textSpeed), 0, 100);
+
+            const delay = 50 - normalized * (50 - 10);
 
             await Sleep(delay);
         }
 
         this.isTyping = false;
+    },
+
+    inverseLerp(value, min, max) {
+        return (value - min) / (max - min);
     },
 
     finishTyping() {
@@ -1612,7 +1627,7 @@ const Audio = {
 
         audio.currentTime = 0;
         audio.playbackRate = 0.2 + Math.random() * baseRate;
-        audio.volume = (Settings.data.masterVolume / 100) * (Settings.data.vaVolume / 100);
+        audio.volume = (Number(Settings.data.masterVolume) / 100) * (Number(Settings.data.vaVolume) / 100);
         
         audio.play().catch(e => console.error("Voice play failed:", e));
     },
