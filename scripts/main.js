@@ -77,16 +77,17 @@ const EventBus = {
 const Engine = {
     async initialize() {
         DOM.initialize();
+        Storage.initialize();
+        Audio.initialize();
         Screen.initialize();
         Settings.initialize();
         Background.initialize();
+        CharacterProfile.initialize();
         Dialogue.initialize();
         Character.initialize();
         Choice.initialize();
         Events.initialize();
-        Audio.initialize();
         Debug.initialize();
-        Storage.initialize();
         SaveLoad.initialize();
         await StoryLoader.initialize("year1");
     }
@@ -150,6 +151,12 @@ const DOM = {
             date: get("#preview-date"),
             profile: get(".preview-speaker .speaker-profile")
         };
+
+        this.characterProfileImg = get(".character-profile-image");
+        this.characterProfileName = get(".character-profile-name");
+        this.characterDescription = get(".character-profile-description");
+        this.characterSpritePreview = get(".character-sprite-preview");
+        this.characterList = get(".character-list");
 
         this.backButtonDemo = get("#demo-back-button");
 
@@ -1027,20 +1034,25 @@ const Settings = {
     },
 
     initialize() {
+        const savedData = Storage.persistentData.settingConfiguration;
+        if (savedData)
+            this.data = structuredClone(savedData);
+        Audio.updateVolume();
+
         this.refresh();
 
         on(DOM.settingOptionButtons.volumeButton, "click", () => this.changeContent(DOM.settingOptionButtons.volumeButton));
         on(DOM.settingOptionButtons.textButton, "click", () => this.changeContent(DOM.settingOptionButtons.textButton));
         on(DOM.backButton, "click", () => {
             this.save();
-            Screen.back()
+            Screen.back();
         });
 
         EventBus.on("setting:change", data => Object.assign(this.data, data));
     },
 
-    openCurrentData() {
-        if (this.currentContent === "volume") {
+    openCurrentData(tab = this.currentContent) {
+        if (tab === "volume") {
             return {
                 masterVolume: Number(get("#volume-master").value),
                 vaVolume: Number(get("#volume-va").value),
@@ -1049,12 +1061,14 @@ const Settings = {
             };
         }
 
-        if (this.currentContent === "text") {
+        if (tab === "text") {
             return {
                 textSpeed: Number(get("#text-speed").value),
                 tab: "text"
             };
         }
+
+        return {};
     },
 
     openVolumeSettings() {
@@ -1104,18 +1118,27 @@ const Settings = {
                 if (e.target.id === "volume-master") {
                     Settings.data.masterVolume = Number(e.target.value);
                 }
-               
-                Audio.bgm.volume = Settings.data.masterVolume / 100 * Settings.data.bgVolume / 100;
+                
+                if (e.target.id === "volume-va") {
+                    this.data.vaVolume = Number(e.target.value);
+                }
+                
+                Audio.updateVolume();
             });
         }
 
         if (this.currentContent === "text") {
             DOM.settingContent.innerHTML = this.openTextSettings();
+            on(DOM.settingContent, "input", e => {
+                if (e.target.id === "text-speed") {
+                    this.data.textSpeed = Number(e.target.value);
+                }
+            });
         }
     },
 
     save() {
-        EventBus.emit("setting:change", this.openCurrentData());
+        this.data.tab = this.currentContent;
         EventBus.emit("data:save");
     },
 
@@ -1424,6 +1447,27 @@ const Choice = {
     }
 };
 
+const CharacterProfile = {
+    initialize() {
+        on(DOM.characterProfileButton, "click", CharacterProfile.refillCharacterList);
+    },
+
+    displayCharacter() {
+
+    },
+
+    refillCharacterList() {
+        DOM.characterList.replaceChildren();
+        Object.values(CharacterEnum).forEach(character => {
+            const characterButton = document.createElement("button");
+            characterButton.className = "button character-list-button";
+            characterButton.dataset.character = character;
+            characterButton.textContent = character.slice(0, 1).toUpperCase() + character.slice(1);
+            DOM.characterList.appendChild(characterButton);
+        });
+    }
+};
+
 const SaveLoad = {
     initialize() {
         EventBus.on("saveLoad:changeMode", mode => this.changeMode(mode));
@@ -1582,6 +1626,7 @@ const Audio = {
 
         this.bgm = new window.Audio("audios/backgroundMusic/Main_Lobby.mp3");
         this.bgm.loop = true;
+        this.updateVolume();
 
         EventBus.on("scene:enter", scene => {
             if (scene.bgm)
@@ -1597,7 +1642,7 @@ const Audio = {
 
         this.bgm.src = path;
         this.bgm.currentTime = 0;
-        this.bgm.volume = (Settings.data.masterVolume / 100) * (Settings.data.bgVolume / 100);
+        this.updateVolume();
 
         if (this.isAudioAllowed) {
             this.bgm.play().catch(e => console.error("BGM Play failed:", e));
@@ -1631,6 +1676,10 @@ const Audio = {
         
         audio.play().catch(e => console.error("Voice play failed:", e));
     },
+
+    updateVolume() {
+        this.bgm.volume = (Settings.data.masterVolume / 100) * (Settings.data.bgVolume / 100);
+    }
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
