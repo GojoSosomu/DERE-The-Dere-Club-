@@ -138,7 +138,7 @@ button {
     bottom: 0;
     opacity: 0;
 
-    width: clamp(120px, 30vw, 350px);
+    width: clamp(120px, 15vw + 15vh, 350px);
     height: auto;
 
     transform:
@@ -955,6 +955,10 @@ button {
 
     .dialogue-box{
         height:34%;
+    }
+
+    .character {
+        width: clamp(120px, calc(25vw + 8vh), 350px);
     }
 
 }
