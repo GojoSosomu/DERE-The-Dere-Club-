@@ -1,0 +1,22 @@
+{
+    "penny": {
+        "character_name": "Penny J. Jevilin",
+        "character_description": "A bratty and prideful girl who hides her kindness behind teasing and attitude. She is easily embarrassed and rarely admits when she genuinely cares about someone."
+    },
+    "yuri": {
+        "character_name": "Yuri Katsuki Nagisaka",
+        "character_description": "A quiet and reserved girl with an intense emotional side hidden beneath her soft-spoken nature. Once she becomes attached to someone, her affection can become deeply obsessive and possessive."
+    },
+    "john": {
+        "character_name": "John Thomas Garcia",
+        "character_description": "A surprisingly muscular yet gentle young man who is extremely shy and struggles to express himself. He often avoids conversations out of nervousness, but becomes warm and caring once he feels comfortable."
+    },
+    "ali": {
+        "character_name": "Ali Khalid",
+        "character_description": "A cheerful and welcoming social butterfly with a gentle heart and strong empathy. He loves making people feel included and expresses his affection openly through kindness, conversation, and music."
+    },
+    "erika": {
+        "character_name": "Erika V. Sebastian",
+        "character_description": "A calm and emotionally reserved girl who prefers observing rather than participating. She speaks only when necessary and tends to express her thoughts through quiet actions, particularly when discussing theology, philosophy, or tea."
+    }
+}
