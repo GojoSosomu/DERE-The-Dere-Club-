@@ -1269,9 +1269,11 @@ const Character = {
                         operation.position
                     );
                     break;
+
                 case "remove":
                     this.removeCharacter(operation.position);
                     break;
+
                 case "clear":
                     this.clearStage();
                     break;
@@ -1290,11 +1292,10 @@ const Character = {
                 emotion,
                 position
             );
-
             return;
         }
 
-        const img = document.querySelector(`.character[data-character="${character}"]`);
+        const img = existing.element;
 
         if (!img)
             return;
@@ -1330,7 +1331,8 @@ const Character = {
         img.dataset.character = character;
         img.dataset.position = position;
 
-        img.style.left = `${CharacterPositionValue[position]}%`;
+        img.style.left =
+            `${CharacterPositionValue[position]}%`;
 
         DOM.stage.appendChild(img);
 
@@ -1355,10 +1357,7 @@ const Character = {
             return;
 
         const data = activeStage[index];
-
-        const img = document.querySelector(
-            `.character[data-character="${data.character}"]`
-        );
+        const img = data.element;
 
         if (img) {
             img.classList.remove("on-stage");
@@ -1374,33 +1373,35 @@ const Character = {
         activeStage.splice(index, 1);
     },
 
-    moveCharacter(stageData, position) {
-        stageData.element.style.left = `${CharacterPositionValue[position]}%`;
+    moveCharacter(img, stageData, position) {
+        img.style.left =
+            `${CharacterPositionValue[position]}%`;
 
-        stageData.element.dataset.position = position;
+        img.dataset.position = position;
 
         stageData.position = position;
     },
 
     clearStage() {
-        activeStage.forEach(actor => {
-            if (actor.character != null)
-                this.removeCharacter(actor.position);
+        [...activeStage].forEach(actor => {
+            this.removeCharacter(actor.position);
         });
     },
 
     restoreStage() {
-        DOM.stage.innerHTML = ``;
-        activeStage.forEach(actor => {
-            if (!actor.character)
-                return;
+        DOM.stage.innerHTML = "";
 
+        const savedStage = [...activeStage];
+
+        activeStage = [];
+
+        for (const actor of savedStage) {
             this.spawnCharacter(
                 actor.character,
                 actor.emotion,
                 actor.position
             );
-        });
+        }
     },
 
     highlightSpeaker(activeSpeakerKey) {
