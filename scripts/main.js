@@ -83,6 +83,7 @@ const Engine = {
         Settings.initialize();
         Background.initialize();
         await CharacterProfile.initialize();
+        Relationship.initialize();
         Dialogue.initialize();
         Character.initialize();
         Choice.initialize();
@@ -486,11 +487,12 @@ class GameSlotData {
 }
 
 class SceneData {
-    constructor(sceneId, nodeIndex, stage) {
+    constructor(sceneId, nodeIndex, stage, relationship) {
         this.sceneId = sceneId;
         this.currentIndex = nodeIndex;
         this.previousIndex = Math.max(0, this.currentIndex - 1);
         this.stage = stage;
+        this.relationship = relationship;
     }
 
     static fromJSON(data) {
@@ -616,6 +618,27 @@ const JsonLoader = {
     }
 };
 
+const EffectFactory = {
+    create(data) {
+        switch (data.type) {
+            case "relationship": {
+                const effect = new RelationshipEffect();
+
+                effect.relations = data.relations.map(
+                    relation => new RelationshipItem(
+                        relation.character,
+                        relation.amount
+                    )
+                );
+
+                return effect;
+            }
+            default:
+                throw new Error(`Unknown effect: ${data.type}`);
+        }
+    }
+};
+
 const StoryParser = {
     parse(data) {
         switch(data.type) {
@@ -629,9 +652,7 @@ const StoryParser = {
     },
 
     parseGoto(data) {
-        const node = new GotoNode(data.scene);
-
-        return node;
+        return new GotoNode(data);
     },
 
     parseSpeaker(data) {
@@ -676,9 +697,9 @@ const StoryParser = {
     },
 
     parseChoice(data) {
-        const node = new ChoiceNode();
+        const node = new ChoiceNode(data);
 
-        for(const choice of data.choices) {
+        for (const choice of data.choices) {
             node.choices.push({
                 text: choice.text,
                 dialogue: choice.dialogue
@@ -740,8 +761,56 @@ const GraphBuilder = {
     }
 }
 
-class Node {
-    constructor(type) {
+class Effect {
+    constructor(data) {
+        this.type = data.type;
+    }
+
+    apply() {
+        throw new Error("Effect.apply() must be implemented.");
+    }
+}
+
+class RelationshipEffect extends Effect {
+    constructor() {
+        super({ type: "relationship" });
+
+        this.relations = [];
+    }
+
+    apply() {
+        for (const relation of this.relations) {
+            Relationship.change(
+                relation.character,
+                relation.amount
+            );
+        }
+    }
+}
+
+class RelationshipItem {
+    constructor(character, amount) {
+        this.character = character;
+        this.amount = amount;
+    }
+}
+
+class StoryElement {
+    constructor(data = {}) {
+        this.effects = (data.effects ?? [])
+            .map(effect => EffectFactory.create(effect));
+    }
+
+    applyEffects() {
+        for (const effect of this.effects) {
+            effect.apply();
+        }
+    }
+}
+
+class Node extends StoryElement {
+    constructor(type, data = {}) {
+        super(data);
         this.type = type;
         this.index = 0;
     }
@@ -820,7 +889,7 @@ class LinearNode extends Node {
 
 class SpeakerNode extends LinearNode {
     constructor(data) {
-        super("speaker");
+        super("speaker", data);
 
         this.speaker = data.speaker;
         this.text = data.text;
@@ -830,16 +899,17 @@ class SpeakerNode extends LinearNode {
 
 class ChoiceNode extends Node {
     constructor(data) {
-        super("choice");
+        super("choice", data);
 
         this.choices = [];
     }
 }
 
-class ChoiceOption {
-    constructor(text) {
-        this.text = text;
+class ChoiceOption extends StoryElement {
+    constructor(data) {
+        super(data);
 
+        this.text = data.text;
         this.next = null;
     }
 }
@@ -851,10 +921,10 @@ class CommandNode extends LinearNode {
 }
 
 class GotoNode extends CommandNode {
-    constructor(sceneId) {
-        super("goto");
+    constructor(data) {
+        super("goto", data);
 
-        this.sceneId = sceneId;
+        this.sceneId = data.scene;
     }
 }
 
@@ -918,7 +988,7 @@ const StoryBuilder = {
                         counter
                     );
 
-                    const option = new ChoiceOption(optionData.text);
+                    const option = new ChoiceOption(optionData);
                     option.next = branch.firstNode;
 
                     newChoices.push(option);
@@ -988,7 +1058,9 @@ const StoryRunner = {
 
         const node = this.currentNode;
 
-        EventBus.emitAsync("node:enter", this.currentNode);
+        node.applyEffects();
+
+        EventBus.emitAsync("node:enter", node);
 
         if(node instanceof GotoNode)
             this.goto(node.sceneId);
@@ -1020,7 +1092,9 @@ const StoryRunner = {
     },
 
     choose(option) {
-        console.log(option);
+        console.log(option.text);
+        option.applyEffects();
+
         this.currentNode = option.next;
         this.render();
     }
@@ -1485,6 +1559,32 @@ const CharacterProfile = {
     }
 };
 
+const Relationship = {
+    data: {},
+
+    initialize() {
+        this.data = {};
+
+        Object.values(CharacterEnum).forEach(character => {
+            this.data[character] = 0;
+        });
+    },
+
+    change(character, amount) {
+        if (!(character in this.data))
+            throw new Error(`Unknown character: ${character}`);
+
+        this.data[character] = Math.max(
+            -100,
+            Math.min(100, this.data[character] + amount)
+        );
+    },
+
+    get(character) {
+        return this.data[character] ?? 0;
+    }
+};
+
 const SaveLoad = {
     initialize() {
         EventBus.on("saveLoad:changeMode", mode => this.changeMode(mode));
@@ -1567,7 +1667,8 @@ const SaveLoad = {
         const sceneData = new SceneData(
             scene.id,
             currentNode.index,
-            stageData
+            stageData,
+            structuredClone(Relationship.data)
         );
 
         Storage.updateGameSlot(
@@ -1603,8 +1704,13 @@ const SaveLoad = {
             sceneData.currentIndex
         );
 
+        Relationship.data = structuredClone(
+            sceneData.relationship
+        );
+
         activeStage = structuredClone(sceneData.stage);
         Character.restoreStage();
+
         Screen.open(DOM.pages.gameplay);
 
         StoryRunner.start();
