@@ -742,20 +742,24 @@ button {
 }
 
 .gameplay-info{
-
     position:absolute;
 
     top:2%;
     left:2%;
 
     display:flex;
-
     flex-direction:column;
 
     gap:4px;
 
     padding:.5rem 1rem;
+}
 
+.relationship-character div {
+    display:flex;
+    flex-direction:row;
+
+    gap:4px;
 }
 
 .gameplay-menu{

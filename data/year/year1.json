@@ -1,6 +1,7 @@
 {
   "id": "year1",
   "start": "school_intro",
+  
   "scenes": {
     "school_intro": {
       "background": "hallway",
@@ -50,7 +51,18 @@
               "emotion": "neutral"
             }
           },
-          "text": "You're lost, aren't you?"
+          "text": "You're lost, aren't you?",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "penny",
+                  "amount": 2
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "speaker",
@@ -95,7 +107,18 @@
         {
           "type": "speaker",
           "speaker": "penny",
-          "text": "...You're coming, right?"
+          "text": "...You're coming, right?",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "penny",
+                  "amount": 3
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "speaker",
@@ -105,7 +128,18 @@
         {
           "type": "speaker",
           "speaker": "penny",
-          "text": "Come on."
+          "text": "Come on.",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "penny",
+                  "amount": -5
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "goto",
@@ -136,7 +170,18 @@
               "emotion": "neutral"
             }
           },
-          "text": "You can sit there."
+          "text": "You can sit there.",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "penny",
+                  "amount": 2
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "speaker",
@@ -166,7 +211,18 @@
         {
           "type": "speaker",
           "speaker": "penny",
-          "text": "Already did."
+          "text": "Already did.",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "penny",
+                  "amount": 1
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "speaker",
@@ -247,7 +303,18 @@
               "emotion": "neutral"
             }
           },
-          "text": "Hey."
+          "text": "Hey.",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "penny",
+                  "amount": 1
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "speaker",
@@ -287,7 +354,18 @@
         {
           "type": "speaker",
           "speaker": "penny",
-          "text": "Come on."
+          "text": "Come on.",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "penny",
+                  "amount": 2
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "speaker",
@@ -317,7 +395,18 @@
         {
           "type": "speaker",
           "speaker": "penny",
-          "text": "That's the one I'm in."
+          "text": "That's the one I'm in.",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "penny",
+                  "amount": 3
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "speaker",
@@ -372,7 +461,22 @@
               "emotion": "neutral"
             }
           },
-          "text": "..."
+          "text": "...",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "yuri",
+                  "amount": 1
+                },
+                {
+                  "character": "penny",
+                  "amount": 1
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "speaker",
@@ -387,7 +491,18 @@
         {
           "type": "speaker",
           "speaker": "penny",
-          "text": "I brought them here."
+          "text": "I brought them here.",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "penny",
+                  "amount": 2
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "speaker",
@@ -422,7 +537,18 @@
         {
           "type": "speaker",
           "speaker": "yuri",
-          "text": "You seemed unsure."
+          "text": "You seemed unsure.",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "penny",
+                  "amount": -1
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "speaker",
@@ -451,7 +577,18 @@
               "emotion": "neutral"
             }
           },
-          "text": "Penny."
+          "text": "Penny.",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "erika",
+                  "amount": 1
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "speaker",
@@ -471,7 +608,22 @@
         {
           "type": "speaker",
           "speaker": "erika",
-          "text": "You weren't."
+          "text": "You weren't.",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "penny",
+                  "amount": -1
+                },
+                {
+                  "character": "erika",
+                  "amount": 2
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "speaker",
@@ -481,7 +633,18 @@
         {
           "type": "speaker",
           "speaker": "erika",
-          "text": "Welcome to the Creative Arts Club."
+          "text": "Welcome to the Creative Arts Club.",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "erika",
+                  "amount": 3
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "speaker",
@@ -511,7 +674,18 @@
         {
           "type": "speaker",
           "speaker": "yuri",
-          "text": "It can be."
+          "text": "It can be.",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "yuri",
+                  "amount": 2
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "speaker",
@@ -536,7 +710,18 @@
         {
           "type": "speaker",
           "speaker": "erika",
-          "text": "You aren't helping."
+          "text": "You aren't helping.",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "erika",
+                  "amount": 1
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "speaker",
@@ -556,7 +741,18 @@
         {
           "type": "speaker",
           "speaker": "penny",
-          "text": "If you're looking for something to do, you could join us."
+          "text": "If you're looking for something to do, you could join us.",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "penny",
+                  "amount": 3
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "speaker",
@@ -571,7 +767,18 @@
         {
           "type": "speaker",
           "speaker": "yuri",
-          "text": "You can read."
+          "text": "You can read.",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "yuri",
+                  "amount": 1
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "speaker",
@@ -601,7 +808,18 @@
         {
           "type": "speaker",
           "speaker": "erika",
-          "text": "We're here to create."
+          "text": "We're here to create.",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "erika",
+                  "amount": 2
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "speaker",
@@ -621,7 +839,7 @@
         {
           "type": "speaker",
           "speaker": "narrator",
-          "text": "Eri quietly observes."
+          "text": "Erika quietly observes."
         },
         {
           "type": "speaker",
@@ -642,7 +860,18 @@
                 {
                   "type": "speaker",
                   "speaker": "penny",
-                  "text": "Really?"
+                  "text": "Really?",
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "penny",
+                          "amount": 4
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
                   "type": "speaker",
@@ -662,12 +891,34 @@
                 {
                   "type": "speaker",
                   "speaker": "yuri",
-                  "text": "I'm glad."
+                  "text": "I'm glad.",
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "yuri",
+                          "amount": 4
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
                   "type": "speaker",
                   "speaker": "erika",
-                  "text": "Then it's decided."
+                  "text": "Then it's decided.",
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "erika",
+                          "amount": 4
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
                   "type": "speaker",
@@ -691,7 +942,18 @@
                       "emotion": "neutral"
                     }
                   },
-                  "text": "Guess you're one of us now."
+                  "text": "Guess you're one of us now.",
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "penny",
+                          "amount": 3
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
                   "type": "speaker",
@@ -716,7 +978,18 @@
                 {
                   "type": "speaker",
                   "speaker": "erika",
-                  "text": "That's fine."
+                  "text": "That's fine.",
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "erika",
+                          "amount": 2
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
                   "type": "speaker",
@@ -726,12 +999,34 @@
                 {
                   "type": "speaker",
                   "speaker": "penny",
-                  "text": "Just don't take forever."
+                  "text": "Just don't take forever.",
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "penny",
+                          "amount": -1
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
                   "type": "speaker",
                   "speaker": "yuri",
-                  "text": "You can stay as long as you'd like."
+                  "text": "You can stay as long as you'd like.",
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "yuri",
+                          "amount": 3
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
                   "type": "speaker",
@@ -800,7 +1095,18 @@
               "emotion": "neutral"
             }
           },
-          "text": "Hey."
+          "text": "Hey.",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "penny",
+                  "amount": 2
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "speaker",
@@ -825,7 +1131,22 @@
               "emotion": "neutral"
             }
           },
-          "text": "She probably would."
+          "text": "She probably would.",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "yuri",
+                  "amount": 1
+                },
+                {
+                  "character": "penny",
+                  "amount": 1
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "speaker",
@@ -849,7 +1170,18 @@
               "emotion": "neutral"
             }
           },
-          "text": "You would."
+          "text": "You would.",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "erika",
+                  "amount": 1
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "speaker",
@@ -869,17 +1201,50 @@
         {
           "type": "speaker",
           "speaker": "penny",
-          "text": "See you tomorrow."
+          "text": "See you tomorrow.",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "penny",
+                  "amount": 2
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "speaker",
           "speaker": "yuri",
-          "text": "Goodbye."
+          "text": "Goodbye.",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "yuri",
+                  "amount": 1
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "speaker",
           "speaker": "erika",
-          "text": "See you."
+          "text": "See you.",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "erika",
+                  "amount": 1
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "speaker",

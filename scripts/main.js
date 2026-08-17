@@ -83,6 +83,7 @@ const Engine = {
         Settings.initialize();
         Background.initialize();
         await CharacterProfile.initialize();
+        GameplayInfoTracker.initialize();
         Relationship.initialize();
         Dialogue.initialize();
         Character.initialize();
@@ -126,6 +127,9 @@ const DOM = {
         this.saveButton = get("#save");
         this.loadButton = get("#load");
         this.quitButton = get("#quit");
+
+        this.gameplayInfo = get(".gameplay-info");
+        this.relationshipTracker = get(".relationship-tracker");
 
         this.background = get(".background");
         this.stage = get(".stage");
@@ -880,8 +884,8 @@ class Scene {
 }
 
 class LinearNode extends Node {
-    constructor(type) {
-        super(type);
+    constructor(type, data) {
+        super(type, data);
 
         this.next = null;
     }
@@ -1568,6 +1572,8 @@ const Relationship = {
         Object.values(CharacterEnum).forEach(character => {
             this.data[character] = 0;
         });
+
+        EventBus.emit("relationship:change", this.data);
     },
 
     change(character, amount) {
@@ -1578,10 +1584,38 @@ const Relationship = {
             -100,
             Math.min(100, this.data[character] + amount)
         );
+
+        EventBus.emit("relationship:change", this.data);
     },
 
     get(character) {
         return this.data[character] ?? 0;
+    }
+};
+
+const GameplayInfoTracker = {
+    initialize() {
+        EventBus.on("relationship:change", data => this.updateRelationship(data));
+    },
+
+    updateRelationship(data) {
+        DOM.relationshipTracker.innerHTML = '';
+
+        Object.entries(data).forEach(([character, value]) => {
+            const relationshipItem = document.createElement("div");
+            relationshipItem.className = "relationship-character";
+            const relationshipGroup = document.createElement("div");
+            const characterName = document.createElement("span");
+            characterName.className = 'character-name';
+            characterName.textContent = character.slice(0, 1).toUpperCase() + character.slice(1) + ': ';
+            const relationshipValue = document.createElement("span");
+            relationshipValue.className = 'relationship-value';
+            relationshipValue.textContent = value;
+            relationshipGroup.appendChild(characterName);
+            relationshipGroup.appendChild(relationshipValue);
+            relationshipItem.appendChild(relationshipGroup);
+            DOM.relationshipTracker.appendChild(relationshipItem);
+        });
     }
 };
 
