@@ -1,550 +1,266 @@
 {
   "id": "year1",
-  "start": "school_intro",
-  
+  "start": "prologue",
   "scenes": {
-    "school_intro": {
+    "prologue": {
       "background": "hallway",
       "dialogue": [
         {
           "type": "speaker",
           "speaker": "narrator",
-          "stage": {},
-          "text": "The first day of school always feels longer than it should."
+          "text": "Ah, yes. NU Academy."
         },
         {
           "type": "speaker",
           "speaker": "narrator",
-          "text": "New classrooms. New faces. New routines."
+          "text": "Normal Unity Academy."
         },
         {
           "type": "speaker",
           "speaker": "narrator",
-          "text": "Everything feels unfamiliar."
+          "text": "Where students arrive from every nation, every background, every walk of life."
         },
         {
           "type": "speaker",
           "speaker": "narrator",
-          "text": "The hallway is crowded with students trying to find their classrooms before the bell rings."
+          "text": "United under one roof."
         },
         {
           "type": "speaker",
           "speaker": "narrator",
-          "text": "You check the schedule again."
+          "text": "Learning, growing, experiencing side by side."
         },
         {
           "type": "speaker",
           "speaker": "narrator",
-          "text": "Room 204."
+          "text": "No discrimination. No prejudice. No favoring one place over another."
         },
         {
           "type": "speaker",
           "speaker": "narrator",
-          "text": "At least, that's what it says."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "stage": {
-            "right": {
-              "character": "penny",
-              "emotion": "neutral"
-            }
-          },
-          "text": "You're lost, aren't you?",
-          "effects": [
-            {
-              "type": "relationship",
-              "relations": [
-                {
-                  "character": "penny",
-                  "amount": 2
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "Don't answer that."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "I can already tell."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "You're looking at that schedule like it's written in another language."
+          "text": "At least, that's the idea."
         },
         {
           "type": "speaker",
           "speaker": "narrator",
-          "text": "Penny folds her arms."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "Room 204 is upstairs."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "Stairs are over there."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "Try not to get lost again."
+          "text": "And you, my friend, are about to experience it firsthand."
         },
         {
           "type": "speaker",
           "speaker": "narrator",
-          "text": "Penny starts walking toward the stairs."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "...You're coming, right?",
-          "effects": [
-            {
-              "type": "relationship",
-              "relations": [
-                {
-                  "character": "penny",
-                  "amount": 3
-                }
-              ]
-            }
-          ]
+          "text": "A rare kind of peace, in your own generation."
         },
         {
           "type": "speaker",
           "speaker": "narrator",
-          "text": "Penny doesn't wait for an answer."
+          "text": "You'll learn who you are here."
         },
         {
           "type": "speaker",
-          "speaker": "penny",
-          "text": "Come on.",
-          "effects": [
-            {
-              "type": "relationship",
-              "relations": [
-                {
-                  "character": "penny",
-                  "amount": -5
-                }
-              ]
-            }
-          ]
+          "speaker": "narrator",
+          "text": "Or maybe, who you become."
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Life has a way of changing people."
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "And someone young, like you, is exactly the kind who changes easiest."
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "So. Let's see who you'll be by the end of this."
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Your first day starts now."
         },
         {
           "type": "goto",
-          "scene": "first_class"
+          "scene": "door_knock"
         }
       ]
     },
-    "first_class": {
-      "background": "classroom",
-      "dialogue": [
-        {
-          "type": "speaker",
-          "speaker": "narrator",
-          "stage": {},
-          "text": "The classroom is already filling up."
-        },
-        {
-          "type": "speaker",
-          "speaker": "narrator",
-          "text": "Penny takes a seat near the window."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "stage": {
-            "left": {
-              "character": "penny",
-              "emotion": "neutral"
-            }
-          },
-          "text": "You can sit there.",
-          "effects": [
-            {
-              "type": "relationship",
-              "relations": [
-                {
-                  "character": "penny",
-                  "amount": 2
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "Unless you have somewhere else to be."
-        },
-        {
-          "type": "speaker",
-          "speaker": "narrator",
-          "text": "The teacher enters the classroom."
-        },
-        {
-          "type": "speaker",
-          "speaker": "teacher",
-          "text": "Good morning, everyone."
-        },
-        {
-          "type": "speaker",
-          "speaker": "teacher",
-          "text": "Before we begin, I'd like to welcome our new student."
-        },
-        {
-          "type": "speaker",
-          "speaker": "teacher",
-          "text": "Please make them feel welcome."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "Already did.",
-          "effects": [
-            {
-              "type": "relationship",
-              "relations": [
-                {
-                  "character": "penny",
-                  "amount": 1
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "speaker",
-          "speaker": "teacher",
-          "text": "Penny."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "What?"
-        },
-        {
-          "type": "speaker",
-          "speaker": "teacher",
-          "text": "Let me finish."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "...Fine."
-        },
-        {
-          "type": "speaker",
-          "speaker": "narrator",
-          "text": "The lesson begins."
-        },
-        {
-          "type": "speaker",
-          "speaker": "narrator",
-          "text": "For the next several hours, the day passes normally."
-        },
-        {
-          "type": "speaker",
-          "speaker": "narrator",
-          "text": "Classes."
-        },
-        {
-          "type": "speaker",
-          "speaker": "narrator",
-          "text": "Notes."
-        },
-        {
-          "type": "speaker",
-          "speaker": "narrator",
-          "text": "Introductions."
-        },
-        {
-          "type": "speaker",
-          "speaker": "narrator",
-          "text": "And eventually, lunch."
-        },
-        {
-          "type": "goto",
-          "scene": "lunch"
-        }
-      ]
-    },
-    "lunch": {
+    "hallway_wander": {
       "background": "hallway",
       "dialogue": [
         {
           "type": "speaker",
           "speaker": "narrator",
-          "stage": {},
-          "text": "The hallway becomes quieter during lunch."
+          "text": "Class just let out."
         },
         {
           "type": "speaker",
           "speaker": "narrator",
-          "text": "Students gather in groups, talking about classes, teachers, and clubs."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "stage": {
-            "right": {
-              "character": "penny",
-              "emotion": "neutral"
-            }
-          },
-          "text": "Hey.",
-          "effects": [
-            {
-              "type": "relationship",
-              "relations": [
-                {
-                  "character": "penny",
-                  "amount": 1
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "You survived the morning."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "Congratulations."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "So..."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "Have you decided what club you're joining?"
+          "text": "You wander the hallway, still half-thinking about the Computer Science lecture."
         },
         {
           "type": "speaker",
           "speaker": "narrator",
-          "text": "Penny waits."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "You don't have one."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "Of course you don't."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "Come on.",
-          "effects": [
-            {
-              "type": "relationship",
-              "relations": [
-                {
-                  "character": "penny",
-                  "amount": 2
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "I'll show you."
+          "text": "Genuinely. Harder than curing cancer."
         },
         {
           "type": "speaker",
           "speaker": "narrator",
-          "text": "Penny starts walking down the hallway."
+          "text": "You're fairly sure of it."
         },
         {
           "type": "speaker",
-          "speaker": "penny",
-          "text": "There are a lot of clubs here."
+          "speaker": "narrator",
+          "text": "At least curing cancer doesn't punish a missing semicolon."
         },
         {
           "type": "speaker",
-          "speaker": "penny",
-          "text": "Sports, academic stuff, music..."
+          "speaker": "narrator",
+          "text": "Lost in that thought, you keep walking."
         },
         {
           "type": "speaker",
-          "speaker": "penny",
-          "text": "And the Creative Arts Club."
+          "speaker": "narrator",
+          "text": "Then you see it."
         },
         {
           "type": "speaker",
-          "speaker": "penny",
-          "text": "That's the one I'm in.",
-          "effects": [
-            {
-              "type": "relationship",
-              "relations": [
-                {
-                  "character": "penny",
-                  "amount": 3
-                }
-              ]
-            }
-          ]
+          "speaker": "narrator",
+          "text": "A door. Unremarkable, really."
         },
         {
           "type": "speaker",
-          "speaker": "penny",
-          "text": "Don't get the wrong idea."
+          "speaker": "narrator",
+          "text": "You don't know why you stop in front of it."
         },
         {
           "type": "speaker",
-          "speaker": "penny",
-          "text": "I just like fashion and styling."
+          "speaker": "narrator",
+          "text": "You don't know why your hand is already raised."
         },
         {
           "type": "speaker",
-          "speaker": "penny",
-          "text": "That's all."
+          "speaker": "narrator",
+          "text": "Maybe it's nothing."
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Or maybe, somehow, this is exactly where you're supposed to be."
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "You knock."
         },
         {
           "type": "goto",
-          "scene": "clubroom"
+          "scene": "door_knock"
         }
       ]
     },
-    "clubroom": {
-      "background": "clubroom",
+    "door_knock": {
+      "background": "clubroom_door",
       "dialogue": [
         {
           "type": "speaker",
           "speaker": "narrator",
-          "stage": {},
-          "text": "Penny opens the clubroom door."
+          "text": "The door swings open before you can even lower your hand."
         },
         {
           "type": "speaker",
-          "speaker": "narrator",
-          "text": "The Creative Arts Club room is quieter than expected."
-        },
-        {
-          "type": "speaker",
-          "speaker": "narrator",
-          "text": "Books, papers, sketches, and unfinished projects cover several tables."
-        },
-        {
-          "type": "speaker",
-          "speaker": "yuri",
-          "stage": {
-            "left": {
-              "character": "yuri",
-              "emotion": "neutral"
-            },
-            "right": {
-              "character": "penny",
-              "emotion": "neutral"
-            }
-          },
-          "text": "...",
+          "speaker": "penny",
+          "text": "...Can I help you?",
           "effects": [
             {
               "type": "relationship",
               "relations": [
                 {
-                  "character": "yuri",
-                  "amount": 1
+                  "character": "penny",
+                  "amount": -2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "speaker",
+          "speaker": "penny",
+          "text": "Because from where I'm standing, someone just knocked on a door for no reason."
+        },
+        {
+          "type": "speaker",
+          "speaker": "penny",
+          "text": "Which, last I checked, isn't a thing normal people do."
+        },
+        {
+          "type": "choice",
+          "choices": [
+            {
+              "text": "\"Woah! Easy, I'm just curious. No need for the hostility.\"",
+              "dialogue": [
+                {
+                  "type": "speaker",
+                  "speaker": "penny",
+                  "text": "\"Easy\"?",
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "penny",
+                          "amount": -2
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
-                  "character": "penny",
-                  "amount": 1
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "speaker",
-          "speaker": "yuri",
-          "text": "You're early."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "They're new."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "I brought them here.",
-          "effects": [
-            {
-              "type": "relationship",
-              "relations": [
+                  "type": "speaker",
+                  "speaker": "penny",
+                  "text": "You knock on a random door with no reason, and I'm the hostile one."
+                },
                 {
-                  "character": "penny",
-                  "amount": 2
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "speaker",
-          "speaker": "yuri",
-          "text": "I see."
-        },
-        {
-          "type": "speaker",
-          "speaker": "narrator",
-          "text": "Yuri lowers her gaze back to the book in her hands."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "Don't mind her."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "She's always reading something."
-        },
-        {
-          "type": "speaker",
-          "speaker": "yuri",
-          "text": "It's a book."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "I know what a book is."
-        },
-        {
-          "type": "speaker",
-          "speaker": "yuri",
-          "text": "You seemed unsure.",
-          "effects": [
-            {
-              "type": "relationship",
-              "relations": [
+                  "type": "speaker",
+                  "speaker": "penny",
+                  "text": "Curious. Sure. That's a word for it."
+                },
                 {
-                  "character": "penny",
-                  "amount": -1
+                  "type": "speaker",
+                  "speaker": "penny",
+                  "text": "So what do you actually want?"
+                }
+              ]
+            },
+            {
+              "text": "\"...Honestly? I don't know. It just felt right.\"",
+              "dialogue": [
+                {
+                  "type": "speaker",
+                  "speaker": "penny",
+                  "text": "It \"felt right.\"",
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "penny",
+                          "amount": -1
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "penny",
+                  "text": "That's not an answer, that's a horoscope."
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "penny",
+                  "text": "So what do you actually want?"
                 }
               ]
             }
@@ -552,38 +268,14 @@
         },
         {
           "type": "speaker",
-          "speaker": "penny",
-          "text": "I wasn't."
-        },
-        {
-          "type": "speaker",
-          "speaker": "narrator",
-          "text": "Another student sits quietly at a table across the room."
-        },
-        {
-          "type": "speaker",
-          "speaker": "erika",
-          "stage": {
-            "left": {
-              "character": "yuri",
-              "emotion": "neutral"
-            },
-            "center": {
-              "character": "erika",
-              "emotion": "neutral"
-            },
-            "right": {
-              "character": "penny",
-              "emotion": "neutral"
-            }
-          },
+          "speaker": "yuri",
           "text": "Penny.",
           "effects": [
             {
               "type": "relationship",
               "relations": [
                 {
-                  "character": "erika",
+                  "character": "yuri",
                   "amount": 1
                 }
               ]
@@ -592,23 +284,13 @@
         },
         {
           "type": "speaker",
-          "speaker": "penny",
-          "text": "What?"
-        },
-        {
-          "type": "speaker",
-          "speaker": "erika",
-          "text": "You forgot to introduce them."
+          "speaker": "yuri",
+          "text": "That's not how you greet a guest."
         },
         {
           "type": "speaker",
           "speaker": "penny",
-          "text": "I was getting to that."
-        },
-        {
-          "type": "speaker",
-          "speaker": "erika",
-          "text": "You weren't.",
+          "text": "They knocked for no reason.",
           "effects": [
             {
               "type": "relationship",
@@ -616,108 +298,6 @@
                 {
                   "character": "penny",
                   "amount": -1
-                },
-                {
-                  "character": "erika",
-                  "amount": 2
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "...Whatever."
-        },
-        {
-          "type": "speaker",
-          "speaker": "erika",
-          "text": "Welcome to the Creative Arts Club.",
-          "effects": [
-            {
-              "type": "relationship",
-              "relations": [
-                {
-                  "character": "erika",
-                  "amount": 3
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "speaker",
-          "speaker": "narrator",
-          "text": "Erika looks toward the protagonist."
-        },
-        {
-          "type": "speaker",
-          "speaker": "erika",
-          "text": "You don't have to decide immediately."
-        },
-        {
-          "type": "speaker",
-          "speaker": "erika",
-          "text": "You can look around first."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "See?"
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "It's not that serious."
-        },
-        {
-          "type": "speaker",
-          "speaker": "yuri",
-          "text": "It can be.",
-          "effects": [
-            {
-              "type": "relationship",
-              "relations": [
-                {
-                  "character": "yuri",
-                  "amount": 2
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "Yuri."
-        },
-        {
-          "type": "speaker",
-          "speaker": "yuri",
-          "text": "What?"
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "You're making it sound scary."
-        },
-        {
-          "type": "speaker",
-          "speaker": "yuri",
-          "text": "I didn't mean to."
-        },
-        {
-          "type": "speaker",
-          "speaker": "erika",
-          "text": "You aren't helping.",
-          "effects": [
-            {
-              "type": "relationship",
-              "relations": [
-                {
-                  "character": "erika",
-                  "amount": 1
                 }
               ]
             }
@@ -726,54 +306,18 @@
         {
           "type": "speaker",
           "speaker": "yuri",
-          "text": "Sorry."
-        },
-        {
-          "type": "speaker",
-          "speaker": "narrator",
-          "text": "Yuri returns her attention to her book."
+          "text": "That doesn't mean you get to interrogate them on the doorstep."
         },
         {
           "type": "speaker",
           "speaker": "penny",
-          "text": "Anyway."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "If you're looking for something to do, you could join us.",
+          "text": "...Fine. Whatever.",
           "effects": [
             {
               "type": "relationship",
               "relations": [
                 {
                   "character": "penny",
-                  "amount": 3
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "We're not exactly strict."
-        },
-        {
-          "type": "speaker",
-          "speaker": "erika",
-          "text": "There aren't many requirements."
-        },
-        {
-          "type": "speaker",
-          "speaker": "yuri",
-          "text": "You can read.",
-          "effects": [
-            {
-              "type": "relationship",
-              "relations": [
-                {
-                  "character": "yuri",
                   "amount": 1
                 }
               ]
@@ -782,39 +326,19 @@
         },
         {
           "type": "speaker",
-          "speaker": "yuri",
-          "text": "Write."
+          "speaker": "narrator",
+          "text": "Penny steps back, arms crossed, still watching you carefully."
         },
         {
           "type": "speaker",
           "speaker": "yuri",
-          "text": "Draw."
-        },
-        {
-          "type": "speaker",
-          "speaker": "yuri",
-          "text": "Create something."
-        },
-        {
-          "type": "speaker",
-          "speaker": "yuri",
-          "text": "Or simply stay."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "That's basically the whole club."
-        },
-        {
-          "type": "speaker",
-          "speaker": "erika",
-          "text": "We're here to create.",
+          "text": "Sorry about that.",
           "effects": [
             {
               "type": "relationship",
               "relations": [
                 {
-                  "character": "erika",
+                  "character": "yuri",
                   "amount": 2
                 }
               ]
@@ -823,132 +347,213 @@
         },
         {
           "type": "speaker",
-          "speaker": "narrator",
-          "text": "The three students remain in the room."
+          "speaker": "yuri",
+          "text": "I'm Yuri. Vice President of this club."
+        },
+        {
+          "type": "speaker",
+          "speaker": "yuri",
+          "text": "Please, come in."
+        },
+        {
+          "type": "speaker",
+          "speaker": "penny",
+          "text": "Wait, we don't even know if they-"
+        },
+        {
+          "type": "speaker",
+          "speaker": "yuri",
+          "text": "We're happy to have you.",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "yuri",
+                  "amount": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "speaker",
+          "speaker": "yuri",
+          "text": "Truly. I apologize for the door."
+        },
+        {
+          "type": "speaker",
+          "speaker": "yuri",
+          "text": "It won't happen again."
         },
         {
           "type": "speaker",
           "speaker": "narrator",
-          "text": "Penny stands beside the door."
+          "text": "Yuri steps aside, holding the door open."
         },
         {
           "type": "speaker",
           "speaker": "narrator",
-          "text": "Yuri sits with her book."
+          "text": "Whatever compelled you to knock, it's led you here."
         },
         {
           "type": "speaker",
           "speaker": "narrator",
-          "text": "Erika quietly observes."
+          "text": "You step inside."
+        },
+        {
+          "type": "goto",
+          "scene": "clubroom_meet"
+        }
+      ]
+    },
+    "clubroom_meet": {
+      "background": "clubroom",
+      "dialogue": [
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "The room is warmer than the hallway. Papers, sketches, and half-finished projects cover every table."
         },
         {
           "type": "speaker",
           "speaker": "narrator",
-          "text": "For the first time today, you aren't being told where to go."
+          "text": "Five people are inside."
         },
         {
           "type": "speaker",
           "speaker": "narrator",
-          "text": "The choice is yours."
+          "text": "Penny and Yuri, already familiar."
+        },
+        {
+          "type": "speaker",
+          "speaker": "erika",
+          "text": "That's not really how I'd put it."
+        },
+        {
+          "type": "speaker",
+          "speaker": "ali",
+          "text": "No, I know, I just mean-"
+        },
+        {
+          "type": "speaker",
+          "speaker": "erika",
+          "text": "It's fine. Go on."
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Ali tries again. It doesn't quite land the second time either."
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Erika's calm has a way of taking the wind out of a room."
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Across the room, John watches quietly, saying nothing."
+        },
+        {
+          "type": "speaker",
+          "speaker": "john",
+          "text": "...Oh.",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "john",
+                  "amount": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "speaker",
+          "speaker": "john",
+          "text": "Hey. We have a guest."
+        },
+        {
+          "type": "speaker",
+          "speaker": "ali",
+          "text": "Wait, seriously?",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "ali",
+                  "amount": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "speaker",
+          "speaker": "ali",
+          "text": "Nobody told me we had a guest."
+        },
+        {
+          "type": "speaker",
+          "speaker": "ali",
+          "text": "I'm Ali. President of the Creative Arts Club."
+        },
+        {
+          "type": "speaker",
+          "speaker": "erika",
+          "text": "...",
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "erika",
+                  "amount": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Erika studies you for a moment. Quiet. Deliberate."
+        },
+        {
+          "type": "speaker",
+          "speaker": "erika",
+          "text": "Let me guess."
+        },
+        {
+          "type": "speaker",
+          "speaker": "erika",
+          "text": "Curious about the club everyone calls the \"Dere Club\" behind our backs."
+        },
+        {
+          "type": "speaker",
+          "speaker": "erika",
+          "text": "It happens more than you'd think."
         },
         {
           "type": "choice",
           "choices": [
             {
-              "text": "Join the Creative Arts Club.",
+              "text": "\"Oh, no, I just wanted to see what the club was about.\"",
               "dialogue": [
                 {
                   "type": "speaker",
-                  "speaker": "penny",
-                  "text": "Really?",
+                  "speaker": "ali",
+                  "text": "That counts!",
                   "effects": [
                     {
                       "type": "relationship",
                       "relations": [
                         {
-                          "character": "penny",
-                          "amount": 4
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "speaker",
-                  "speaker": "penny",
-                  "text": "I mean..."
-                },
-                {
-                  "type": "speaker",
-                  "speaker": "penny",
-                  "text": "Sure."
-                },
-                {
-                  "type": "speaker",
-                  "speaker": "penny",
-                  "text": "Welcome, I guess."
-                },
-                {
-                  "type": "speaker",
-                  "speaker": "yuri",
-                  "text": "I'm glad.",
-                  "effects": [
-                    {
-                      "type": "relationship",
-                      "relations": [
-                        {
-                          "character": "yuri",
-                          "amount": 4
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "speaker",
-                  "speaker": "erika",
-                  "text": "Then it's decided.",
-                  "effects": [
-                    {
-                      "type": "relationship",
-                      "relations": [
-                        {
-                          "character": "erika",
-                          "amount": 4
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "speaker",
-                  "speaker": "narrator",
-                  "text": "Penny moves away from the door and takes a seat."
-                },
-                {
-                  "type": "speaker",
-                  "speaker": "penny",
-                  "stage": {
-                    "left": {
-                      "character": "penny",
-                      "emotion": "neutral"
-                    },
-                    "center": {
-                      "character": "erika",
-                      "emotion": "neutral"
-                    },
-                    "right": {
-                      "character": "yuri",
-                      "emotion": "neutral"
-                    }
-                  },
-                  "text": "Guess you're one of us now.",
-                  "effects": [
-                    {
-                      "type": "relationship",
-                      "relations": [
-                        {
-                          "character": "penny",
+                          "character": "ali",
                           "amount": 3
                         }
                       ]
@@ -957,28 +562,39 @@
                 },
                 {
                   "type": "speaker",
-                  "speaker": "narrator",
-                  "text": "The room feels a little different."
+                  "speaker": "ali",
+                  "text": "You should join. Seriously, we'd love to have you."
                 },
                 {
                   "type": "speaker",
                   "speaker": "narrator",
-                  "text": "Not because anything changed."
+                  "text": "You politely decline, at least for now."
                 },
                 {
                   "type": "speaker",
-                  "speaker": "narrator",
-                  "text": "But because you finally have somewhere to belong."
+                  "speaker": "ali",
+                  "text": "...Okay. Fair. Worth a shot.",
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "ali",
+                          "amount": -1
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             },
             {
-              "text": "Look around first.",
+              "text": "\"'Dere Club'?\"",
               "dialogue": [
                 {
                   "type": "speaker",
                   "speaker": "erika",
-                  "text": "That's fine.",
+                  "text": "It's what people call us.",
                   "effects": [
                     {
                       "type": "relationship",
@@ -994,18 +610,49 @@
                 {
                   "type": "speaker",
                   "speaker": "erika",
-                  "text": "Take your time."
+                  "text": "This club tends to attract... unique people."
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "erika",
+                  "text": "Ali, for example, gets a little too excited whenever someone shows interest."
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "erika",
+                  "text": "It puts a lot of unintended pressure on people."
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "erika",
+                  "text": "Ali, ignore what I just said."
                 },
                 {
                   "type": "speaker",
                   "speaker": "penny",
-                  "text": "Just don't take forever.",
+                  "text": "She's not wrong.",
                   "effects": [
                     {
                       "type": "relationship",
                       "relations": [
                         {
                           "character": "penny",
+                          "amount": 2
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "ali",
+                  "text": "I take offense to that.",
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "ali",
                           "amount": -1
                         }
                       ]
@@ -1014,15 +661,15 @@
                 },
                 {
                   "type": "speaker",
-                  "speaker": "yuri",
-                  "text": "You can stay as long as you'd like.",
+                  "speaker": "john",
+                  "text": "You kind of just proved her point.",
                   "effects": [
                     {
                       "type": "relationship",
                       "relations": [
                         {
-                          "character": "yuri",
-                          "amount": 3
+                          "character": "john",
+                          "amount": 2
                         }
                       ]
                     }
@@ -1030,185 +677,8 @@
                 },
                 {
                   "type": "speaker",
-                  "speaker": "narrator",
-                  "text": "Penny sits down near the table."
-                },
-                {
-                  "type": "speaker",
-                  "speaker": "penny",
-                  "stage": {
-                    "left": {
-                      "character": "penny",
-                      "emotion": "neutral"
-                    },
-                    "center": {
-                      "character": "erika",
-                      "emotion": "neutral"
-                    },
-                    "right": {
-                      "character": "yuri",
-                      "emotion": "neutral"
-                    }
-                  },
-                  "text": "We're not going anywhere."
-                },
-                {
-                  "type": "speaker",
-                  "speaker": "narrator",
-                  "text": "The clubroom settles back into its quiet rhythm."
-                },
-                {
-                  "type": "speaker",
-                  "speaker": "narrator",
-                  "text": "Perhaps this place is worth coming back to."
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "goto",
-          "scene": "after_club"
-        }
-      ]
-    },
-    "after_club": {
-      "background": "hallway",
-      "dialogue": [
-        {
-          "type": "speaker",
-          "speaker": "narrator",
-          "stage": {},
-          "text": "The final bell rings."
-        },
-        {
-          "type": "speaker",
-          "speaker": "narrator",
-          "text": "Students begin leaving the school."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "stage": {
-            "right": {
-              "character": "penny",
-              "emotion": "neutral"
-            }
-          },
-          "text": "Hey.",
-          "effects": [
-            {
-              "type": "relationship",
-              "relations": [
-                {
-                  "character": "penny",
-                  "amount": 2
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "Same time tomorrow."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "Don't make me come looking for you."
-        },
-        {
-          "type": "speaker",
-          "speaker": "yuri",
-          "stage": {
-            "left": {
-              "character": "yuri",
-              "emotion": "neutral"
-            },
-            "right": {
-              "character": "penny",
-              "emotion": "neutral"
-            }
-          },
-          "text": "She probably would.",
-          "effects": [
-            {
-              "type": "relationship",
-              "relations": [
-                {
-                  "character": "yuri",
-                  "amount": 1
-                },
-                {
-                  "character": "penny",
-                  "amount": 1
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "I would not."
-        },
-        {
-          "type": "speaker",
-          "speaker": "erika",
-          "stage": {
-            "left": {
-              "character": "yuri",
-              "emotion": "neutral"
-            },
-            "center": {
-              "character": "erika",
-              "emotion": "neutral"
-            },
-            "right": {
-              "character": "penny",
-              "emotion": "neutral"
-            }
-          },
-          "text": "You would.",
-          "effects": [
-            {
-              "type": "relationship",
-              "relations": [
-                {
-                  "character": "erika",
-                  "amount": 1
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "...Maybe."
-        },
-        {
-          "type": "speaker",
-          "speaker": "narrator",
-          "text": "The three of them stand together in the hallway."
-        },
-        {
-          "type": "speaker",
-          "speaker": "narrator",
-          "text": "Penny is the first to turn toward the exit."
-        },
-        {
-          "type": "speaker",
-          "speaker": "penny",
-          "text": "See you tomorrow.",
-          "effects": [
-            {
-              "type": "relationship",
-              "relations": [
-                {
-                  "character": "penny",
-                  "amount": 2
+                  "speaker": "ali",
+                  "text": "...I did not."
                 }
               ]
             }
@@ -1217,7 +687,7 @@
         {
           "type": "speaker",
           "speaker": "yuri",
-          "text": "Goodbye.",
+          "text": "Anyway.",
           "effects": [
             {
               "type": "relationship",
@@ -1232,55 +702,8 @@
         },
         {
           "type": "speaker",
-          "speaker": "erika",
-          "text": "See you.",
-          "effects": [
-            {
-              "type": "relationship",
-              "relations": [
-                {
-                  "character": "erika",
-                  "amount": 1
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "speaker",
-          "speaker": "narrator",
-          "text": "The three walk away together."
-        },
-        {
-          "type": "speaker",
-          "speaker": "narrator",
-          "stage": {},
-          "text": "Your first day at NU Academy is almost over."
-        },
-        {
-          "type": "speaker",
-          "speaker": "narrator",
-          "text": "You arrived knowing nobody."
-        },
-        {
-          "type": "speaker",
-          "speaker": "narrator",
-          "text": "Now, you have a club."
-        },
-        {
-          "type": "speaker",
-          "speaker": "narrator",
-          "text": "And three people waiting for you tomorrow."
-        },
-        {
-          "type": "speaker",
-          "speaker": "narrator",
-          "text": "Maybe joining wasn't such a bad idea."
-        },
-        {
-          "type": "speaker",
-          "speaker": "narrator",
-          "text": "End of Day 1."
+          "speaker": "yuri",
+          "text": "What actually brings you here?"
         }
       ]
     }

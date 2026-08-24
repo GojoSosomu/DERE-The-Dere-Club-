@@ -133,22 +133,25 @@ button {
 
 .character {
     position: absolute;
-
     left: 50%;
     bottom: 0;
     opacity: 0;
 
-    width: clamp(120px, 15vw + 15vh, 350px);
+    width: clamp(120px, calc(15vw + 15vh), 200px);
     height: auto;
 
-    transform:
-        translateX(-50%)
-        translateY(0);
+    transform: translateX(-50%) translateY(0);
 
     transition:
         left 0.5s ease,
         transform 0.5s ease,
         opacity 0.5s ease;
+}
+
+@container stage (min-width: 1px) {
+    .character {
+        width: clamp(120px, 14.7cqw, 200px);
+    }
 }
 
 .character.on-stage {
@@ -182,11 +185,12 @@ button {
 
     width: min(85vw, calc(85vh * 16 / 9));
     aspect-ratio: 16 / 9;
-
     overflow: hidden;
-
     border: clamp(2px, .3vw, 4px) solid #555;
     box-shadow: 0 0 30px rgba(0,0,0,.6);
+
+    container-type: size;
+    container-name: stage;
 }
 
 .background {
