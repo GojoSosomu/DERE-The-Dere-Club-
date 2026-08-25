@@ -28,8 +28,6 @@ export const Settings = {
             this.save();
             Screen.back();
         });
-
-        EventBus.on("setting:change", data => Object.assign(this.data, data));
     },
 
     openCurrentData(tab = this.currentContent) {

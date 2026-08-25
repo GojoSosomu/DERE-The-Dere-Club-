@@ -18,7 +18,6 @@ export const Storage = {
         this.load();
 
         EventBus.on("data:save", () => this.save());
-        EventBus.on("data:load", () => this.load());
     },
 
     save() {
