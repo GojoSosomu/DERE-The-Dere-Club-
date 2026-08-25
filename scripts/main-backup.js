@@ -5,6 +5,7 @@ const getAll = (selector) => document.querySelectorAll(selector);
 const on = (element, event, callback) => {
     if (element) element.addEventListener(event, callback);
 };
+const Sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const CharacterPosition = Object.freeze({
     FAR_LEFT: "far-left",
@@ -47,8 +48,6 @@ const EmotionEnum = Object.freeze({
 });
 
 let activeStage = [];
-
-const Sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const EventBus = {
     events: {},
