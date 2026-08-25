@@ -83,11 +83,7 @@ export const SaveLoad = {
         const scene = StoryRunner.currentScene;
         const currentNode = StoryRunner.currentNode;
 
-        const stageData = activeStage.map(actor => ({
-            character: actor.character,
-            emotion: actor.emotion,
-            position: actor.position
-        }));
+        const stageData = Character.getStagePreview();
 
         const sceneData = new SceneData(
             scene.id,
@@ -133,8 +129,7 @@ export const SaveLoad = {
             sceneData.relationship
         );
 
-        activeStage = structuredClone(sceneData.stage);
-        Character.restoreStage();
+        Character.restoreStage(structuredClone(sceneData.stage));
 
         Screen.open(DOM.pages.gameplay);
 

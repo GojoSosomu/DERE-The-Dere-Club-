@@ -29,22 +29,22 @@ export const Storage = {
             JSON.stringify(this.persistentData)
         );
 
-        localStorage.setItem(
-            "currentSlot",
-            this.currentSlot
-        );
+        if (this.currentSlot != null) {
+            localStorage.setItem("currentSlot", this.currentSlot);
+        } else {
+            localStorage.removeItem("currentSlot");
+        }
     },
 
     load() {
         const data = JSON.parse(localStorage.getItem("save"));
 
-        this.currentSlot = localStorage.getItem("currentSlot");
+        this.currentSlot = localStorage.getItem("currentSlot") ?? null;
         
         if(data == null)
             return;
 
         this.persistentData = PersistentData.fromJSON(data);
-        EventBus.emit("setting:change", this.persistentData.settingConfiguration);
     },
 
     updateGameSlot(slotId, gameSlotData) {

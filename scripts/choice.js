@@ -5,7 +5,6 @@ import { ChoiceNode } from './storyNodes.js';
 
 export const Choice = {
     initialize() {
-        EventBus.on("choices:triggered", (options) => this.show(options));
         EventBus.on("choice:selected", () => this.hideThePopUp());
 
         EventBus.on("node:enter", node => {

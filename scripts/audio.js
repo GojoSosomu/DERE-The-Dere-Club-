@@ -35,10 +35,7 @@ export const Audio = {
         this.bgm.src = path;
         this.bgm.currentTime = 0;
         this.updateVolume();
-
-        if (this.isAudioAllowed) {
-            this.bgm.play().catch(e => console.error("BGM Play failed:", e));
-        }
+        this.bgm.play().catch(e => console.error("BGM Play failed:", e));
     },
 
     stopBGM() {

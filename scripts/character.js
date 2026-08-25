@@ -149,22 +149,6 @@ export const Character = {
         });
     },
 
-    restoreStage() {
-        DOM.stage.innerHTML = "";
-
-        const savedStage = [...activeStage];
-
-        activeStage = [];
-
-        for (const actor of savedStage) {
-            this.spawnCharacter(
-                actor.character,
-                actor.emotion,
-                actor.position
-            );
-        }
-    },
-
     // functions for making the js modulated
 
     restoreStage(savedStage = null) {
@@ -175,7 +159,7 @@ export const Character = {
         activeStage = [];
 
         for (const actor of stageToLoad) {
-            this.spawnCharacter(actor.character, actor,emotion, actor.position);
+            this.spawnCharacter(actor.character, actor.emotion, actor.position);
         }
     },
 
