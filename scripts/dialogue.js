@@ -8,7 +8,7 @@ import { Sleep } from './utils.js';
 
 export const Dialogue = {
     isTyping: false,
-    skipRequested: false,
+    typingToken: 0,
 
     initialize() {
         this.currentText = "";
@@ -54,10 +54,10 @@ export const Dialogue = {
     },
 
     async type(text, speaker) {
+        const myToken = ++this.typingToken;
         this.isTyping = true;
-        this.skipRequested = false;
 
-        for (let i = 0; i <= text.length && this.isTyping; i++) {
+        for (let i = 0; i <= text.length && this.typingToken === myToken; i++) {
             this.write(text.slice(0, i));
 
             if (text[i] && text[i] !== " " && i % 4 === 0) {
@@ -71,7 +71,7 @@ export const Dialogue = {
             await Sleep(delay);
         }
 
-        this.isTyping = false;
+        if (this.typingToken === myToken) this.isTyping = false;
     },
 
     inverseLerp(value, min, max) {
@@ -79,8 +79,8 @@ export const Dialogue = {
     },
 
     finishTyping() {
-        this.skipRequested = true;
         this.write(this.currentText);
         this.isTyping = false;
+        this.typingToken++;
     }
 };

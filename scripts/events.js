@@ -49,8 +49,8 @@ export const Events = {
         });
 
         on(document, "keydown", (e) => {
-            if (e.code !== "Space")
-                return;
+            if (e.code !== "Space") return;
+            if (DOM.currentPage !== DOM.pages.gameplay) return;
 
             e.preventDefault();
 
