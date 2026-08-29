@@ -10,38 +10,22 @@ export class Scene {
         this.lastNode = null;
     }
 
-    findNode(id) {
-        return this.#dfs(this.firstNode, id, new Set());
-    }
+    findNode(targetId) {
+        const stack = [this.firstNode];
+        const visited = new Set();
 
-    #dfs(node, nodeId, visited) {
-        if(node == null || visited.has(node))
-            return null;
+        while (stack.length > 0) {
+            const node = stack.pop();
+            if (node == null || visited.has(node)) continue;
+            if (node.id === targetId) return node;
+                visited.add(node);
 
-        if(node.id === nodeId)
-            return node;
-
-        visited.add(node);
-
-        if(node instanceof ChoiceNode) {
-            for(const choice of node.choices) {
-                const found = this.#dfs(
-                    choice.next,
-                    nodeId,
-                    visited
-                );
-
-                if(found != null)
-                    return found;
+            if (node instanceof ChoiceNode) {
+                for (const choice of node.choices) stack.push(choice.next);
+            } else {
+                stack.push(node.next);
             }
-
-            return null;
         }
-
-        return this.#dfs(
-            node.next,
-            nodeId,
-            visited
-        );
+        return null;
     }
 }
