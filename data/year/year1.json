@@ -5,55 +5,229 @@
     "prologue": {
       "background": "hallway",
       "dialogue": [
-        { "type": "speaker", "speaker": "narrator", "text": "Ah, yes. NU Academy." },
-        { "type": "speaker", "speaker": "narrator", "text": "Normal Unity Academy." },
-        { "type": "speaker", "speaker": "narrator", "text": "Where students arrive from every nation, every background, every walk of life." },
-        { "type": "speaker", "speaker": "narrator", "text": "United under one roof." },
-        { "type": "speaker", "speaker": "narrator", "text": "Learning, growing, experiencing side by side." },
-        { "type": "speaker", "speaker": "narrator", "text": "No discrimination. No prejudice. No favoring one place over another." },
-        { "type": "speaker", "speaker": "narrator", "text": "At least, that's the idea." },
-        { "type": "speaker", "speaker": "narrator", "text": "And you, my friend, are about to experience it firsthand." },
-        { "type": "speaker", "speaker": "narrator", "text": "A rare kind of peace, in your own generation." },
-        { "type": "speaker", "speaker": "narrator", "text": "You'll learn who you are here." },
-        { "type": "speaker", "speaker": "narrator", "text": "Or maybe, who you become." },
-        { "type": "speaker", "speaker": "narrator", "text": "Life has a way of changing people." },
-        { "type": "speaker", "speaker": "narrator", "text": "And someone young, like you, is exactly the kind who changes easiest." },
-        { "type": "speaker", "speaker": "narrator", "text": "So. Let's see who you'll be by the end of this." },
-        { "type": "speaker", "speaker": "narrator", "text": "Your first day starts now." },
-        { "type": "goto", "scene": "door_knock" }
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Ah, yes. NU Academy.",
+          "id": "prologue/0"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Normal Unity Academy.",
+          "id": "prologue/1"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Where students arrive from every nation, every background, every walk of life.",
+          "id": "prologue/2"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "United under one roof.",
+          "id": "prologue/3"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Learning, growing, experiencing side by side.",
+          "id": "prologue/4"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "No discrimination. No prejudice. No favoring one place over another.",
+          "id": "prologue/5"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "At least, that's the idea.",
+          "id": "prologue/6"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "And you, my friend, are about to experience it firsthand.",
+          "id": "prologue/7"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "A rare kind of peace, in your own generation.",
+          "id": "prologue/8"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "You'll learn who you are here.",
+          "id": "prologue/9"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Or maybe, who you become.",
+          "id": "prologue/10"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Life has a way of changing people.",
+          "id": "prologue/11"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "And someone young, like you, is exactly the kind who changes easiest.",
+          "id": "prologue/12"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "So. Let's see who you'll be by the end of this.",
+          "id": "prologue/13"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Your first day starts now.",
+          "id": "prologue/14"
+        },
+        {
+          "type": "goto",
+          "scene": "door_knock",
+          "id": "prologue/15"
+        }
       ]
     },
     "hallway_wander": {
       "background": "hallway",
       "dialogue": [
-        { "type": "speaker", "speaker": "narrator", "text": "Class just let out." },
-        { "type": "speaker", "speaker": "narrator", "text": "You wander the hallway, still half-thinking about the Computer Science lecture." },
-        { "type": "speaker", "speaker": "narrator", "text": "Genuinely. Harder than curing cancer." },
-        { "type": "speaker", "speaker": "narrator", "text": "You're fairly sure of it." },
-        { "type": "speaker", "speaker": "narrator", "text": "At least curing cancer doesn't punish a missing semicolon." },
-        { "type": "speaker", "speaker": "narrator", "text": "Lost in that thought, you keep walking." },
-        { "type": "speaker", "speaker": "narrator", "text": "Then you see it." },
-        { "type": "speaker", "speaker": "narrator", "text": "A door. Unremarkable, really." },
-        { "type": "speaker", "speaker": "narrator", "text": "You don't know why you stop in front of it." },
-        { "type": "speaker", "speaker": "narrator", "text": "You don't know why your hand is already raised." },
-        { "type": "speaker", "speaker": "narrator", "text": "Maybe it's nothing." },
-        { "type": "speaker", "speaker": "narrator", "text": "Or maybe, somehow, this is exactly where you're supposed to be." },
-        { "type": "speaker", "speaker": "narrator", "text": "You knock." },
-        { "type": "goto", "scene": "door_knock" }
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Class just let out.",
+          "id": "hallway_wander/0"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "You wander the hallway, still half-thinking about the Computer Science lecture.",
+          "id": "hallway_wander/1"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Genuinely. Harder than curing cancer.",
+          "id": "hallway_wander/2"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "You're fairly sure of it.",
+          "id": "hallway_wander/3"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "At least curing cancer doesn't punish a missing semicolon.",
+          "id": "hallway_wander/4"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Lost in that thought, you keep walking.",
+          "id": "hallway_wander/5"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Then you see it.",
+          "id": "hallway_wander/6"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "A door. Unremarkable, really.",
+          "id": "hallway_wander/7"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "You don't know why you stop in front of it.",
+          "id": "hallway_wander/8"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "You don't know why your hand is already raised.",
+          "id": "hallway_wander/9"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Maybe it's nothing.",
+          "id": "hallway_wander/10"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Or maybe, somehow, this is exactly where you're supposed to be.",
+          "id": "hallway_wander/11"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "You knock.",
+          "id": "hallway_wander/12"
+        },
+        {
+          "type": "goto",
+          "scene": "door_knock",
+          "id": "hallway_wander/13"
+        }
       ]
     },
     "door_knock": {
       "background": "clubroom_door",
       "dialogue": [
-        { "type": "speaker", "speaker": "narrator", "text": "The door swings open before you can even lower your hand." },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "The door swings open before you can even lower your hand.",
+          "id": "door_knock/0"
+        },
         {
           "type": "speaker",
           "speaker": "penny",
           "text": "...Can I help you?",
-          "effects": [{ "type": "relationship", "relations": [{ "character": "penny", "amount": -2 }] }]
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "penny",
+                  "amount": -2
+                }
+              ]
+            }
+          ],
+          "id": "door_knock/1"
         },
-        { "type": "speaker", "speaker": "penny", "text": "Because from where I'm standing, someone just knocked on a door for no reason." },
-        { "type": "speaker", "speaker": "penny", "text": "Which, last I checked, isn't a thing normal people do." },
+        {
+          "type": "speaker",
+          "speaker": "penny",
+          "text": "Because from where I'm standing, someone just knocked on a door for no reason.",
+          "id": "door_knock/2"
+        },
+        {
+          "type": "speaker",
+          "speaker": "penny",
+          "text": "Which, last I checked, isn't a thing normal people do.",
+          "id": "door_knock/3"
+        },
         {
           "type": "choice",
           "choices": [
@@ -64,11 +238,37 @@
                   "type": "speaker",
                   "speaker": "penny",
                   "text": "\"Easy\"?",
-                  "effects": [{ "type": "relationship", "relations": [{ "character": "penny", "amount": -2 }] }]
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "penny",
+                          "amount": -2
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "door_knock/4/c0/0"
                 },
-                { "type": "speaker", "speaker": "penny", "text": "You knock on a random door with no reason, and I'm the hostile one." },
-                { "type": "speaker", "speaker": "penny", "text": "Curious. Sure. That's a word for it." },
-                { "type": "speaker", "speaker": "penny", "text": "So what do you actually want?" }
+                {
+                  "type": "speaker",
+                  "speaker": "penny",
+                  "text": "You knock on a random door with no reason, and I'm the hostile one.",
+                  "id": "door_knock/4/c0/1"
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "penny",
+                  "text": "Curious. Sure. That's a word for it.",
+                  "id": "door_knock/4/c0/2"
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "penny",
+                  "text": "So what do you actually want?",
+                  "id": "door_knock/4/c0/3"
+                }
               ]
             },
             {
@@ -78,95 +278,344 @@
                   "type": "speaker",
                   "speaker": "penny",
                   "text": "It \"felt right.\"",
-                  "effects": [{ "type": "relationship", "relations": [{ "character": "penny", "amount": -1 }] }]
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "penny",
+                          "amount": -1
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "door_knock/4/c1/0"
                 },
-                { "type": "speaker", "speaker": "penny", "text": "That's not an answer, that's a horoscope." },
-                { "type": "speaker", "speaker": "penny", "text": "So what do you actually want?" }
+                {
+                  "type": "speaker",
+                  "speaker": "penny",
+                  "text": "That's not an answer, that's a horoscope.",
+                  "id": "door_knock/4/c1/1"
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "penny",
+                  "text": "So what do you actually want?",
+                  "id": "door_knock/4/c1/2"
+                }
               ]
             }
-          ]
+          ],
+          "id": "door_knock/4"
         },
         {
           "type": "speaker",
           "speaker": "yuri",
           "text": "Penny.",
-          "effects": [{ "type": "relationship", "relations": [{ "character": "yuri", "amount": 1 }] }]
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "yuri",
+                  "amount": 1
+                }
+              ]
+            }
+          ],
+          "id": "door_knock/5"
         },
-        { "type": "speaker", "speaker": "yuri", "text": "That's not how you greet a guest." },
+        {
+          "type": "speaker",
+          "speaker": "yuri",
+          "text": "That's not how you greet a guest.",
+          "id": "door_knock/6"
+        },
         {
           "type": "speaker",
           "speaker": "penny",
           "text": "They knocked for no reason.",
-          "effects": [{ "type": "relationship", "relations": [{ "character": "penny", "amount": -1 }] }]
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "penny",
+                  "amount": -1
+                }
+              ]
+            }
+          ],
+          "id": "door_knock/7"
         },
-        { "type": "speaker", "speaker": "yuri", "text": "That doesn't mean you get to interrogate them on the doorstep." },
+        {
+          "type": "speaker",
+          "speaker": "yuri",
+          "text": "That doesn't mean you get to interrogate them on the doorstep.",
+          "id": "door_knock/8"
+        },
         {
           "type": "speaker",
           "speaker": "penny",
           "text": "...Fine. Whatever.",
-          "effects": [{ "type": "relationship", "relations": [{ "character": "penny", "amount": 1 }] }]
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "penny",
+                  "amount": 1
+                }
+              ]
+            }
+          ],
+          "id": "door_knock/9"
         },
-        { "type": "speaker", "speaker": "narrator", "text": "Penny steps back, arms crossed, still watching you carefully." },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Penny steps back, arms crossed, still watching you carefully.",
+          "id": "door_knock/10"
+        },
         {
           "type": "speaker",
           "speaker": "yuri",
           "text": "Sorry about that.",
-          "effects": [{ "type": "relationship", "relations": [{ "character": "yuri", "amount": 2 }] }]
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "yuri",
+                  "amount": 2
+                }
+              ]
+            }
+          ],
+          "id": "door_knock/11"
         },
-        { "type": "speaker", "speaker": "yuri", "text": "I'm Yuri. Vice President of this club." },
-        { "type": "speaker", "speaker": "yuri", "text": "Please, come in." },
-        { "type": "speaker", "speaker": "penny", "text": "Wait, we don't even know if they-" },
+        {
+          "type": "speaker",
+          "speaker": "yuri",
+          "text": "I'm Yuri. Vice President of this club.",
+          "id": "door_knock/12"
+        },
+        {
+          "type": "speaker",
+          "speaker": "yuri",
+          "text": "Please, come in.",
+          "id": "door_knock/13"
+        },
+        {
+          "type": "speaker",
+          "speaker": "penny",
+          "text": "Wait, we don't even know if they-",
+          "id": "door_knock/14"
+        },
         {
           "type": "speaker",
           "speaker": "yuri",
           "text": "We're happy to have you.",
-          "effects": [{ "type": "relationship", "relations": [{ "character": "yuri", "amount": 2 }] }]
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "yuri",
+                  "amount": 2
+                }
+              ]
+            }
+          ],
+          "id": "door_knock/15"
         },
-        { "type": "speaker", "speaker": "yuri", "text": "Truly. I apologize for the door." },
-        { "type": "speaker", "speaker": "yuri", "text": "It won't happen again." },
-        { "type": "speaker", "speaker": "narrator", "text": "Yuri steps aside, holding the door open." },
-        { "type": "speaker", "speaker": "narrator", "text": "Whatever compelled you to knock, it's led you here." },
-        { "type": "speaker", "speaker": "narrator", "text": "You step inside." },
-        { "type": "goto", "scene": "clubroom_meet" }
+        {
+          "type": "speaker",
+          "speaker": "yuri",
+          "text": "Truly. I apologize for the door.",
+          "id": "door_knock/16"
+        },
+        {
+          "type": "speaker",
+          "speaker": "yuri",
+          "text": "It won't happen again.",
+          "id": "door_knock/17"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Yuri steps aside, holding the door open.",
+          "id": "door_knock/18"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Whatever compelled you to knock, it's led you here.",
+          "id": "door_knock/19"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "You step inside.",
+          "id": "door_knock/20"
+        },
+        {
+          "type": "goto",
+          "scene": "clubroom_meet",
+          "id": "door_knock/21"
+        }
       ]
     },
     "clubroom_meet": {
       "background": "clubroom",
       "dialogue": [
-        { "type": "speaker", "speaker": "narrator", "text": "The room is warmer than the hallway. Papers, sketches, and half-finished projects cover every table." },
-        { "type": "speaker", "speaker": "narrator", "text": "Five people are inside." },
-        { "type": "speaker", "speaker": "narrator", "text": "Penny and Yuri, already familiar." },
-        { "type": "speaker", "speaker": "erika", "text": "That's not really how I'd put it." },
-        { "type": "speaker", "speaker": "ali", "text": "No, I know, I just mean-" },
-        { "type": "speaker", "speaker": "erika", "text": "It's fine. Go on." },
-        { "type": "speaker", "speaker": "narrator", "text": "Ali tries again. It doesn't quite land the second time either." },
-        { "type": "speaker", "speaker": "narrator", "text": "Erika's calm has a way of taking the wind out of a room." },
-        { "type": "speaker", "speaker": "narrator", "text": "Across the room, John watches quietly, saying nothing." },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "The room is warmer than the hallway. Papers, sketches, and half-finished projects cover every table.",
+          "id": "clubroom_meet/0"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Five people are inside.",
+          "id": "clubroom_meet/1"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Penny and Yuri, already familiar.",
+          "id": "clubroom_meet/2"
+        },
+        {
+          "type": "speaker",
+          "speaker": "erika",
+          "text": "That's not really how I'd put it.",
+          "id": "clubroom_meet/3"
+        },
+        {
+          "type": "speaker",
+          "speaker": "ali",
+          "text": "No, I know, I just mean-",
+          "id": "clubroom_meet/4"
+        },
+        {
+          "type": "speaker",
+          "speaker": "erika",
+          "text": "It's fine. Go on.",
+          "id": "clubroom_meet/5"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Ali tries again. It doesn't quite land the second time either.",
+          "id": "clubroom_meet/6"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Erika's calm has a way of taking the wind out of a room.",
+          "id": "clubroom_meet/7"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Across the room, John watches quietly, saying nothing.",
+          "id": "clubroom_meet/8"
+        },
         {
           "type": "speaker",
           "speaker": "john",
           "text": "...Oh.",
-          "effects": [{ "type": "relationship", "relations": [{ "character": "john", "amount": 1 }] }]
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "john",
+                  "amount": 1
+                }
+              ]
+            }
+          ],
+          "id": "clubroom_meet/9"
         },
-        { "type": "speaker", "speaker": "john", "text": "Hey. We have a guest." },
+        {
+          "type": "speaker",
+          "speaker": "john",
+          "text": "Hey. We have a guest.",
+          "id": "clubroom_meet/10"
+        },
         {
           "type": "speaker",
           "speaker": "ali",
           "text": "Wait, seriously?",
-          "effects": [{ "type": "relationship", "relations": [{ "character": "ali", "amount": 2 }] }]
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "ali",
+                  "amount": 2
+                }
+              ]
+            }
+          ],
+          "id": "clubroom_meet/11"
         },
-        { "type": "speaker", "speaker": "ali", "text": "Nobody told me we had a guest." },
-        { "type": "speaker", "speaker": "ali", "text": "I'm Ali. President of the Creative Arts Club." },
+        {
+          "type": "speaker",
+          "speaker": "ali",
+          "text": "Nobody told me we had a guest.",
+          "id": "clubroom_meet/12"
+        },
+        {
+          "type": "speaker",
+          "speaker": "ali",
+          "text": "I'm Ali. President of the Creative Arts Club.",
+          "id": "clubroom_meet/13"
+        },
         {
           "type": "speaker",
           "speaker": "erika",
           "text": "...",
-          "effects": [{ "type": "relationship", "relations": [{ "character": "erika", "amount": 1 }] }]
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "erika",
+                  "amount": 1
+                }
+              ]
+            }
+          ],
+          "id": "clubroom_meet/14"
         },
-        { "type": "speaker", "speaker": "narrator", "text": "Erika studies you for a moment. Quiet. Deliberate." },
-        { "type": "speaker", "speaker": "erika", "text": "Let me guess." },
-        { "type": "speaker", "speaker": "erika", "text": "Curious about the club everyone calls the \"Dere Club\" behind our backs." },
-        { "type": "speaker", "speaker": "erika", "text": "It happens more than you'd think." },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Erika studies you for a moment. Quiet. Deliberate.",
+          "id": "clubroom_meet/15"
+        },
+        {
+          "type": "speaker",
+          "speaker": "erika",
+          "text": "Let me guess.",
+          "id": "clubroom_meet/16"
+        },
+        {
+          "type": "speaker",
+          "speaker": "erika",
+          "text": "Curious about the club everyone calls the \"Dere Club\" behind our backs.",
+          "id": "clubroom_meet/17"
+        },
+        {
+          "type": "speaker",
+          "speaker": "erika",
+          "text": "It happens more than you'd think.",
+          "id": "clubroom_meet/18"
+        },
         {
           "type": "choice",
           "choices": [
@@ -177,15 +626,47 @@
                   "type": "speaker",
                   "speaker": "ali",
                   "text": "That counts!",
-                  "effects": [{ "type": "relationship", "relations": [{ "character": "ali", "amount": 3 }] }]
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "ali",
+                          "amount": 3
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "clubroom_meet/19/c0/0"
                 },
-                { "type": "speaker", "speaker": "ali", "text": "You should join. Seriously, we'd love to have you." },
-                { "type": "speaker", "speaker": "narrator", "text": "You politely decline, at least for now." },
+                {
+                  "type": "speaker",
+                  "speaker": "ali",
+                  "text": "You should join. Seriously, we'd love to have you.",
+                  "id": "clubroom_meet/19/c0/1"
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "narrator",
+                  "text": "You politely decline, at least for now.",
+                  "id": "clubroom_meet/19/c0/2"
+                },
                 {
                   "type": "speaker",
                   "speaker": "ali",
                   "text": "...Okay. Fair. Worth a shot.",
-                  "effects": [{ "type": "relationship", "relations": [{ "character": "ali", "amount": -1 }] }]
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "ali",
+                          "amount": -1
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "clubroom_meet/19/c0/3"
                 }
               ]
             },
@@ -196,42 +677,128 @@
                   "type": "speaker",
                   "speaker": "erika",
                   "text": "It's what people call us.",
-                  "effects": [{ "type": "relationship", "relations": [{ "character": "erika", "amount": 2 }] }]
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "erika",
+                          "amount": 2
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "clubroom_meet/19/c1/0"
                 },
-                { "type": "speaker", "speaker": "erika", "text": "This club tends to attract... unique people." },
-                { "type": "speaker", "speaker": "erika", "text": "Ali, for example, gets a little too excited whenever someone shows interest." },
-                { "type": "speaker", "speaker": "erika", "text": "It puts a lot of unintended pressure on people." },
-                { "type": "speaker", "speaker": "erika", "text": "Ali, ignore what I just said." },
+                {
+                  "type": "speaker",
+                  "speaker": "erika",
+                  "text": "This club tends to attract... unique people.",
+                  "id": "clubroom_meet/19/c1/1"
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "erika",
+                  "text": "Ali, for example, gets a little too excited whenever someone shows interest.",
+                  "id": "clubroom_meet/19/c1/2"
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "erika",
+                  "text": "It puts a lot of unintended pressure on people.",
+                  "id": "clubroom_meet/19/c1/3"
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "erika",
+                  "text": "Ali, ignore what I just said.",
+                  "id": "clubroom_meet/19/c1/4"
+                },
                 {
                   "type": "speaker",
                   "speaker": "penny",
                   "text": "She's not wrong.",
-                  "effects": [{ "type": "relationship", "relations": [{ "character": "penny", "amount": 2 }] }]
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "penny",
+                          "amount": 2
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "clubroom_meet/19/c1/5"
                 },
                 {
                   "type": "speaker",
                   "speaker": "ali",
                   "text": "I take offense to that.",
-                  "effects": [{ "type": "relationship", "relations": [{ "character": "ali", "amount": -1 }] }]
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "ali",
+                          "amount": -1
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "clubroom_meet/19/c1/6"
                 },
                 {
                   "type": "speaker",
                   "speaker": "john",
                   "text": "You kind of just proved her point.",
-                  "effects": [{ "type": "relationship", "relations": [{ "character": "john", "amount": 2 }] }]
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "john",
+                          "amount": 2
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "clubroom_meet/19/c1/7"
                 },
-                { "type": "speaker", "speaker": "ali", "text": "...I did not." }
+                {
+                  "type": "speaker",
+                  "speaker": "ali",
+                  "text": "...I did not.",
+                  "id": "clubroom_meet/19/c1/8"
+                }
               ]
             }
-          ]
+          ],
+          "id": "clubroom_meet/19"
         },
         {
           "type": "speaker",
           "speaker": "yuri",
           "text": "Anyway.",
-          "effects": [{ "type": "relationship", "relations": [{ "character": "yuri", "amount": 1 }] }]
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "yuri",
+                  "amount": 1
+                }
+              ]
+            }
+          ],
+          "id": "clubroom_meet/20"
         },
-        { "type": "speaker", "speaker": "yuri", "text": "What actually brings you here?" },
+        {
+          "type": "speaker",
+          "speaker": "yuri",
+          "text": "What actually brings you here?",
+          "id": "clubroom_meet/21"
+        },
         {
           "type": "choice",
           "choices": [
@@ -242,16 +809,48 @@
                   "type": "speaker",
                   "speaker": "yuri",
                   "text": "That's a surprisingly honest answer.",
-                  "effects": [{ "type": "relationship", "relations": [{ "character": "yuri", "amount": 3 }] }]
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "yuri",
+                          "amount": 3
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "clubroom_meet/22/c0/0"
                 },
-                { "type": "speaker", "speaker": "yuri", "text": "I like that more than you'd think." },
+                {
+                  "type": "speaker",
+                  "speaker": "yuri",
+                  "text": "I like that more than you'd think.",
+                  "id": "clubroom_meet/22/c0/1"
+                },
                 {
                   "type": "speaker",
                   "speaker": "penny",
                   "text": "It's still a weird answer.",
-                  "effects": [{ "type": "relationship", "relations": [{ "character": "penny", "amount": -1 }] }]
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "penny",
+                          "amount": -1
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "clubroom_meet/22/c0/2"
                 },
-                { "type": "speaker", "speaker": "penny", "text": "But I guess weird tracks, considering the door thing." }
+                {
+                  "type": "speaker",
+                  "speaker": "penny",
+                  "text": "But I guess weird tracks, considering the door thing.",
+                  "id": "clubroom_meet/22/c0/3"
+                }
               ]
             },
             {
@@ -261,87 +860,308 @@
                   "type": "speaker",
                   "speaker": "erika",
                   "text": "Rumors.",
-                  "effects": [{ "type": "relationship", "relations": [{ "character": "erika", "amount": -1 }] }]
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "erika",
+                          "amount": -1
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "clubroom_meet/22/c1/0"
                 },
-                { "type": "speaker", "speaker": "erika", "text": "Interesting. Which version did you hear?" },
+                {
+                  "type": "speaker",
+                  "speaker": "erika",
+                  "text": "Interesting. Which version did you hear?",
+                  "id": "clubroom_meet/22/c1/1"
+                },
                 {
                   "type": "speaker",
                   "speaker": "ali",
                   "text": "Please say the good version.",
-                  "effects": [{ "type": "relationship", "relations": [{ "character": "ali", "amount": 1 }] }]
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "ali",
+                          "amount": 1
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "clubroom_meet/22/c1/2"
                 },
-                { "type": "speaker", "speaker": "narrator", "text": "You admit you're not entirely sure there was a \"good version.\"" },
-                { "type": "speaker", "speaker": "ali", "text": "...Yeah, that tracks too." }
+                {
+                  "type": "speaker",
+                  "speaker": "narrator",
+                  "text": "You admit you're not entirely sure there was a \"good version.\"",
+                  "id": "clubroom_meet/22/c1/3"
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "ali",
+                  "text": "...Yeah, that tracks too.",
+                  "id": "clubroom_meet/22/c1/4"
+                }
               ]
             }
-          ]
+          ],
+          "id": "clubroom_meet/22"
         },
-        { "type": "speaker", "speaker": "narrator", "text": "The conversation settles into something easier after that." },
-        { "type": "speaker", "speaker": "narrator", "text": "Not quite comfortable. Not yet. But not so much like standing in a stranger's living room, either." },
-        { "type": "speaker", "speaker": "john", "text": "You don't have to decide anything today, you know." },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "The conversation settles into something easier after that.",
+          "id": "clubroom_meet/23"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Not quite comfortable. Not yet. But not so much like standing in a stranger's living room, either.",
+          "id": "clubroom_meet/24"
+        },
+        {
+          "type": "speaker",
+          "speaker": "john",
+          "text": "You don't have to decide anything today, you know.",
+          "id": "clubroom_meet/25"
+        },
         {
           "type": "speaker",
           "speaker": "john",
           "text": "Whether you join, I mean.",
-          "effects": [{ "type": "relationship", "relations": [{ "character": "john", "amount": 2 }] }]
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "john",
+                  "amount": 2
+                }
+              ]
+            }
+          ],
+          "id": "clubroom_meet/26"
         },
-        { "type": "speaker", "speaker": "john", "text": "Most people don't." },
-        { "type": "speaker", "speaker": "penny", "text": "Most people also don't knock on doors for no reason." },
+        {
+          "type": "speaker",
+          "speaker": "john",
+          "text": "Most people don't.",
+          "id": "clubroom_meet/27"
+        },
+        {
+          "type": "speaker",
+          "speaker": "penny",
+          "text": "Most people also don't knock on doors for no reason.",
+          "id": "clubroom_meet/28"
+        },
         {
           "type": "speaker",
           "speaker": "penny",
           "text": "So maybe don't compare them.",
-          "effects": [{ "type": "relationship", "relations": [{ "character": "penny", "amount": 1 }] }]
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "penny",
+                  "amount": 1
+                }
+              ]
+            }
+          ],
+          "id": "clubroom_meet/29"
         },
-        { "type": "speaker", "speaker": "narrator", "text": "Somewhere outside, a bell rings, muffled through the walls." },
-        { "type": "speaker", "speaker": "yuri", "text": "That's the period bell." },
-        { "type": "speaker", "speaker": "yuri", "text": "You should probably get to your next class." },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Somewhere outside, a bell rings, muffled through the walls.",
+          "id": "clubroom_meet/30"
+        },
+        {
+          "type": "speaker",
+          "speaker": "yuri",
+          "text": "That's the period bell.",
+          "id": "clubroom_meet/31"
+        },
+        {
+          "type": "speaker",
+          "speaker": "yuri",
+          "text": "You should probably get to your next class.",
+          "id": "clubroom_meet/32"
+        },
         {
           "type": "speaker",
           "speaker": "yuri",
           "text": "But you're welcome back. Whenever.",
-          "effects": [{ "type": "relationship", "relations": [{ "character": "yuri", "amount": 2 }] }]
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "yuri",
+                  "amount": 2
+                }
+              ]
+            }
+          ],
+          "id": "clubroom_meet/33"
         },
-        { "type": "speaker", "speaker": "ali", "text": "Yeah, seriously, come back!" },
-        { "type": "speaker", "speaker": "erika", "text": "...It was good to meet you." },
-        { "type": "speaker", "speaker": "john", "text": "See you around, maybe." },
-        { "type": "speaker", "speaker": "penny", "text": "...Don't knock next time. Just come in." },
+        {
+          "type": "speaker",
+          "speaker": "ali",
+          "text": "Yeah, seriously, come back!",
+          "id": "clubroom_meet/34"
+        },
+        {
+          "type": "speaker",
+          "speaker": "erika",
+          "text": "...It was good to meet you.",
+          "id": "clubroom_meet/35"
+        },
+        {
+          "type": "speaker",
+          "speaker": "john",
+          "text": "See you around, maybe.",
+          "id": "clubroom_meet/36"
+        },
+        {
+          "type": "speaker",
+          "speaker": "penny",
+          "text": "...Don't knock next time. Just come in.",
+          "id": "clubroom_meet/37"
+        },
         {
           "type": "speaker",
           "speaker": "penny",
           "text": "It's less weird that way.",
-          "effects": [{ "type": "relationship", "relations": [{ "character": "penny", "amount": 1 }] }]
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "penny",
+                  "amount": 1
+                }
+              ]
+            }
+          ],
+          "id": "clubroom_meet/38"
         },
-        { "type": "goto", "scene": "day_end" }
+        {
+          "type": "goto",
+          "scene": "day_end",
+          "id": "clubroom_meet/39"
+        }
       ]
     },
     "day_end": {
       "background": "hallway",
       "dialogue": [
-        { "type": "speaker", "speaker": "narrator", "text": "You step back out into the hallway." },
-        { "type": "speaker", "speaker": "narrator", "text": "The door closes softly behind you, and for a moment you just stand there." },
-        { "type": "speaker", "speaker": "narrator", "text": "Five names. Five very different people." },
-        { "type": "speaker", "speaker": "narrator", "text": "You didn't plan for any of this. You still don't fully understand why you knocked." },
-        { "type": "speaker", "speaker": "narrator", "text": "But something about that room didn't feel like nothing." },
-        { "type": "speaker", "speaker": "narrator", "text": "Class isn't over yet, though." },
-        { "type": "speaker", "speaker": "narrator", "text": "There's still the rest of the day to get through." },
-        { "type": "goto", "scene": "vignette_ali" }
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "You step back out into the hallway.",
+          "id": "day_end/0"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "The door closes softly behind you, and for a moment you just stand there.",
+          "id": "day_end/1"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Five names. Five very different people.",
+          "id": "day_end/2"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "You didn't plan for any of this. You still don't fully understand why you knocked.",
+          "id": "day_end/3"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "But something about that room didn't feel like nothing.",
+          "id": "day_end/4"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Class isn't over yet, though.",
+          "id": "day_end/5"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "There's still the rest of the day to get through.",
+          "id": "day_end/6"
+        },
+        {
+          "type": "goto",
+          "scene": "vignette_ali",
+          "id": "day_end/7"
+        }
       ]
     },
     "vignette_ali": {
       "background": "courtyard",
       "dialogue": [
-        { "type": "speaker", "speaker": "narrator", "text": "Lunch period. The courtyard is packed, noisy, alive." },
-        { "type": "speaker", "speaker": "narrator", "text": "You spot Ali before he spots you - he's got a clipboard, a sign-up sheet, and the look of someone one rejection away from being politely ignored by everyone." },
-        { "type": "speaker", "speaker": "ali", "text": "Oh - hey! You!" },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Lunch period. The courtyard is packed, noisy, alive.",
+          "id": "vignette_ali/0"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "You spot Ali before he spots you - he's got a clipboard, a sign-up sheet, and the look of someone one rejection away from being politely ignored by everyone.",
+          "id": "vignette_ali/1"
+        },
+        {
+          "type": "speaker",
+          "speaker": "ali",
+          "text": "Oh - hey! You!",
+          "id": "vignette_ali/2"
+        },
         {
           "type": "speaker",
           "speaker": "ali",
           "text": "Perfect timing, actually.",
-          "effects": [{ "type": "relationship", "relations": [{ "character": "ali", "amount": 1 }] }]
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "ali",
+                  "amount": 1
+                }
+              ]
+            }
+          ],
+          "id": "vignette_ali/3"
         },
-        { "type": "speaker", "speaker": "ali", "text": "We're doing a mural for the club fair next month. Recruiting hands, not talent. Talent's optional." },
-        { "type": "speaker", "speaker": "ali", "text": "You interested?" },
+        {
+          "type": "speaker",
+          "speaker": "ali",
+          "text": "We're doing a mural for the club fair next month. Recruiting hands, not talent. Talent's optional.",
+          "id": "vignette_ali/4"
+        },
+        {
+          "type": "speaker",
+          "speaker": "ali",
+          "text": "You interested?",
+          "id": "vignette_ali/5"
+        },
         {
           "type": "choice",
           "choices": [
@@ -352,11 +1172,37 @@
                   "type": "speaker",
                   "speaker": "ali",
                   "text": "Wait, really?",
-                  "effects": [{ "type": "relationship", "relations": [{ "character": "ali", "amount": 3 }] }]
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "ali",
+                          "amount": 3
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "vignette_ali/6/c0/0"
                 },
-                { "type": "speaker", "speaker": "ali", "text": "Okay, don't take this the wrong way, but you're like, the third person all day who didn't immediately say no." },
-                { "type": "speaker", "speaker": "ali", "text": "I'll take it. Seriously, thank you." },
-                { "type": "speaker", "speaker": "narrator", "text": "He scribbles your name down before you can change your mind, grinning the whole time." }
+                {
+                  "type": "speaker",
+                  "speaker": "ali",
+                  "text": "Okay, don't take this the wrong way, but you're like, the third person all day who didn't immediately say no.",
+                  "id": "vignette_ali/6/c0/1"
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "ali",
+                  "text": "I'll take it. Seriously, thank you.",
+                  "id": "vignette_ali/6/c0/2"
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "narrator",
+                  "text": "He scribbles your name down before you can change your mind, grinning the whole time.",
+                  "id": "vignette_ali/6/c0/3"
+                }
               ]
             },
             {
@@ -366,25 +1212,76 @@
                   "type": "speaker",
                   "speaker": "ali",
                   "text": "Ha - yeah, that's fine.",
-                  "effects": [{ "type": "relationship", "relations": [{ "character": "ali", "amount": 1 }] }]
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "ali",
+                          "amount": 1
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "vignette_ali/6/c1/0"
                 },
-                { "type": "speaker", "speaker": "ali", "text": "You say that, but you already came by the club once today, so I've got hope." },
-                { "type": "speaker", "speaker": "narrator", "text": "He says it lightly, but there's something a little hopeful underneath it too." }
+                {
+                  "type": "speaker",
+                  "speaker": "ali",
+                  "text": "You say that, but you already came by the club once today, so I've got hope.",
+                  "id": "vignette_ali/6/c1/1"
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "narrator",
+                  "text": "He says it lightly, but there's something a little hopeful underneath it too.",
+                  "id": "vignette_ali/6/c1/2"
+                }
               ]
             }
-          ]
+          ],
+          "id": "vignette_ali/6"
         },
-        { "type": "speaker", "speaker": "narrator", "text": "Someone else calls his name from across the courtyard, and just like that, he's off again - clipboard raised, smile already back on." },
-        { "type": "goto", "scene": "vignette_erika" }
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Someone else calls his name from across the courtyard, and just like that, he's off again - clipboard raised, smile already back on.",
+          "id": "vignette_ali/7"
+        },
+        {
+          "type": "goto",
+          "scene": "vignette_erika",
+          "id": "vignette_ali/8"
+        }
       ]
     },
     "vignette_erika": {
       "background": "library",
       "dialogue": [
-        { "type": "speaker", "speaker": "narrator", "text": "The library is nearly empty this period. You find Erika at a corner table, surrounded by color-coded folders, working in complete silence." },
-        { "type": "speaker", "speaker": "erika", "text": "You found me." },
-        { "type": "speaker", "speaker": "erika", "text": "That wasn't difficult, I imagine. I'm always here." },
-        { "type": "speaker", "speaker": "erika", "text": "Did you need something, or is this a social visit?" },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "The library is nearly empty this period. You find Erika at a corner table, surrounded by color-coded folders, working in complete silence.",
+          "id": "vignette_erika/0"
+        },
+        {
+          "type": "speaker",
+          "speaker": "erika",
+          "text": "You found me.",
+          "id": "vignette_erika/1"
+        },
+        {
+          "type": "speaker",
+          "speaker": "erika",
+          "text": "That wasn't difficult, I imagine. I'm always here.",
+          "id": "vignette_erika/2"
+        },
+        {
+          "type": "speaker",
+          "speaker": "erika",
+          "text": "Did you need something, or is this a social visit?",
+          "id": "vignette_erika/3"
+        },
         {
           "type": "choice",
           "choices": [
@@ -395,11 +1292,37 @@
                   "type": "speaker",
                   "speaker": "erika",
                   "text": "...A social visit, then.",
-                  "effects": [{ "type": "relationship", "relations": [{ "character": "erika", "amount": 2 }] }]
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "erika",
+                          "amount": 2
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "vignette_erika/4/c0/0"
                 },
-                { "type": "speaker", "speaker": "erika", "text": "Club budgeting. Ali has excellent ideas and no concept of what things cost." },
-                { "type": "speaker", "speaker": "erika", "text": "Someone has to be the adult in the room. It's usually me." },
-                { "type": "speaker", "speaker": "narrator", "text": "She says it flatly, but there's the faintest trace of fondness underneath it." }
+                {
+                  "type": "speaker",
+                  "speaker": "erika",
+                  "text": "Club budgeting. Ali has excellent ideas and no concept of what things cost.",
+                  "id": "vignette_erika/4/c0/1"
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "erika",
+                  "text": "Someone has to be the adult in the room. It's usually me.",
+                  "id": "vignette_erika/4/c0/2"
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "narrator",
+                  "text": "She says it flatly, but there's the faintest trace of fondness underneath it.",
+                  "id": "vignette_erika/4/c0/3"
+                }
               ]
             },
             {
@@ -409,27 +1332,88 @@
                   "type": "speaker",
                   "speaker": "erika",
                   "text": "It wasn't a bother.",
-                  "effects": [{ "type": "relationship", "relations": [{ "character": "erika", "amount": 1 }] }]
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "erika",
+                          "amount": 1
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "vignette_erika/4/c1/0"
                 },
-                { "type": "speaker", "speaker": "erika", "text": "You're allowed to interrupt me. I would have told you if it were a bad time." },
-                { "type": "speaker", "speaker": "narrator", "text": "It's about as close to \"stay\" as Erika is likely to say out loud." }
+                {
+                  "type": "speaker",
+                  "speaker": "erika",
+                  "text": "You're allowed to interrupt me. I would have told you if it were a bad time.",
+                  "id": "vignette_erika/4/c1/1"
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "narrator",
+                  "text": "It's about as close to \"stay\" as Erika is likely to say out loud.",
+                  "id": "vignette_erika/4/c1/2"
+                }
               ]
             }
-          ]
+          ],
+          "id": "vignette_erika/4"
         },
-        { "type": "speaker", "speaker": "erika", "text": "In any case. I hope the rest of your classes go well." },
-        { "type": "speaker", "speaker": "erika", "text": "That's not a dismissal. I mean it." },
-        { "type": "goto", "scene": "vignette_john" }
+        {
+          "type": "speaker",
+          "speaker": "erika",
+          "text": "In any case. I hope the rest of your classes go well.",
+          "id": "vignette_erika/5"
+        },
+        {
+          "type": "speaker",
+          "speaker": "erika",
+          "text": "That's not a dismissal. I mean it.",
+          "id": "vignette_erika/6"
+        },
+        {
+          "type": "goto",
+          "scene": "vignette_john",
+          "id": "vignette_erika/7"
+        }
       ]
     },
     "vignette_john": {
       "background": "hallway",
       "dialogue": [
-        { "type": "speaker", "speaker": "narrator", "text": "You almost don't notice John, tucked into a window alcove near the stairwell, sketchbook balanced on his knee." },
-        { "type": "speaker", "speaker": "narrator", "text": "He notices you first, and immediately looks like he regrets it." },
-        { "type": "speaker", "speaker": "john", "text": "Oh - hey." },
-        { "type": "speaker", "speaker": "john", "text": "You don't have to stop. I'm just, uh. Killing time." },
-        { "type": "speaker", "speaker": "narrator", "text": "He closes the sketchbook a little too quickly." },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "You almost don't notice John, tucked into a window alcove near the stairwell, sketchbook balanced on his knee.",
+          "id": "vignette_john/0"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "He notices you first, and immediately looks like he regrets it.",
+          "id": "vignette_john/1"
+        },
+        {
+          "type": "speaker",
+          "speaker": "john",
+          "text": "Oh - hey.",
+          "id": "vignette_john/2"
+        },
+        {
+          "type": "speaker",
+          "speaker": "john",
+          "text": "You don't have to stop. I'm just, uh. Killing time.",
+          "id": "vignette_john/3"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "He closes the sketchbook a little too quickly.",
+          "id": "vignette_john/4"
+        },
         {
           "type": "choice",
           "choices": [
@@ -440,17 +1424,54 @@
                   "type": "speaker",
                   "speaker": "john",
                   "text": "Nothing, really. It's not-",
-                  "effects": [{ "type": "relationship", "relations": [{ "character": "john", "amount": 1 }] }]
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "john",
+                          "amount": 1
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "vignette_john/5/c0/0"
                 },
-                { "type": "speaker", "speaker": "narrator", "text": "He hesitates, then opens the sketchbook back up, just a little." },
-                { "type": "speaker", "speaker": "john", "text": "It's just the courtyard. From up here it looks kind of nice, actually." },
+                {
+                  "type": "speaker",
+                  "speaker": "narrator",
+                  "text": "He hesitates, then opens the sketchbook back up, just a little.",
+                  "id": "vignette_john/5/c0/1"
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "john",
+                  "text": "It's just the courtyard. From up here it looks kind of nice, actually.",
+                  "id": "vignette_john/5/c0/2"
+                },
                 {
                   "type": "speaker",
                   "speaker": "john",
                   "text": "Nobody's really seen this one yet.",
-                  "effects": [{ "type": "relationship", "relations": [{ "character": "john", "amount": 3 }] }]
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "john",
+                          "amount": 3
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "vignette_john/5/c0/3"
                 },
-                { "type": "speaker", "speaker": "narrator", "text": "He says it like it's no big deal. It clearly is." }
+                {
+                  "type": "speaker",
+                  "speaker": "narrator",
+                  "text": "He says it like it's no big deal. It clearly is.",
+                  "id": "vignette_john/5/c0/4"
+                }
               ]
             },
             {
@@ -460,26 +1481,82 @@
                   "type": "speaker",
                   "speaker": "john",
                   "text": "...Thanks.",
-                  "effects": [{ "type": "relationship", "relations": [{ "character": "john", "amount": 1 }] }]
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "john",
+                          "amount": 1
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "vignette_john/5/c1/0"
                 },
-                { "type": "speaker", "speaker": "john", "text": "I mean - you didn't have to. But thanks." },
-                { "type": "speaker", "speaker": "narrator", "text": "He relaxes, just slightly, once you're not looking directly at him anymore." }
+                {
+                  "type": "speaker",
+                  "speaker": "john",
+                  "text": "I mean - you didn't have to. But thanks.",
+                  "id": "vignette_john/5/c1/1"
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "narrator",
+                  "text": "He relaxes, just slightly, once you're not looking directly at him anymore.",
+                  "id": "vignette_john/5/c1/2"
+                }
               ]
             }
-          ]
+          ],
+          "id": "vignette_john/5"
         },
-        { "type": "speaker", "speaker": "john", "text": "Anyway. See you around, I guess." },
-        { "type": "speaker", "speaker": "narrator", "text": "He goes back to his sketchbook before you've even finished walking away." },
-        { "type": "goto", "scene": "vignette_penny" }
+        {
+          "type": "speaker",
+          "speaker": "john",
+          "text": "Anyway. See you around, I guess.",
+          "id": "vignette_john/6"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "He goes back to his sketchbook before you've even finished walking away.",
+          "id": "vignette_john/7"
+        },
+        {
+          "type": "goto",
+          "scene": "vignette_penny",
+          "id": "vignette_john/8"
+        }
       ]
     },
     "vignette_penny": {
       "background": "hallway",
       "dialogue": [
-        { "type": "speaker", "speaker": "narrator", "text": "Near the lockers, you hear Penny before you see her, already mid-argument with a vending machine." },
-        { "type": "speaker", "speaker": "penny", "text": "This is theft. Actual theft. I put in exact change." },
-        { "type": "speaker", "speaker": "narrator", "text": "She hits the machine once, purely out of principle, and it does absolutely nothing." },
-        { "type": "speaker", "speaker": "penny", "text": "...Don't laugh." },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Near the lockers, you hear Penny before you see her, already mid-argument with a vending machine.",
+          "id": "vignette_penny/0"
+        },
+        {
+          "type": "speaker",
+          "speaker": "penny",
+          "text": "This is theft. Actual theft. I put in exact change.",
+          "id": "vignette_penny/1"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "She hits the machine once, purely out of principle, and it does absolutely nothing.",
+          "id": "vignette_penny/2"
+        },
+        {
+          "type": "speaker",
+          "speaker": "penny",
+          "text": "...Don't laugh.",
+          "id": "vignette_penny/3"
+        },
         {
           "type": "choice",
           "choices": [
@@ -490,10 +1567,31 @@
                   "type": "speaker",
                   "speaker": "penny",
                   "text": "You were absolutely about to laugh.",
-                  "effects": [{ "type": "relationship", "relations": [{ "character": "penny", "amount": -1 }] }]
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "penny",
+                          "amount": -1
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "vignette_penny/4/c0/0"
                 },
-                { "type": "speaker", "speaker": "penny", "text": "I can see it on your face. It's very obvious." },
-                { "type": "speaker", "speaker": "narrator", "text": "She crosses her arms, but there's no real heat behind it." }
+                {
+                  "type": "speaker",
+                  "speaker": "penny",
+                  "text": "I can see it on your face. It's very obvious.",
+                  "id": "vignette_penny/4/c0/1"
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "narrator",
+                  "text": "She crosses her arms, but there's no real heat behind it.",
+                  "id": "vignette_penny/4/c0/2"
+                }
               ]
             },
             {
@@ -503,39 +1601,122 @@
                   "type": "speaker",
                   "speaker": "penny",
                   "text": "Oh, sure, because you'll definitely succeed where I failed.",
-                  "effects": [{ "type": "relationship", "relations": [{ "character": "penny", "amount": 1 }] }]
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "penny",
+                          "amount": 1
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "vignette_penny/4/c1/0"
                 },
-                { "type": "speaker", "speaker": "narrator", "text": "You give the machine a light tap. The snack drops without complaint." },
+                {
+                  "type": "speaker",
+                  "speaker": "narrator",
+                  "text": "You give the machine a light tap. The snack drops without complaint.",
+                  "id": "vignette_penny/4/c1/1"
+                },
                 {
                   "type": "speaker",
                   "speaker": "penny",
                   "text": "...Okay, that's actually infuriating.",
-                  "effects": [{ "type": "relationship", "relations": [{ "character": "penny", "amount": 2 }] }]
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "penny",
+                          "amount": 2
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "vignette_penny/4/c1/2"
                 },
-                { "type": "speaker", "speaker": "penny", "text": "Here. Half of it's yours. Don't make it weird." }
+                {
+                  "type": "speaker",
+                  "speaker": "penny",
+                  "text": "Here. Half of it's yours. Don't make it weird.",
+                  "id": "vignette_penny/4/c1/3"
+                }
               ]
             }
-          ]
+          ],
+          "id": "vignette_penny/4"
         },
-        { "type": "speaker", "speaker": "penny", "text": "Anyway. This didn't happen. I have a reputation." },
-        { "type": "speaker", "speaker": "penny", "text": "...See you at the club. Probably." },
-        { "type": "goto", "scene": "vignette_yuri" }
+        {
+          "type": "speaker",
+          "speaker": "penny",
+          "text": "Anyway. This didn't happen. I have a reputation.",
+          "id": "vignette_penny/5"
+        },
+        {
+          "type": "speaker",
+          "speaker": "penny",
+          "text": "...See you at the club. Probably.",
+          "id": "vignette_penny/6"
+        },
+        {
+          "type": "goto",
+          "scene": "vignette_yuri",
+          "id": "vignette_penny/7"
+        }
       ]
     },
     "vignette_yuri": {
       "background": "clubroom_door",
       "dialogue": [
-        { "type": "speaker", "speaker": "narrator", "text": "By the time classes end for the day, the halls have mostly emptied out." },
-        { "type": "speaker", "speaker": "narrator", "text": "You find Yuri standing just outside the clubroom door, alone, hands folded, watching the hallway." },
-        { "type": "speaker", "speaker": "narrator", "text": "It's not clear how long she's been standing there." },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "By the time classes end for the day, the halls have mostly emptied out.",
+          "id": "vignette_yuri/0"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "You find Yuri standing just outside the clubroom door, alone, hands folded, watching the hallway.",
+          "id": "vignette_yuri/1"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "It's not clear how long she's been standing there.",
+          "id": "vignette_yuri/2"
+        },
         {
           "type": "speaker",
           "speaker": "yuri",
           "text": "You came back this way.",
-          "effects": [{ "type": "relationship", "relations": [{ "character": "yuri", "amount": 1 }] }]
+          "effects": [
+            {
+              "type": "relationship",
+              "relations": [
+                {
+                  "character": "yuri",
+                  "amount": 1
+                }
+              ]
+            }
+          ],
+          "id": "vignette_yuri/3"
         },
-        { "type": "speaker", "speaker": "yuri", "text": "I wasn't sure you would. Most people say \"whenever\" and mean \"never.\"" },
-        { "type": "speaker", "speaker": "yuri", "text": "I'm glad you're not most people." },
+        {
+          "type": "speaker",
+          "speaker": "yuri",
+          "text": "I wasn't sure you would. Most people say \"whenever\" and mean \"never.\"",
+          "id": "vignette_yuri/4"
+        },
+        {
+          "type": "speaker",
+          "speaker": "yuri",
+          "text": "I'm glad you're not most people.",
+          "id": "vignette_yuri/5"
+        },
         {
           "type": "choice",
           "choices": [
@@ -546,11 +1727,37 @@
                   "type": "speaker",
                   "speaker": "yuri",
                   "text": "...Yes.",
-                  "effects": [{ "type": "relationship", "relations": [{ "character": "yuri", "amount": 2 }] }]
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "yuri",
+                          "amount": 2
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "vignette_yuri/6/c0/0"
                 },
-                { "type": "speaker", "speaker": "yuri", "text": "Is that strange? I don't mind if it is." },
-                { "type": "speaker", "speaker": "yuri", "text": "I just wanted to make sure I didn't miss you." },
-                { "type": "speaker", "speaker": "narrator", "text": "There's something quietly intense in the way she says it - like missing you wasn't really an option she was prepared to allow." }
+                {
+                  "type": "speaker",
+                  "speaker": "yuri",
+                  "text": "Is that strange? I don't mind if it is.",
+                  "id": "vignette_yuri/6/c0/1"
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "yuri",
+                  "text": "I just wanted to make sure I didn't miss you.",
+                  "id": "vignette_yuri/6/c0/2"
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "narrator",
+                  "text": "There's something quietly intense in the way she says it - like missing you wasn't really an option she was prepared to allow.",
+                  "id": "vignette_yuri/6/c0/3"
+                }
               ]
             },
             {
@@ -560,32 +1767,118 @@
                   "type": "speaker",
                   "speaker": "yuri",
                   "text": "Of course. You should rest.",
-                  "effects": [{ "type": "relationship", "relations": [{ "character": "yuri", "amount": 1 }] }]
+                  "effects": [
+                    {
+                      "type": "relationship",
+                      "relations": [
+                        {
+                          "character": "yuri",
+                          "amount": 1
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "vignette_yuri/6/c1/0"
                 },
-                { "type": "speaker", "speaker": "yuri", "text": "I'll be here tomorrow. And the day after." },
-                { "type": "speaker", "speaker": "yuri", "text": "For as long as you keep coming back, I suppose." },
-                { "type": "speaker", "speaker": "narrator", "text": "It's said gently. It still lingers a little longer than it probably should." }
+                {
+                  "type": "speaker",
+                  "speaker": "yuri",
+                  "text": "I'll be here tomorrow. And the day after.",
+                  "id": "vignette_yuri/6/c1/1"
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "yuri",
+                  "text": "For as long as you keep coming back, I suppose.",
+                  "id": "vignette_yuri/6/c1/2"
+                },
+                {
+                  "type": "speaker",
+                  "speaker": "narrator",
+                  "text": "It's said gently. It still lingers a little longer than it probably should.",
+                  "id": "vignette_yuri/6/c1/3"
+                }
               ]
             }
-          ]
+          ],
+          "id": "vignette_yuri/6"
         },
-        { "type": "speaker", "speaker": "yuri", "text": "Get home safely." },
-        { "type": "speaker", "speaker": "yuri", "text": "I'll be thinking about today. I imagine I'll think about it for a while, actually." },
-        { "type": "goto", "scene": "evening_reflection" }
+        {
+          "type": "speaker",
+          "speaker": "yuri",
+          "text": "Get home safely.",
+          "id": "vignette_yuri/7"
+        },
+        {
+          "type": "speaker",
+          "speaker": "yuri",
+          "text": "I'll be thinking about today. I imagine I'll think about it for a while, actually.",
+          "id": "vignette_yuri/8"
+        },
+        {
+          "type": "goto",
+          "scene": "evening_reflection",
+          "id": "vignette_yuri/9"
+        }
       ]
     },
     "evening_reflection": {
       "background": "dorm_room",
       "dialogue": [
-        { "type": "speaker", "speaker": "narrator", "text": "By the time you get back to your room, the sky outside has gone the color of an old bruise - orange fading into something darker." },
-        { "type": "speaker", "speaker": "narrator", "text": "You sit for a while without doing much of anything." },
-        { "type": "speaker", "speaker": "narrator", "text": "Ali, hopeful and a little too eager. Erika, careful with her words but not with her honesty. John, quiet until he wasn't. Penny, prickly right up until she wasn't. Yuri..." },
-        { "type": "speaker", "speaker": "narrator", "text": "Yuri is harder to put into words. You're not sure \"waiting for you\" is something people usually do on a first day." },
-        { "type": "speaker", "speaker": "narrator", "text": "You're not sure it's a bad thing, either. Not yet." },
-        { "type": "speaker", "speaker": "narrator", "text": "One knock on one door, and somehow you already have five people who know your face." },
-        { "type": "speaker", "speaker": "narrator", "text": "Tomorrow, you'll have to decide what to do with that." },
-        { "type": "speaker", "speaker": "narrator", "text": "Tonight, though, you let yourself stop thinking about it." },
-        { "type": "speaker", "speaker": "narrator", "text": "Your first day at NU Academy is over." }
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "By the time you get back to your room, the sky outside has gone the color of an old bruise - orange fading into something darker.",
+          "id": "evening_reflection/0"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "You sit for a while without doing much of anything.",
+          "id": "evening_reflection/1"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Ali, hopeful and a little too eager. Erika, careful with her words but not with her honesty. John, quiet until he wasn't. Penny, prickly right up until she wasn't. Yuri...",
+          "id": "evening_reflection/2"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Yuri is harder to put into words. You're not sure \"waiting for you\" is something people usually do on a first day.",
+          "id": "evening_reflection/3"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "You're not sure it's a bad thing, either. Not yet.",
+          "id": "evening_reflection/4"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "One knock on one door, and somehow you already have five people who know your face.",
+          "id": "evening_reflection/5"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Tomorrow, you'll have to decide what to do with that.",
+          "id": "evening_reflection/6"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Tonight, though, you let yourself stop thinking about it.",
+          "id": "evening_reflection/7"
+        },
+        {
+          "type": "speaker",
+          "speaker": "narrator",
+          "text": "Your first day at NU Academy is over.",
+          "id": "evening_reflection/8"
+        }
       ]
     }
   }

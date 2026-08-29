@@ -5,43 +5,11 @@ import { GotoNode, ChoiceNode, ChoiceOption } from './storyNodes.js';
 export const GraphBuilder = {
     initialize() {
         this.sceneMap = new Map();
-
         this.pendingGoto = [];
-
-        this.currentScene = null;
-        this.previousNode = null;
     },
-    
+
     beginScene(sceneNode) {
-        this.currentScene = sceneNode;
-
         this.sceneMap.set(sceneNode.id, sceneNode);
-
-        this.previousNode = null;
-    },
-
-    connectLinear(node) {
-        if(this.previousNode == null)
-            this.currentScene.firstNode = node;
-        else
-            this.previousNode.next = node;
-
-        this.previousNode = node;
-
-        if(node instanceof GotoNode)
-            this.pendingGoto.push(node);
-
-    },
-
-    connectBranch(previousNode, node) {
-        if(previousNode != null)
-            previousNode.next = node;
-
-        if(node instanceof GotoNode)
-            this.pendingGoto.push(node);
-
-        return node;
-
     },
 
     finalize() {
@@ -59,28 +27,25 @@ export const StoryBuilder = {
 
         for(const [sceneId, sceneData] of Object.entries(storyData.scenes)) {
             const scene = new Scene(
-                sceneId,
-                sceneData.background,
+                sceneId, 
+                sceneData.background, 
                 sceneData.bgm
             );
 
             GraphBuilder.beginScene(scene);
-
-            this.buildDialogue(sceneId, sceneData.dialogue);
+            scene.firstNode = this.buildDialogue(sceneId, sceneData.dialogue).firstNode;
         }
 
         GraphBuilder.finalize();
     },
 
-    buildDialogue(sceneId, dialogue, isBranch = false, onContinue = null, counter = { value: 0 }) {
+    buildDialogue(sceneId, dialogue, onContinue = null) {
         let firstNode = null;
-        let previousNode = null;
         let deadEndNodes = [];
 
         for(let i = 0; i < dialogue.length; i++) {
             const data = dialogue[i];
             const node = StoryParser.parse(data);
-            node.index = counter.value++;
 
             if(firstNode == null)
                 firstNode = node;
@@ -93,44 +58,34 @@ export const StoryBuilder = {
             for(const end of deadEndNodes)
                 end.next = node;
 
-            deadEndNodes = [];
-
-            if(isBranch)
-                previousNode = GraphBuilder.connectBranch(previousNode, node);
-            else
-                GraphBuilder.connectLinear(node);
+            if(node instanceof GotoNode)
+                GraphBuilder.pendingGoto.push(node);
 
             if(node instanceof ChoiceNode) {
-                const branchDeadEnds = [];
-                const newChoices = [];
-
-                for(const optionData of node.choices) {
+                const branches = node.choices.map(optionData => {
                     const branch = this.buildDialogue(
-                        sceneId,
-                        optionData.dialogue,
-                        true,
-                        null,
-                        counter
+                        sceneId, 
+                        optionData.dialogue
                     );
-
                     const option = new ChoiceOption(optionData);
                     option.next = branch.firstNode;
+                    return { 
+                        option, 
+                        deadEnds: branch.deadEndNodes 
+                    };
+                });
 
-                    newChoices.push(option);
-                    branchDeadEnds.push(...branch.deadEndNodes);
-                }
-
-                node.choices = newChoices;
-                deadEndNodes = branchDeadEnds;
+                node.choices = branches.map(b => b.option);
+                deadEndNodes = branches.flatMap(b => b.deadEnds);
                 continue;
             }
 
             deadEndNodes = [node];
         }
 
-        return {
-            firstNode,
-            deadEndNodes
+        return { 
+            firstNode, 
+            deadEndNodes 
         };
     }
 }

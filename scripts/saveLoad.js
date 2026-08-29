@@ -56,9 +56,9 @@ export const SaveLoad = {
         const sceneData = gameSlotData.sceneData;
         const scene = GraphBuilder.sceneMap.get(sceneData.sceneId);
 
-        const currentNode = scene.findNode(sceneData.currentIndex);
-        const previousNode = scene.findNode(sceneData.previousIndex);
-
+        const currentNode = scene.findNode(sceneData.currentId);
+        const previousNode = scene.findNode(this.getPreviousId(sceneData.currentId));
+        
         let chosenNode = currentNode;
 
         if(!(currentNode instanceof SpeakerNode))
@@ -87,7 +87,7 @@ export const SaveLoad = {
 
         const sceneData = new SceneData(
             scene.id,
-            currentNode.index,
+            currentNode.id,
             stageData,
             structuredClone(Relationship.data)
         );
@@ -120,10 +120,16 @@ export const SaveLoad = {
         const sceneData = gameSlot.sceneData;
         const scene = GraphBuilder.sceneMap.get(sceneData.sceneId);
 
+        const currentNode = scene.findNode(sceneData.currentId);
+        const previousNode = scene.findNode(this.getPreviousId(sceneData.currentId));
+        
+        let chosenNode = currentNode;
+
+        if(!(currentNode instanceof SpeakerNode))
+            chosenNode = previousNode;
+
         StoryRunner.currentScene = scene;
-        StoryRunner.currentNode = scene.findNode(
-            sceneData.currentIndex
-        );
+        StoryRunner.currentNode = chosenNode;
 
         Relationship.data = structuredClone(
             sceneData.relationship
@@ -150,5 +156,11 @@ export const SaveLoad = {
         this.loadSlot(slotId);
 
         return true;
+    },
+
+    getPreviousId(nodeId) {
+        let text = nodeId.split("/");
+        let index = Math.max(0, Number(text.pop()) - 1);
+        return `${text}/${index}`;
     }
 };

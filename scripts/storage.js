@@ -102,10 +102,9 @@ export class GameSlotData {
 }
 
 export class SceneData {
-    constructor(sceneId, nodeIndex, stage, relationship) {
-        this.sceneId = sceneId;
-        this.currentIndex = nodeIndex;
-        this.previousIndex = Math.max(0, this.currentIndex - 1);
+    constructor(sceneId, nodeId, stage, relationship) {
+        this.sceneId = sceneId; 
+        this.currentId = nodeId;
         this.stage = stage;
         this.relationship = relationship;
     }

@@ -10,15 +10,15 @@ export class Scene {
         this.lastNode = null;
     }
 
-    findNode(index) {
-        return this.#dfs(this.firstNode, index, new Set());
+    findNode(id) {
+        return this.#dfs(this.firstNode, id, new Set());
     }
 
-    #dfs(node, nodeIndex, visited) {
+    #dfs(node, nodeId, visited) {
         if(node == null || visited.has(node))
             return null;
 
-        if(node.index === nodeIndex)
+        if(node.id === nodeId)
             return node;
 
         visited.add(node);
@@ -27,7 +27,7 @@ export class Scene {
             for(const choice of node.choices) {
                 const found = this.#dfs(
                     choice.next,
-                    nodeIndex,
+                    nodeId,
                     visited
                 );
 
@@ -40,7 +40,7 @@ export class Scene {
 
         return this.#dfs(
             node.next,
-            nodeIndex,
+            nodeId,
             visited
         );
     }

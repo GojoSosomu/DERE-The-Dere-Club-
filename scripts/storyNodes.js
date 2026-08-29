@@ -4,7 +4,7 @@ export class Node extends StoryElement {
     constructor(type, data = {}) {
         super(data);
         this.type = type;
-        this.index = 0;
+        this.id = data.id;
     }
 }
 
