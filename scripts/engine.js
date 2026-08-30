@@ -38,4 +38,5 @@ export const Engine = {
 
 document.addEventListener("DOMContentLoaded", async () => {
     await Engine.initialize();
+    Screen.updateOrientation();
 });
